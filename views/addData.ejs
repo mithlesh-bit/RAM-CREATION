@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Add Section</title>
+    <link href="../css/style2.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="../js/imageSelect.js"></script>
+    <script>
+      
+        function displayImage() {
+            var dropArea = document.getElementById('dropArea');
+            var preview = document.getElementById('imagePreview');
+            var fileInput = document.getElementById('imageInput');
+            var file = fileInput.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // Replace drop area with selected image
+                    dropArea.style.display = 'none';
+                    preview.style.display = 'block';
+                    document.getElementById('selectedImage').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                // If no file is selected, show the drop area
+                dropArea.style.display = 'block';
+                preview.style.display = 'none';
+            }
+        }
+
+
+        function sendData() {
+            var data = document.getElementById("dataToSend").value;
+            window.location.href = "receiver.html?data=" + encodeURIComponent(data);
+        }
+    </script>
+    
+    <style>
+   
+   #dropArea {
+    border: 2px dashed #ccc;
+    padding: 20px;
+
+    text-align: center;
+
+}
+
+#dropLabel {
+    display: block;
+}
+
+#dropArea img {
+    max-width: 100%;
+    max-height: 100px;
+    margin-bottom: 10px;
+}
+
+#imageInput {
+    display: none; /* hide the actual file input */
+}
+
+#imagePreview {
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100px;
+    max-height: 100px;
+}
+    </style>
+
+</head>
+
+<body class="bg-primary justify-content-center">
+<!-- 
+    <form action="addData" method="post" enctype="multipart/form-data">
+        <input type="text" name="title">
+        <input type="text" name="amount">
+        <input type="file" name="image">
+        <button type="submit">submit</button>
+    </form> -->
+
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container" margin="0px">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="card shadow-lg border-0 rounded-lg mt-3">
+                                <div class="card-header">
+                                    <h3 class="text-center font-weight-light my-4">
+                                        Add Thumbnail Data
+                                    </h3>
+                                </div>
+                                <form class="card-body px-4" action="addData" method="post" enctype="multipart/form-data">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="inputHeading" name="title" type="text" required placeholder="name" />
+                                        <label for="inputHeading">Heading Name</label>
+                                    </div>
+                                
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="inputAmount" name="amount" type="number" required placeholder="name" />
+                                        <label for="inputAmount">Enter the amount</label>
+                                    </div>
+                                    
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="inputDescrtiption" name="description" type="text" required placeholder="name" />
+                                        <label for="inputDescrtiption">Add a description</label>
+                                    </div>
+                                
+                                    <div class="margin: 20px">
+                                        <div id="dropArea">
+                                            <label for="imageInput" id="dropLabel">
+                                                <input type="file" id="imageInput" accept="image/*" name="image" required onchange="displayImage()" />
+                                                <img src="../assets/img/upload.png" width="50" height="50" alt="Drag and Drop Icon">
+                                                <p>Select Thumbnail Image</p>
+                                            </label>
+                                        </div>
+                                        <div id="imagePreview" style="display: none; align-items: center;" class="mb-3">
+                                            <img id="selectedImage" alt="Selected Image" style="max-width: 150px; max-height: 150px;">
+                                        </div>
+                                    </div>
+                                
+                                    <div class="mt-6 mb-0 pt-5">
+                                        <div class="d-grid">
+                                            <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    </main>
+    </div>
+    <div id="layoutAuthentication_footer">
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Ram Creations 2023</div>
+
+                </div>
+            </div>
+        </footer>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    
+    <!-- <script src="js/cardAlloatment.js"></script> -->
+</body>
+
+</html>

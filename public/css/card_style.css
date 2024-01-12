@@ -1,0 +1,310 @@
+:root {
+    font-size: 24px;
+  }
+
+ 
+  .card-group {
+    left: 50%;
+    right: 50%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  
+ 
+  .card {
+    height: 270px;
+    width: 450px;
+    border-radius: 25px;
+    border: 4px solid #5e6977;
+    position: relative;
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    text-decoration: none; /* Remove default underline for links */
+    color: inherit; /* Inherit text color from the parent */
+  }
+
+
+  
+  .logo img,
+  .chip img,
+  .number,
+  .name,
+  .from,
+  .to,
+  .ring {
+    position: absolute; /* All items inside card should have absolute position */
+  }
+  
+  .logo img {
+    top: 35px;
+    right: 40px;
+    width: 80px;
+    height: 80;
+    opacity: 0.8;
+  }
+  
+  .chip img {
+    top: 120px;
+    left: 40px;
+    width: 50px;
+    height: auto;
+    opacity: 0.8;
+  }
+  
+  .number,
+  .name,
+  .from,
+  .to {
+    font-size: 5svb;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-family: Helvetica;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  }
+  
+  .number {
+    left: 40px;
+    bottom: 65px;
+  }
+  
+  .name {
+    font-size: 0.5rem;
+    left: 40px;
+    bottom: 35px;
+  }
+  
+  .from {
+    font-size: 0.5rem;
+    bottom: 35px;
+    right: 110px;
+  }
+  
+  .to {
+    font-size: 0.5rem;
+    bottom: 35px;
+    right: 40px;
+  }
+  
+  /* The two rings on the card background */
+  .ring {
+    height: 500px;
+    width: 500px;
+    border-radius: 50%;
+    background: transparent;
+    border: 50px solid rgba(255, 255, 255, 0.1);
+    bottom: -250px;
+    right: -250px;
+    box-sizing: border-box;
+  }
+  
+  .ring::after {
+    content: "";
+    position: absolute;
+    height: 600px;
+    width: 600px;
+    border-radius: 50%;
+    background: transparent;
+    border: 30px solid rgba(255, 255, 255, 0.1);
+    bottom: -80px;
+    right: -110px;
+    box-sizing: border-box;
+  }
+  
+
+  * Buttons Section */
+.paypal-btn,
+.proceed-btn {
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    border-color: transparent;
+    border-radius: 6px;
+}
+ 
+.proceed-btn {
+    margin-bottom: 10px;
+    background: #7dc855;
+}
+ 
+.paypal-btn a,
+.proceed-btn a {
+    text-decoration: none;
+}
+ 
+.proceed-btn a {
+    color: #fff;
+}
+ 
+.paypal-btn a {
+    color: rgba(242, 242, 242, .7);
+}
+ 
+.paypal-btn {
+    padding-right: 95px;
+    background: url('paypal-logo.svg') no-repeat 65% 56% #009cde;
+}
+
+/* Card Verification Field */
+.cvv-input input {
+    float: left;
+    width: 145px;
+    padding-left: 20px;
+    border: 2px solid #e1e8ee;
+    border-radius: 6px;
+    background: #fff;
+}
+ 
+.cvv-details {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 16px;
+    float: right;
+    margin-bottom: 20px;
+}
+ 
+.cvv-details p {
+    margin-top: 6px;
+}
+
+/* Date Field */
+.month select,
+.year select {
+    width: 145px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    border: 2px solid #e1e8ee;
+    border-radius: 6px;
+    background: url('caret.png') no-repeat;
+    background-position: 85% 50%;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+ 
+.month select {
+    float: left;
+}
+ 
+.year select {
+    float: right;
+}
+
+
+/* Card Number */
+.card-number {
+    width: 100%;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    border: 2px solid #e1e8ee;
+    border-radius: 6px;
+}
+
+/* Common */
+.card-number,
+.cvv-input input,
+.month select,
+.year select {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 14px;
+}
+ 
+.card-number,
+.month select,
+.year select {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 14px;
+}
+ 
+.card-number,
+.cvv-details,
+.cvv-input input,
+.month select,
+.year select {
+    opacity: .7;
+    color: black;
+    padding: 10px;
+    border-color: #ddd;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Title */
+.title {
+    font-size: 18px;
+    margin: 0;
+    color: #5e6977;
+}
+
+.form-header {
+    height: 60px;
+    padding: 20px 30px 0;
+    border-bottom: 1px solid #e1e8ee;
+}
+ 
+.form-body {
+    height: 340px;
+    padding: 30px 30px 20px;
+}
+
+/* Credit Card */
+.credit-card {
+    width: 100%; /* Change width to be relative to the parent element */
+    max-width: 320px; /* Set a maximum width for larger screens */
+    height: auto; /* Let the height adjust proportionally */
+    margin-left: 30px;
+    border: 1px solid #ddd;
+    margin-top: 30px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 1px 2px 3px 0 rgba(0,0,0,.10);
+}
+
+/* Apply specific styles for smaller screens (e.g., mobile phones) */
+@media (min-width: 768px) {
+    .credit-card {
+        max-width: 400px; /* Increase the maximum width for larger screens */
+    }
+
+
+
+/* Global */
+* {
+    box-sizing: border-box;
+}
+ 
+body,
+html {
+    height: 100%;
+    min-height: 100%;
+}
+ 
+body {
+    background-image: url("./assets/JavaScript.png");
+    font-family: 'Roboto',
+    sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    align-items: center;
+    background-color: #e7e7e7;
+}
+
+.main-body {
+    background-color: white;
+    width: 100%;
+    margin-top: 50px;
+    padding: 50px;
+    height: auto;
+    display: flex;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    min-width: 350px;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Register - SB Admin</title>
+  <link href="../css/style2.css" rel="stylesheet" />
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <script src="../js/imageSelect.js"></script>
+  <style>
+ 
+
+    #dropArea {
+      border: 2px dashed #ccc;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    #dropArea img {
+      max-width: 100%;
+      max-height: 100px;
+      margin-bottom: 10px;
+    }
+  </style>
+
+</head>
+
+<body class="bg-primary justify-content-center">
+  <div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+      <main>
+        <div class="container" margin="0px">
+          <div class="row justify-content-center">
+            <div class="col-lg-6">
+              <div class="card shadow-lg border-0 rounded-lg mt-3">
+                <div class="card-header">
+                  <h3 class="text-center font-weight-light my-4">
+                    Add Thumbnail Data
+                  </h3>
+                </div>
+                <form class="card-body">
+                  <form id="cardAlloatmentForm" action="/cardAlloatment" method="post">
+                    <div class="form-floating mb-3">
+                      <input class="form-control" id="inputHeading" name="inputHeading" type="text" required
+                        placeholder="name" />
+                      <label for="inputHeading">Heading Name</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                      <input class="form-control" id="inputAmount" name="inputAmount" type="number" required
+                        placeholder="name" />
+                      <label for="inputAmount">Enter the amount</label>
+                    </div>
+
+
+
+                    <div id="dropArea" onclick="uploadImage()">
+                      <input type="file" id="imageInput" accept="image/*" />
+                      <img src="../assets/img/upload.png" width="50" height="50" alt="Drag and Drop Icon">
+                      <p>Drag and drop images</p>
+                    </div>
+                   
+                    
+                   
+
+
+                    <div class="mt-4 mb-0">
+                      <div class="d-grid">
+                        <button class="btn btn-primary btn-block" type="submit">
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    </main>
+  </div>
+  <div id="layoutAuthentication_footer">
+    <footer class="py-4 bg-light mt-auto">
+      <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+          <div class="text-muted">Copyright &copy; MessMate 2023</div>
+
+        </div>
+      </div>
+    </footer>
+  </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <!-- <script src="js/scripts.js"></script> -->
+  <script src="js/cardAlloatment.js"></script>
+</body>
+
+</html>
