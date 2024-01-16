@@ -408,15 +408,38 @@ exports.logout = async (req, res) => {
   }
 };
 
-exports.detailed = async (req, res) => {
-  try {
-    const { id } = req.body
-    const result = await imageSchema.find({ _id: id })
-    console.log(result);
-    res.json({ success: true, result: result });
+// exports.detailed = async (req, res) => {
+//   try {
+//     const { id } = req.body
+//     const result = await imageSchema.find({ _id: id })
+//     console.log(result);
+//     res.json({ success: true, result: result });
 
+//   } catch (error) {
+//     console.error('Error updating post:', error);
+//     res.status(500).json({ success: false, message: 'Failed to update post' });
+//   }
+// };
+
+exports.more = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await imageSchema.findOne({ _id: id });
+    res.json({ success: true, result });
   } catch (error) {
-    console.error('Error updating post:', error);
-    res.status(500).json({ success: false, message: 'Failed to update post' });
+    console.error('Error fetching data:', error);
+    res.status(500).json({ success: false, message: 'Failed to fetch data' });
+  }
+};
+
+exports.morePage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await imageSchema.findOne({ _id: id });
+
+    res.render('more', { result });
+  } catch (error) {
+    console.error('Error rendering page:', error);
+    res.status(500).json({ success: false, message: 'Failed to render page' });
   }
 };

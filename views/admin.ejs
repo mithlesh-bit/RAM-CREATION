@@ -287,24 +287,23 @@
                 </thead>
                 <tbody>
                   <% if (data && data.length> 0) { %> <% data.forEach(data=> { %>
-                      <tr id="detailed" data-post-id="<%= data._id %>">
+                      <tr id="detailed">
                         <td>
-                          <img alt="..." src="<%= data.images[0].url %>" data-post-id="<%= data._id %>"
-                            class="avatar avatar-sm rounded-circle me-2">
-                          <a class="text-heading font-semibold" data-post-id="<%= data._id %>" href="#">
+                          <img alt="..." src="<%= data.images[0].url %>" class="avatar avatar-sm rounded-circle me-2">
+                          <a class="text-heading font-semibold" href="#">
                             <%= data.title %>
                           </a>
                         </td>
-                        <td data-post-id="<%= data._id %>">
+                        <td>
                           <%= data.lastUpdate %>
                         </td>
-                        <td data-post-id="<%= data._id %>">
+                        <td>
                           <img alt="..." src="<%= data.images[0].url %>" class="avatar avatar-xs rounded-circle me-2">
-                          <a class="text-heading font-semibold" data-post-id="<%= data._id %>" href="#">
+                          <a class="text-heading font-semibold" href="#">
                             Dribbble
                           </a>
                         </td>
-                        <td data-post-id="<%= data._id %>">
+                        <td>
                           <%= data.amount %>
                         </td>
                         <td>
@@ -314,6 +313,8 @@
                           </span>
                         </td>
                         <td class="text-end">
+                          <button class="btn-sm btn-neutral edit-btn"
+                            onclick="moreButton('<%= data._id %>')">more</button>
                           <button type="button" class="editbtn3 btn-sm btn-neutral edit-btn"
                             onclick="updatePost1('<%= data._id %>')">Edit</button>
                           <button type="button" class="editbtn2 btn btn-sm btn-square btn-neutral text-danger-hover">
@@ -458,7 +459,6 @@
       var allFilesButton = document.getElementById('allFilesButton');
       var titlesButton = document.getElementById('titlesButton');
       var messagesButton = document.getElementById('messages');
-      var detaildButton = document.getElementById('detailed');
 
       var applicationContent = document.getElementById('applicationContent');
 
@@ -473,28 +473,6 @@
       titlesButton.addEventListener('click', function (e) {
         e.preventDefault();
         applicationContent.innerHTML = '<div class="row g-6 mb-6"> <% if (data && data.length > 0) { %> <% data.forEach(data => { %> <div class="col-xl-3 col-sm-6 col-12"> <div class="card shadow border-0" style="height: 100%;"> <div class="card-body" style="display: flex; justify-content: center; align-items: center;"> <img src="<%= data.images[0].url %>" alt="<%= data.title %>" style="max-width: 100%; max-height: 250px;"> </div> </div> </div> <% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %> </div>'
-      });
-
-      function getPostIdFromElement(element) {
-
-        return element.getAttribute('data-post-id');
-      }
-      detaildButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        var postId = getPostIdFromElement(e.target);
-        console.log(11, postId);
-        // Perform your fetch operation using postId
-        fetch(`/admin/detailed/${postId}`)
-          .then(response => response.json())
-          .then(data => {
-            applicationContent.innerHTML = '<div class="row g-6 mb-6"> <% if (data && data.length > 0) { %> <% data.forEach(data => { %> <div class="col-xl-3 col-sm-6 col-12"> <div class="card shadow border-0" style="height: 100%;"> <div class="card-body" style="display: flex; justify-content: center; align-items: center;"> <img src="<%= data.images[0].url %>" alt="<%= data.title %>" style="max-width: 100%; max-height: 250px;"> </div> </div> </div> <% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %> </div>'
-
-            console.log(data);
-          })
-          .catch(error => {
-            console.error('Error fetching data:', error);
-          });
-
       });
 
       // Function to switch back to the default content when the "All files" button is clicked
@@ -785,6 +763,32 @@
             title: 'Error',
             text: 'something went wrong'
           });
+        });
+    }
+
+  </script>
+  <script>
+    function moreButton(postId) {
+
+      fetch(`/admin/api/more/${postId}`, { // Use the new API route
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
+          // Redirect to the more.ejs page with the received data
+          window.location.href = `/admin/more/${postId}`;
+        })
+        .catch(error => {
+          console.error('Fetch error:', error);
         });
     }
   </script>
