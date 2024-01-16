@@ -1,6 +1,6 @@
 /**
 * Template Name: Ninestars
-* Updated: Sep 18 2023 with Bootstrap v5.3.2
+* Updated: Jan 09 2024 with Bootstrap v5.3.2
 * Template URL: https://bootstrapmade.com/ninestars-free-bootstrap-3-theme-for-creative/
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
