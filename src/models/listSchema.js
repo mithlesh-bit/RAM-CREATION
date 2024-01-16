@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 
 const listSchema = new mongoose.Schema({
-  heading: String,
+  thumbnail_id: String,
+  theme: String,
   amount: String,
   link: String,
 });

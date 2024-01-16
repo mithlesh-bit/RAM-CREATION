@@ -289,7 +289,7 @@
                   <% if (data && data.length> 0) { %> <% data.forEach(data=> { %>
                       <tr id="detailed">
                         <td>
-                          <img alt="..." src="<%= data.images[0].url %>" class="avatar avatar-sm rounded-circle me-2">
+                          <img alt="..." src="<%= data.images %>" class="avatar avatar-sm rounded-circle me-2">
                           <a class="text-heading font-semibold" href="#">
                             <%= data.title %>
                           </a>
@@ -298,7 +298,7 @@
                           <%= data.lastUpdate %>
                         </td>
                         <td>
-                          <img alt="..." src="<%= data.images[0].url %>" class="avatar avatar-xs rounded-circle me-2">
+                          <img alt="..." src="<%= data.images %>" class="avatar avatar-xs rounded-circle me-2">
                           <a class="text-heading font-semibold" href="#">
                             Dribbble
                           </a>
@@ -472,7 +472,7 @@
       // Function to switch to the photo gallery when the "Titles" button is clicked
       titlesButton.addEventListener('click', function (e) {
         e.preventDefault();
-        applicationContent.innerHTML = '<div class="row g-6 mb-6"> <% if (data && data.length > 0) { %> <% data.forEach(data => { %> <div class="col-xl-3 col-sm-6 col-12"> <div class="card shadow border-0" style="height: 100%;"> <div class="card-body" style="display: flex; justify-content: center; align-items: center;"> <img src="<%= data.images[0].url %>" alt="<%= data.title %>" style="max-width: 100%; max-height: 250px;"> </div> </div> </div> <% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %> </div>'
+        applicationContent.innerHTML = '<div class="row g-6 mb-6"> <% if (data && data.length > 0) { %> <% data.forEach(data => { %> <div class="col-xl-3 col-sm-6 col-12"> <div class="card shadow border-0" style="height: 100%;"> <div class="card-body" style="display: flex; justify-content: center; align-items: center;"> <img src="<%= data.images %>" alt="<%= data.title %>" style="max-width: 100%; max-height: 250px;"> </div> </div> </div> <% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %> </div>'
       });
 
       // Function to switch back to the default content when the "All files" button is clicked
