@@ -1,19 +1,24 @@
-<div class="row g-6 mb-6">
-  <% if (data && data.length > 0) { %>
-    <% data.forEach(data => { %>
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card shadow border-0" style="height: 100%;">
-          <div class="card-body" style="display: flex; justify-content: center; align-items: center;">
-            <img src="<%= data.images[0].url %>" alt="<%= data.title %>" style="max-width: 100%; max-height: 300px;">
-          </div>
-        </div>
+<% if (messages && messages.length > 0) { %>
+  <% messages.forEach(message => { %>
+    <section class="message">
+      <span class="nickname"><%= message.name %></span>
+
+      <span class="status"><%= message.subject %></span>
+
+      <% if (message.date) { %>
+        <div class="message_id"><%= message.date %></div>
+      <% } %>
+
+      <div class="message_text"><%= message.message %></div>
+
+      <div class="likes">
+        <span class="likes_count"><%= message.number %></span>
+        <span class="like"></span>
       </div>
-    <% }) %>
-  <% } else { %>
-    <h2 class="text-center">No data available</h2>
-  <% } %>
-</div>
-
-
-
-<section class="message"> <div class="user_info"> <div class="avatar"><img src="https://i.imgur.com/baQbp3j.png" alt="avatar"></div> <span class="nickname">RimMirK</span> <span class="status">Admin</span> </div> <div class="message_id">#123</div> <div class="message_text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu iaculis neque. Proin eros magna, viverra sagittis justo vel, mollis vulputate risus. Sed viverra semper sapien, at ornare nulla euismod vel. Cras condimentum pretium enim, vel condimentum lectus posuere iaculis. In consectetur tortor sed sodales dapibus. Ut convallis quis lacus et imperdiet. Suspendisse tincidunt lectus ut hendrerit blandit. Class aptent taciti sociosqu ad litora torquent per conubia nostra </div> <div class="likes"> <span class="likes_count">99</span> <span class="like"></span> </div> <div class="time">12:34</div> </section>
+      
+      <div class="time"></div>
+    </section>
+  <% }) %>
+<% } else { %>
+  <h2 class="text-center">No data available</h2>
+<% } %>

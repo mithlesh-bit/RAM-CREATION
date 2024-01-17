@@ -10,10 +10,11 @@
 
   <!-- for alert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
 </head>
 
 <body>
-
 
   <!-- Dashboard -->
   <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
@@ -139,18 +140,16 @@
               <!-- Actions -->
               <div class="col-sm-6 col-12 text-sm-end">
                 <div class="mx-n1">
-                  <a href="#" class=" editbtn1 btn d-inline-flex btn-sm btn-neutral border-base mx-1">
+                  <a class=" editbtn1 btn d-inline-flex btn-sm btn-neutral border-base mx-1">
                     <span class=" pe-2">
                       <i class="bi bi-pencil"></i>
                     </span>
                     <span>Edit</span>
                   </a>
-                  <a href="/admin/addData" class="btn d-inline-flex btn-sm btn-primary mx-1">
-                    <span class=" pe-2">
-                      <i class="bi bi-plus"></i>
-                    </span>
-                    <span>Create</span>
-                  </a>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#addThumbnailModal">
+                    <i class="bi bi-plus"></i> Create
+                  </button>
                 </div>
               </div>
             </div>
@@ -316,7 +315,9 @@
                           <button class="btn-sm btn-neutral edit-btn"
                             onclick="moreButton('<%= data._id %>')">more</button>
                           <button type="button" class="editbtn3 btn-sm btn-neutral edit-btn"
-                            onclick="updatePost1('<%= data._id %>')">Edit</button>
+                            onclick="updatePost1('<%= data._id %>')"><span>
+                              <i class="bi bi-pencil"></i>
+                            </span></button>
                           <button type="button" class="editbtn2 btn btn-sm btn-square btn-neutral text-danger-hover">
                             <i class="bi bi-trash"></i>
                           </button>
@@ -450,42 +451,68 @@
     </div>
   </div>
 
+  <!-- create form  -->
+  <!-- Modal -->
+  <div class="modal fade" id="addThumbnailModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">Add Thumbnail Data</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="card-body px-4" action="/admin/addData" method="post" enctype="multipart/form-data">
+            <div class="form-floating mb-3">
+              <input class="form-control" id="inputHeading" name="title" type="text" required placeholder="name" />
+              <label for="inputHeading">Heading Name</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input class="form-control" id="inputAmount" name="amount" type="number" required placeholder="name" />
+              <label for="inputAmount">Enter the amount</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input class="form-control" id="inputDescrtiption" name="description" type="text" required
+                placeholder="name" />
+              <label for="inputDescrtiption">Add a description</label>
+            </div>
+
+            <div class="margin: 20px">
+              <div id="dropArea">
+                <label for="imageInput" id="dropLabel">
+                  <input type="file" id="imageInput" accept="image/*" name="image" required onchange="displayImage()" />
+                  <img src="../assets/img/upload.png" width="50" height="50" alt="Drag and Drop Icon">
+                  <p>Select Thumbnail Image</p>
+                </label>
+              </div>
+              <div id="imagePreview" style="display: none; align-items: center;" class="mb-3">
+                <img id="selectedImage" alt="Selected Image" style="max-width: 150px; max-height: 150px;">
+              </div>
+            </div>
+
+            <div class="mt-6 mb-0 pt-5">
+              <div class="d-grid">
+                <button class="btn btn-primary btn-block" type="submit">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+  </script>
+
 
   <!-- Bootstrap Bundle with Popper -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var allFilesButton = document.getElementById('allFilesButton');
-      var titlesButton = document.getElementById('titlesButton');
-      var messagesButton = document.getElementById('messages');
-
-      var applicationContent = document.getElementById('applicationContent');
-
-      // Store the default content of the "Application" section
-      var defaultContent = applicationContent.innerHTML;
-
-      messagesButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        applicationContent.innerHTML = ' <% if (messages && messages.length > 0) { %> <% messages.forEach(messages => { %><section class="message">  <span class="nickname"><%=messages.name%></span> <span class="status"><%=messages.subject%></span> </div> <div class="message_id"><%=messages.date%></div> <div class="message_text"> <%=messages.message%>  </div> <div class="likes"> <span class="likes_count"><%=messages.number%></span> <span class="like"></span> </div> <div class="time"></div> </section><% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %>'
-      });
-      // Function to switch to the photo gallery when the "Titles" button is clicked
-      titlesButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        applicationContent.innerHTML = '<div class="row g-6 mb-6"> <% if (data && data.length > 0) { %> <% data.forEach(data => { %> <div class="col-xl-3 col-sm-6 col-12"> <div class="card shadow border-0" style="height: 100%;"> <div class="card-body" style="display: flex; justify-content: center; align-items: center;"> <img src="<%= data.images %>" alt="<%= data.title %>" style="max-width: 100%; max-height: 250px;"> </div> </div> </div> <% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %> </div>'
-      });
-
-      // Function to switch back to the default content when the "All files" button is clicked
-      allFilesButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        // Reset the content to the default stored content
-        applicationContent.innerHTML = defaultContent;
-      });
-    });
-  </script>
-
 
   <script>
+
     document.addEventListener('DOMContentLoaded', function () {
       const logoutBtn = document.querySelector('.logoutbtn');
       const confirmLogoutBtn = document.getElementById('confirmLogout');
@@ -511,6 +538,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+
       const editButtons = document.querySelectorAll('.editbtn2');
       editButtons.forEach(button => {
         button.addEventListener('click', function (e) {
@@ -521,23 +549,14 @@
     });
   </script>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const editButtons = document.querySelectorAll('.editbtn3');
-      editButtons.forEach(button => {
-        button.addEventListener('click', function (e) {
-          e.preventDefault();
-          $('#editPostModal').modal('show');
-        });
-      });
-    });
-  </script>
+
 
 
   <!-- j query -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   <script>
+
     function handleUpdateFormSubmission() {
       const form = document.getElementById('updateUserForm');
       const name = form.querySelector('input[name="name"]').value;
@@ -792,6 +811,57 @@
         });
     }
   </script>
+
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Logging to console for debugging purposes
+      console.log(1111111111111);
+
+      // Elements from the first script
+      var allFilesButton = document.getElementById('allFilesButton');
+      var titlesButton = document.getElementById('titlesButton');
+      var messagesButton = document.getElementById('messages');
+      console.log(titlesButton);
+      var applicationContent = document.getElementById('applicationContent');
+      var defaultContent = applicationContent ? applicationContent.innerHTML : '';
+
+
+      if (messagesButton) {
+        messagesButton.addEventListener('click', function (e) {
+          e.preventDefault();
+          applicationContent.innerHTML = '<% if (messages && messages.length > 0) { %> <% messages.forEach(message => { %> <section class="message"> <span class="nickname"><%= messages.name %></span> <span class="status"><%= messages.subject %></span> <% if (message.date) { %> <div class="message_id"><%= messages.date %></div> <% } %> <div class="message_text"><%= messages.message %></div> <div class="likes"> <span class="likes_count"><%= messages.number %></span> <span class="like"></span> </div> <div class="time"></div> </section> <% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %>';
+        })
+      }
+      // Event listener for the titlesButton
+      if (titlesButton) {
+        titlesButton.addEventListener('click', function (e) {
+          e.preventDefault();
+          applicationContent.innerHTML = '<div class="row g-6 mb-6"> <% if (data && data.length > 0) { %> <% data.forEach(data => { %> <div class="col-xl-3 col-sm-6 col-12"> <div class="card shadow border-0" style="height: 100%;"> <div class="card-body" style="display: flex; justify-content: center; align-items: center;"> <img src="<%= data.images %>" alt="<%= data.title %>" style="max-width: 100%; max-height: 250px;"> </div> </div> </div> <% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %> </div>'; // Replace with your EJS template string
+        });
+      }
+
+      // Event listener to revert to default content
+      if (allFilesButton) {
+        allFilesButton.addEventListener('click', function (e) {
+          e.preventDefault();
+          applicationContent.innerHTML = defaultContent;
+        });
+      }
+
+      // Elements and event listeners from the second script
+      const editButtons = document.querySelectorAll('.editbtn3');
+      editButtons.forEach(button => {
+        button.addEventListener('click', function (e) {
+          e.preventDefault();
+          $('#editPostModal').modal('show');
+        });
+      });
+    });
+  </script>
+
 
 </body>
 
