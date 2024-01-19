@@ -9,7 +9,7 @@
     <meta content="" name="keywords" />
 
     <!-- Favicons -->
-    <link href="/assets/img/favicon.png" rel="icon" />
+    <link href="../assets/img/logo.png" rel="icon" />
     <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
     <!-- Google Fonts -->
@@ -112,16 +112,28 @@
 
             <div class="col-lg-4">
               <div class="portfolio-info">
-                <h3>Project information</h3>
-                <ul>
-                  <li><strong>Category</strong>: Web design</li>
-                  <li><strong>Client</strong>: ASU Company</li>
-                  <li><strong>Project date</strong>: 01 March, 2020</li>
-                  <li>
-                    <strong>Project URL</strong>:
-                    <a href="#">www.example.com</a>
-                  </li>
-                </ul>
+                 <div class="card">
+        <div class="card-header">
+            <h2>Crest Photography</h2>
+          
+            
+            <div class="price">
+                ₹ 22,000
+            </div>
+           
+            <div class="duration">
+              <a href="href="index.ejs#contact">
+                For 1 Day of Shoot
+                <br/>
+                <span style="color: red;">(Contact Us for Full Pricelist)</span> 
+              </a>
+            </div>
+        </div>
+        <div class="card-actions">
+            <button id="sendEnquiry" class="btn enquiry">Send Enquiry</button>
+            <button class="btn call">Call/Chat</button>
+        </div>
+    </div>
               </div>
               <div class="portfolio-description">
                 <h2>This is an example of portfolio detail</h2>
@@ -137,8 +149,12 @@
             </div>
           </div>
         </div>
+        
       </section>
       <!-- End Portfolio Details Section -->
+
+    
+      
 
       <!-- Packages Start -->
       <div class="container-fluid py-5">
@@ -185,6 +201,23 @@
         </div>
       </div>
       <!-- Packages End -->
+      <form id="contactForm">
+      <div id="enquiryModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Send Enquiry</h2>
+          
+          <p style="text-align: center;">Fill this form and we will contact you shortly.</p>
+          
+          <input type="text" required  name="name" id="name" placeholder="Enter your name">
+          <input type="number" required name="number" id="phone" placeholder="Enter your mobile number">
+          
+          <textarea id="message"  name="message" placeholder="Message">Hello, I would like to know more about the packages and services. Looking forward to hearing from you soon.</textarea>
+         
+          <button type="submit" id="submitEnquiry" class="btn submit-enquiry">Send Enquiry</button>
+        </div>
+      </div>
+    </form>
 
       <div>
         <iframe src="https://www.youtube.com/embed/aFnXjlkPwfc" height="300px" width="450" allowfullscreen></iframe>
@@ -213,8 +246,8 @@
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
               <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="https://www.instagram.com/ramcreationphotography12?igsh=MzNlNGNkZWQ4Mg==" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="https://youtube.com/@ramcreationbilaspur9392?si=i9vptm2pXtcXBPtg" class="google-plus"><i class="bx bxl-youtube"></i></a>
+              <a href="https://www.instagram.com/ramcreationphotography12?igsh=MzNlNGNkZWQ4Mg==" target= "_blank" "instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="https://youtube.com/@ramcreationbilaspur9392?si=i9vptm2pXtcXBPtg" target= "_blank"  class="google-plus"><i class="bx bxl-youtube"></i></a>
               <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
             </div>
           </div>
@@ -228,6 +261,36 @@
       class="back-to-top d-flex align-items-center justify-content-center"
       ><i class="bi bi-arrow-up-short"></i
     ></a>
+
+
+    <script>
+      // Get the modal
+      var modal = document.getElementById('enquiryModal');
+      
+      // Get the button that opens the modal
+      var btn = document.getElementById('sendEnquiry');
+      
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+      
+      // When the user clicks on the button, open the modal 
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+      
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+      
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+      </script>
+      
 
     <!-- Vendor JS Files -->
     <script src="/assets/vendor/aos/aos.js"></script>
