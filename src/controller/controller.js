@@ -82,6 +82,7 @@ exports.admin = async (req, res) => {
   try {
     const messages = await contactSchema.find({});
     console.log(messages);
+    console.log(messages);
     const data = await imageSchema.find({});
     res.render("admin", {
       data: data,
@@ -265,6 +266,7 @@ exports.photos = async (req, res) => {
   const id = req.params.id;
   try {
     const data = await listSchema.find({ thumbnail_id: id });
+    const data = await listSchema.find({ thumbnail_id: id });
     if (!data) {
       return res.status(404).send("Data not found");
     }
@@ -393,8 +395,8 @@ exports.more = async (req, res) => {
     const result = await imageSchema.findOne({ _id: id });
     res.json({ success: true, result });
   } catch (error) {
-    console.error('Error fetching data:', error);
-    res.status(500).json({ success: false, message: 'Failed to fetch data' });
+    console.error("Error fetching data:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch data" });
   }
 };
 

@@ -51,44 +51,44 @@
     <!-- End Header -->
 
     <main id="main">
-
         <!-- Packages Start -->
         <div class="container-fluid py-5">
-            <div class="container  pb-3">
+            <div class="container pb-3">
                 <div class="text-center mb-3 pb-3">
                     <h6 class="text-primary text-uppercase" style="letter-spacing: 5px">
-                        Packages
+                        Section Images
                     </h6>
-                    <h1>Pefect Tour Packages</h1>
-                    <button class="openbtn btn btn-primary ">Add Image</button>
+                    <h1>Manage Image selection</h1>
+                    <button class="openbtn btn btn-primary">Add Image</button>
                 </div>
                 <div class="row">
-                    <% if (data && data.length> 0) { %>
-                        <% data.forEach(data=> { %>
+                    <% if (data && data.length> 0) { %> <% data.forEach(data=> { %>
                             <div class="col-lg-4 col-md-6 mb-4 shadow">
                                 <div class="package-item bg-white position-relative">
                                     <img class="img-fluid w-100" src="<%= data.link %>" alt=""
-                                        style="height: 200px; object-fit: cover;" />
+                                        style="height: 200px; object-fit: cover" />
                                     <div class="p-4 text-light">
                                         <div class="mt-0 pt-0">
                                             <div class="d-flex justify-content-between">
                                                 <h6 class="m-0">
-                                                    <i class="fa fa-star" style="color: rgb(240, 78, 14);"></i>
-                                                    <span style="color: black;">
+                                                    <i class="fa fa-star" style="color: rgb(240, 78, 14)"></i>
+                                                    <span style="color: black">
                                                         <%= data.theme %>
                                                     </span>
                                                 </h6>
-                                                <h5 class="m-0"><span style="color: black;">₹<%= data.amount %></span>
+                                                <h5 class="m-0">
+                                                    <span style="color: black">₹<%= data.amount %></span>
                                                 </h5>
                                                 <button class="btn btn-danger btn-sm mt-0"
-                                                    onclick="deleteImage('<%= data._id %>')"
-                                                    style="background-color: rgba(255, 255, 255, 0.8); border: none;">
-                                                    <i class="fas fa-trash-alt" style="color: black;"></i>
+                                                    onclick="deleteImage('<%= data._id %>')" style="
+                          background-color: rgba(255, 255, 255, 0.8);
+                          border: none;
+                        ">
+                                                    <i class="fas fa-trash-alt" style="color: black"></i>
                                                 </button>
                                             </div>
                                         </div>
                                         <!-- Delete button -->
-
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +97,6 @@
                                     <h2 class="text-center">No data available</h2>
                                     <% } %>
                 </div>
-
             </div>
         </div>
         <!-- Packages End -->
@@ -115,10 +114,10 @@
                     <!-- Your image upload form goes here -->
                     <form id="imageUploadForm" action="/admin/addData/moredata" method="post"
                         enctype="multipart/form-data">
-                        <input type="text" name="theme" id="theme" placeholder="enter Theme">
-                        <input type="text" name="amount" id="amount" placeholder="enter amount">
+                        <input type="text" name="theme" id="theme" placeholder="enter Theme" />
+                        <input type="text" name="amount" id="amount" placeholder="enter amount" />
                         <label for=" image">Choose Image:</label>
-                        <input type="file" name="image" id="image" accept="image/*">
+                        <input type="file" name="image" id="image" accept="image/*" />
 
                         <button type="submit" class="btn btn-primary">Upload</button>
                     </form>
@@ -126,8 +125,6 @@
             </div>
         </div>
     </div>
-
-
 
     <a href="#" id="formhai" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
@@ -145,56 +142,58 @@
     <script src="/assets/js/main.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const openBtn = document.querySelector('.openbtn');
-            openBtn.addEventListener('click', function () {
-                const modal = new bootstrap.Modal(document.getElementById('imageUploadModal'));
+        document.addEventListener("DOMContentLoaded", function () {
+            const openBtn = document.querySelector(".openbtn");
+            openBtn.addEventListener("click", function () {
+                const modal = new bootstrap.Modal(
+                    document.getElementById("imageUploadModal")
+                );
                 modal.show();
             });
         });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById('imageUploadForm');
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("imageUploadForm");
             const url = window.location.href;
             const dynamicData = extractDynamicData(url);
 
-            form.addEventListener('submit', function (event) {
-                event.preventDefault();  // Prevent the default form submission behavior
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent the default form submission behavior
 
                 const formData = new FormData(form);
-                formData.append('dynamicData', dynamicData); // Append dynamic data to the form data
+                formData.append("dynamicData", dynamicData); // Append dynamic data to the form data
 
-                fetch('/admin/addData/moredata', {
-                    method: 'POST',
+                fetch("/admin/addData/moredata", {
+                    method: "POST",
                     body: formData,
                 })
-                    .then(response => response.json())
-                    .then(data => {
+                    .then((response) => response.json())
+                    .then((data) => {
                         if (data.success) {
                             // If the update was successful, show a success message and close the modal
                             Swal.fire({
-                                icon: 'success',
-                                title: 'Post Updated',
-                                text: data.message
+                                icon: "success",
+                                title: "Post Updated",
+                                text: data.message,
                             }).then(() => {
-                                window.location.href = `/admin/more/${dynamicData}`;
+                                `window.location.href = /admin/more/${dynamicData}`;
                             });
                         } else {
                             // If there was an error, display an error message
                             Swal.fire({
-                                icon: 'error',
-                                title: 'Update Failed',
-                                text: data.message
+                                icon: "error",
+                                title: "Update Failed",
+                                text: data.message,
                             });
                         }
                     })
-                    .catch(error => {
+                    .catch((error) => {
                         // Handle any errors that occurred during the fetch request
                         Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'Failed to update the post'
+                            icon: "error",
+                            title: "Error",
+                            text: "Failed to update the post",
                         });
                     });
             });
@@ -202,7 +201,7 @@
             function extractDynamicData(url) {
                 // Implement the logic to extract dynamic data from the URL
                 // For example, if the dynamic data is in the path, you can use regex or split
-                const parts = url.split('/');
+                const parts = url.split("/");
                 return parts[parts.length - 1];
             }
         });
@@ -212,30 +211,30 @@
         function deleteImage(imageId) {
             // Display a confirmation dialog
             Swal.fire({
-                title: 'Are you sure?',
-                text: 'You won\'t be able to revert this!',
-                icon: 'warning',
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
                 showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete it!",
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Make API request to delete image
                     fetch(`/admin/deleteImage/${imageId}`, {
-                        method: 'DELETE',
+                        method: "DELETE",
                         headers: {
-                            'Content-Type': 'application/json'
-                        }
+                            "Content-Type": "application/json",
+                        },
                     })
-                        .then(response => response.json())
-                        .then(data => {
+                        .then((response) => response.json())
+                        .then((data) => {
                             if (data.success) {
                                 // If the deletion was successful, show a success message
                                 Swal.fire({
-                                    icon: 'success',
-                                    title: 'Image Deleted',
-                                    text: data.message
+                                    icon: "success",
+                                    title: "Image Deleted",
+                                    text: data.message,
                                 }).then(() => {
                                     // Reload the page or update the content dynamically
                                     window.location.reload();
@@ -243,23 +242,20 @@
                             } else {
                                 // If there was an error, display an error message
                                 Swal.fire({
-                                    icon: 'error',
-                                    title: 'Deletion Failed',
-                                    text: data.message
+                                    icon: "error",
+                                    title: "Deletion Failed",
+                                    text: data.message,
                                 });
                             }
                         })
-                        .catch(error => {
+                        .catch((error) => {
                             // Handle errors during the fetch
-                            console.error('Fetch error:', error);
+                            console.error("Fetch error:", error);
                         });
                 }
             });
         }
     </script>
-
-
-
 </body>
 
 </html>

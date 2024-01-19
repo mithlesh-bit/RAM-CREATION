@@ -27,7 +27,12 @@ router.post("/admin/update", auth, controller.updateUser);
 router.delete("/admin/deletePost/:postId", auth, controller.deletePost);
 router.put("/admin/updatePost/:id", auth, controller.updatePost);
 router.post("/admin/logout", auth, controller.logout);
-router.post("/admin/addData/moredata", auth, upload.single("image"), controller.morePagePost);
+router.post(
+  "/admin/addData/moredata",
+  auth,
+  upload.single("image"),
+  controller.morePagePost
+);
 router.delete("/admin/deleteImage/:id", auth, controller.deleteImage);
 
 module.exports = router;
