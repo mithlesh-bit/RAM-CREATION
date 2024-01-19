@@ -1,75 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>admin DashBoard</title>
+    <link rel="stylesheet" href="../css/adminPanel.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>admin DashBoard</title>
-  <link rel="stylesheet" href="../css/adminPanel.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- for alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  </head>
 
-  <!-- for alert -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-</head>
-
-<body>
-
-
-  <!-- Dashboard -->
-  <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-    <!-- Vertical Navbar -->
-    <nav
-      class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg"
-      id="navbarVertical">
-      <div class="container-fluid">
-        <!-- Toggler -->
-        <button class="navbar-toggler ms-n2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse"
-          aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Brand -->
-        <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="#">
-          <img src="https://preview.webpixels.io/web/img/logos/clever-primary.svg" alt="...">
-        </a>
-        <!-- User menu (mobile) -->
-        <div class="navbar-user d-lg-none">
-          <!-- Dropdown -->
-          <div class="dropdown">
-            <!-- Toggle -->
-            <a href="#" id="sidebarAvatar" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false">
-              <div class="avatar-parent-child">
-                <img alt="Image Placeholder"
-                  src="https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-                  class="avatar avatar- rounded-circle">
-                <span class="avatar-child avatar-badge bg-success"></span>
-              </div>
+  <body>
+    <!-- Dashboard -->
+    <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+      <!-- Vertical Navbar -->
+      <nav
+        class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg"
+        id="navbarVertical"
+      >
+        <div class="container-fluid">
+          <!-- Toggler -->
+          <button
+            class="navbar-toggler ms-n2"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#sidebarCollapse"
+            aria-controls="sidebarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="logo"
+            style="
+              display: flex;
+              align-items: center;
+              margin-bottom: 20px;
+              font-family: Montserrat;
+              margin-top: 20px;
+            "
+          >
+            <a
+              href="index.html"
+              style="display: flex; align-items: center; text-decoration: none"
+            >
+              <img
+                src="../assets/img/logo.png"
+                alt="Ram Creations Logo"
+                style="padding-left: 20px; max-width: 25%; height: auto"
+              />
+              <h3 style="color: red; margin-left: 10px">Ram Creations</h3>
             </a>
-
           </div>
-        </div>
-        <!-- Collapse -->
-        <div class="collapse navbar-collapse" id="sidebarCollapse">
-          <!-- Navigation -->
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="bi bi-house"></i> Home
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="messages" href="#">
-                <i class="bi bi-chat"></i> Messages
-                <!-- <span
-                  class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span> -->
-              </a>
-            </li>
 
-          </ul>
-          <!-- Divider -->
-          <hr class="navbar-divider my-5 opacity-20">
-          <!-- Navigation -->
-          <!-- <ul class="navbar-nav mb-md-4">
+          <!-- User menu (mobile) -->
+          <div class="navbar-user d-lg-none">
+            <!-- Dropdown -->
+            <div class="dropdown">
+              <!-- Toggle -->
+              <a
+                href="#"
+                id="sidebarAvatar"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <div class="avatar-parent-child">
+                  <img
+                    alt="Image Placeholder"
+                    src="https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
+                    class="avatar avatar- rounded-circle"
+                  />
+                  <span class="avatar-child avatar-badge bg-success"></span>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!-- Collapse -->
+          <div class="collapse navbar-collapse" id="sidebarCollapse">
+            <!-- Navigation -->
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/">
+                  <i class="bi bi-house"></i> Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="messages" href="#">
+                  <i class="bi bi-chat"></i> Messages
+                  <!-- <span
+                  class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span> -->
+                </a>
+              </li>
+            </ul>
+            <!-- Divider -->
+            <hr class="navbar-divider my-5 opacity-20" />
+            <!-- Navigation -->
+            <!-- <ul class="navbar-nav mb-md-4">
             <li>
               <div class="nav-link text-xs font-semibold text-uppercase text-muted ls-wide" href="#">
                 Contacts
@@ -102,697 +138,984 @@
               </a>
             </li>
           </ul> -->
-          <!-- Push content down -->
-          <div class="mt-auto"></div>
-          <!-- User (md) -->
-          <ul class="navbar-nav">
-            <!-- <li class="nav-item">
+            <!-- Push content down -->
+            <div class="mt-auto"></div>
+            <!-- User (md) -->
+            <ul class="navbar-nav">
+              <!-- <li class="nav-item">
               <a class="nav-link" href="#">
                 <i class="bi bi-person-square"></i> Account
               </a>
             </li> -->
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <button class="logoutbtn btn btn-link">
-                  <i class="bi bi-box-arrow-left"></i> Logout
-                </button> </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-
-    <!-- Main content -->
-    <div class="h-screen flex-grow-1 overflow-y-lg-auto">
-      <!-- Header -->
-      <header class="bg-surface-primary border-bottom pt-6">
-        <div class="container-fluid">
-          <div class="mb-npx">
-            <div class="row align-items-center">
-              <div class="col-sm-6 col-12 mb-4 mb-sm-0">
-                <!-- Title -->
-                <h1 class="h2 mb-0 ls-tight">
-                  Hi..<%= admin.name%>
-                </h1>
-              </div>
-              <!-- Actions -->
-              <div class="col-sm-6 col-12 text-sm-end">
-                <div class="mx-n1">
-                  <a href="#" class=" editbtn1 btn d-inline-flex btn-sm btn-neutral border-base mx-1">
-                    <span class=" pe-2">
-                      <i class="bi bi-pencil"></i>
-                    </span>
-                    <span>Edit</span>
-                  </a>
-                  <a href="/admin/addData" class="btn d-inline-flex btn-sm btn-primary mx-1">
-                    <span class=" pe-2">
-                      <i class="bi bi-plus"></i>
-                    </span>
-                    <span>Create</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- Nav -->
-            <ul class="nav nav-tabs mt-4 overflow-x border-0">
               <li class="nav-item">
-                <a href="#" class="nav-link active" id="allFilesButton">All files</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link font-regular" id="titlesButton">Titles</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link font-regular" id="detailedButton">Detailed Data</a>
+                <a class="nav-link" href="#">
+                  <button class="logoutbtn btn btn-link">
+                    <i class="bi bi-box-arrow-left"></i> Logout
+                  </button>
+                </a>
               </li>
             </ul>
-
           </div>
         </div>
-      </header>
-      <!-- Main -->
-      <main class="py-6 bg-surface-secondary">
-        <div class="container-fluid">
-          <!-- Card stats -->
-          <div class="row g-6 mb-6">
-            <div class="col-xl-3 col-sm-6 col-12">
-              <div class="card shadow border-0">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                      <span class="h3 font-bold mb-0">$750.90</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                        <i class="bi bi-credit-card"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mt-2 mb-0 text-sm">
-                    <span class="badge badge-pill bg-soft-success text-success me-2">
-                      <i class="bi bi-arrow-up me-1"></i>13%
-                    </span>
-                    <span class="text-nowrap text-xs text-muted">Since last month</span>
+      </nav>
+
+      <!-- Main content -->
+      <div class="h-screen flex-grow-1 overflow-y-lg-auto">
+        <!-- Header -->
+        <header class="bg-surface-primary border-bottom pt-6">
+          <div class="container-fluid">
+            <div class="mb-npx">
+              <div class="row align-items-center">
+                <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+                  <!-- Title -->
+                  <h1 class="h2 mb-0 ls-tight">Hi.. <%= admin.name%></h1>
+                </div>
+                <!-- Actions -->
+                <div class="col-sm-6 col-12 text-sm-end">
+                  <div class="mx-n1">
+                    <a
+                      class="editbtn1 btn d-inline-flex btn-sm btn-neutral border-base mx-1"
+                    >
+                      <span class="pe-2">
+                        <i class="bi bi-pencil"></i>
+                      </span>
+                      <span>Edit</span>
+                    </a>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#addThumbnailModal"
+                    >
+                      <i class="bi bi-plus"></i> Create
+                    </button>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-              <div class="card shadow border-0">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <span class="h6 font-semibold text-muted text-sm d-block mb-2">New projects</span>
-                      <span class="h3 font-bold mb-0">215</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
-                        <i class="bi bi-people"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mt-2 mb-0 text-sm">
-                    <span class="badge badge-pill bg-soft-success text-success me-2">
-                      <i class="bi bi-arrow-up me-1"></i>30%
-                    </span>
-                    <span class="text-nowrap text-xs text-muted">Since last month</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-              <div class="card shadow border-0">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total hours</span>
-                      <span class="h3 font-bold mb-0">1.400</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
-                        <i class="bi bi-clock-history"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mt-2 mb-0 text-sm">
-                    <span class="badge badge-pill bg-soft-danger text-danger me-2">
-                      <i class="bi bi-arrow-down me-1"></i>-5%
-                    </span>
-                    <span class="text-nowrap text-xs text-muted">Since last month</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-              <div class="card shadow border-0">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <span class="h6 font-semibold text-muted text-sm d-block mb-2">Work load</span>
-                      <span class="h3 font-bold mb-0">95%</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
-                        <i class="bi bi-minecart-loaded"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mt-2 mb-0 text-sm">
-                    <span class="badge badge-pill bg-soft-success text-success me-2">
-                      <i class="bi bi-arrow-up me-1"></i>10%
-                    </span>
-                    <span class="text-nowrap text-xs text-muted">Since last month</span>
-                  </div>
-                </div>
-              </div>
+              <!-- Nav -->
+              <ul class="nav nav-tabs mt-4 overflow-x border-0">
+                <li class="nav-item">
+                  <a href="#" class="nav-link active" id="allFilesButton"
+                    >All files</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link font-regular" id="titlesButton"
+                    >Titles</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link font-regular" id="detailedButton"
+                    >Detailed Data</a
+                  >
+                </li>
+              </ul>
             </div>
           </div>
-
-          <div class="card shadow border-0 mb-7" id="applicationContent">
-            <div class="card-header">
-              <h5 class="mb-0">Applications</h5>
+        </header>
+        <!-- Main -->
+        <main class="py-6 bg-surface-secondary">
+          <div class="container-fluid">
+            <!-- Card stats -->
+            <div class="row g-6 mb-6">
+              <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card shadow border-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <span
+                          class="h6 font-semibold text-muted text-sm d-block mb-2"
+                          >Budget</span
+                        >
+                        <span class="h3 font-bold mb-0">$750.90</span>
+                      </div>
+                      <div class="col-auto">
+                        <div
+                          class="icon icon-shape bg-tertiary text-white text-lg rounded-circle"
+                        >
+                          <i class="bi bi-credit-card"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-2 mb-0 text-sm">
+                      <span
+                        class="badge badge-pill bg-soft-success text-success me-2"
+                      >
+                        <i class="bi bi-arrow-up me-1"></i>13%
+                      </span>
+                      <span class="text-nowrap text-xs text-muted"
+                        >Since last month</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card shadow border-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <span
+                          class="h6 font-semibold text-muted text-sm d-block mb-2"
+                          >New projects</span
+                        >
+                        <span class="h3 font-bold mb-0">215</span>
+                      </div>
+                      <div class="col-auto">
+                        <div
+                          class="icon icon-shape bg-primary text-white text-lg rounded-circle"
+                        >
+                          <i class="bi bi-people"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-2 mb-0 text-sm">
+                      <span
+                        class="badge badge-pill bg-soft-success text-success me-2"
+                      >
+                        <i class="bi bi-arrow-up me-1"></i>30%
+                      </span>
+                      <span class="text-nowrap text-xs text-muted"
+                        >Since last month</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card shadow border-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <span
+                          class="h6 font-semibold text-muted text-sm d-block mb-2"
+                          >Total hours</span
+                        >
+                        <span class="h3 font-bold mb-0">1.400</span>
+                      </div>
+                      <div class="col-auto">
+                        <div
+                          class="icon icon-shape bg-info text-white text-lg rounded-circle"
+                        >
+                          <i class="bi bi-clock-history"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-2 mb-0 text-sm">
+                      <span
+                        class="badge badge-pill bg-soft-danger text-danger me-2"
+                      >
+                        <i class="bi bi-arrow-down me-1"></i>-5%
+                      </span>
+                      <span class="text-nowrap text-xs text-muted"
+                        >Since last month</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card shadow border-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <span
+                          class="h6 font-semibold text-muted text-sm d-block mb-2"
+                          >Work load</span
+                        >
+                        <span class="h3 font-bold mb-0">95%</span>
+                      </div>
+                      <div class="col-auto">
+                        <div
+                          class="icon icon-shape bg-warning text-white text-lg rounded-circle"
+                        >
+                          <i class="bi bi-minecart-loaded"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-2 mb-0 text-sm">
+                      <span
+                        class="badge badge-pill bg-soft-success text-success me-2"
+                      >
+                        <i class="bi bi-arrow-up me-1"></i>10%
+                      </span>
+                      <span class="text-nowrap text-xs text-muted"
+                        >Since last month</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="table-responsive">
-              <table class="table table-hover table-nowrap">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Last Update</th>
-                    <th scope="col">All Photos</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Id</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% if (data && data.length> 0) { %> <% data.forEach(data=> { %>
-                      <tr id="detailed">
-                        <td>
-                          <img alt="..." src="<%= data.images %>" class="avatar avatar-sm rounded-circle me-2">
-                          <a class="text-heading font-semibold" href="#">
-                            <%= data.title %>
-                          </a>
-                        </td>
-                        <td>
-                          <%= data.lastUpdate %>
-                        </td>
-                        <td>
-                          <img alt="..." src="<%= data.images %>" class="avatar avatar-xs rounded-circle me-2">
-                          <a class="text-heading font-semibold" href="#">
-                            Dribbble
-                          </a>
-                        </td>
-                        <td>
-                          <%= data.amount %>
-                        </td>
-                        <td>
-                          <span class="badge badge-lg badge-dot">
-                            <i class="bg-success"></i>
-                            <%= data._id %>
+
+            <div class="card shadow border-0 mb-7" id="applicationContent">
+              <div class="card-header">
+                <h5 class="mb-0">Applications</h5>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-hover table-nowrap">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Title</th>
+                      <th scope="col">Last Update</th>
+                      <th scope="col">All Photos</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Id</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if (data && data.length> 0) { %> <% data.forEach(data=> {
+                    %>
+                    <tr id="detailed">
+                      <td>
+                        <img
+                          alt="..."
+                          src="<%= data.images %>"
+                          class="avatar avatar-sm rounded-circle me-2"
+                        />
+                        <a class="text-heading font-semibold" href="#">
+                          <%= data.title %>
+                        </a>
+                      </td>
+                      <td><%= data.lastUpdate %></td>
+                      <td>
+                        <img
+                          alt="..."
+                          src="<%= data.images %>"
+                          class="avatar avatar-xs rounded-circle me-2"
+                        />
+                        <a class="text-heading font-semibold" href="#">
+                          Dribbble
+                        </a>
+                      </td>
+                      <td><%= data.amount %></td>
+                      <td>
+                        <span class="badge badge-lg badge-dot">
+                          <i class="bg-success"></i>
+                          <%= data._id %>
+                        </span>
+                      </td>
+                      <td class="text-end">
+                        <button
+                          class="btn-sm btn-neutral edit-btn"
+                          onclick="moreButton('<%= data._id %>')"
+                        >
+                          Add more
+                        </button>
+                        <button
+                          type="button"
+                          class="editbtn3 btn-sm btn-neutral edit-btn"
+                          onclick="updatePost1('<%= data._id %>')"
+                        >
+                          <span>
+                            <i class="bi bi-pencil"></i>
                           </span>
-                        </td>
-                        <td class="text-end">
-                          <button class="btn-sm btn-neutral edit-btn"
-                            onclick="moreButton('<%= data._id %>')">more</button>
-                          <button type="button" class="editbtn3 btn-sm btn-neutral edit-btn"
-                            onclick="updatePost1('<%= data._id %>')">Edit</button>
-                          <button type="button" class="editbtn2 btn btn-sm btn-square btn-neutral text-danger-hover">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <% }) %>
-                        <% } else { %>
-                          <h2 class="text-center">No data available</h2>
-                          <% } %>
-
-                </tbody>
-              </table>
+                        </button>
+                        <button
+                          type="button"
+                          class="editbtn2 btn btn-sm btn-square btn-neutral text-danger-hover"
+                        >
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <% }) %> <% } else { %>
+                    <h2 class="text-center">No data available</h2>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
 
-  </div>
-
-
-  <!-- pop up form -->
-  <!-- The Modal -->
-  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editModalLabel">Edit Details</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Form for editing details -->
-          <form id="updateUserForm">
-            <div class="mb-3">
-              <label for="name" class="form-label">Name</label>
-              <input type="text" class="form-control" id="name" name="name" placeholder="<%=admin.name%>" required>
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="<%=admin.email%>" required>
-            </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="******" name="password" required>
-            </div>
-            <button type="button" onclick="handleUpdateFormSubmission()" class="btn btn-primary">Update</button>
-          </form>
-
+    <!-- pop up form -->
+    <!-- The Modal -->
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="editModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">Edit Details</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <!-- Form for editing details -->
+            <form id="updateUserForm">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  placeholder="<%=admin.name%>"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="<%=admin.email%>"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder=""
+                  name="password"
+                  required
+                />
+              </div>
+              <button
+                type="button"
+                onclick="handleUpdateFormSubmission()"
+                class="btn btn-primary"
+              >
+                Update
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- confirm delete -->
-  <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Logout Confirmation</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Are you sure you want to logout?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" id="confirmLogout" onclick="handleLogout()">Confirm</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- delete form -->
-  <!-- Modal for deleting a post -->
-  <div class="modal fade" id="deletePostModal" tabindex="-1" role="dialog" aria-labelledby="deletePostModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deletePostModalLabel">Delete Post</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="deletePostForm">
-            <div class="mb-3">
-              <label for="postId" class="form-label">Enter the ID to delete the post:</label>
-              <input type="text" class="form-control" id="postId" name="postId" required>
-              <div class="form-text">This action cannot be undone.</div>
-            </div>
-            <button type="button" onclick="handleDeletePost(document.getElementById('postId').value)"
-              class="btn btn-danger">Delete</button>
-          </form>
+    <!-- confirm delete -->
+    <div
+      class="modal"
+      id="logoutModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Logout Confirmation
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">Are you sure you want to logout?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              id="confirmLogout"
+              onclick="handleLogout()"
+            >
+              Confirm
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-
-  <!-- Modal for Edit Post -->
-  <div class="modal fade" id="editPostModal" tabindex="-1" role="dialog" aria-labelledby="editPostModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editPostModalLabel">Edit Post</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="editPostForm">
-            <div class="mb-3">
-              <label for="title" class="form-label">Title</label>
-              <input type="text" class="form-control" id="title" name="title" placeholder="Title">
-            </div>
-            <div class="mb-3">
-              <label for="amount" class="form-label">Amount</label>
-              <input type="text" class="form-control" id="amount" name="amount" placeholder="Amount">
-            </div>
-            <div class="mb-3">
-              <label for="description" class="form-label">Description</label>
-              <textarea class="form-control" id="description" name="description" rows="3"
-                placeholder="Description"></textarea>
-            </div>
-            <button type="button" onclick="updatePost()" class="btn btn-primary">Update</button>
-          </form>
+    <!-- delete form -->
+    <!-- Modal for deleting a post -->
+    <div
+      class="modal fade"
+      id="deletePostModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="deletePostModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deletePostModalLabel">Delete Post</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="deletePostForm">
+              <div class="mb-3">
+                <label for="postId" class="form-label"
+                  >Enter the ID to delete the post:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="postId"
+                  name="postId"
+                  required
+                />
+                <div class="form-text">This action cannot be undone.</div>
+              </div>
+              <button
+                type="button"
+                onclick="handleDeletePost(document.getElementById('postId').value)"
+                class="btn btn-danger"
+              >
+                Delete
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
+    <!-- Modal for Edit Post -->
+    <div
+      class="modal fade"
+      id="editPostModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="editPostModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editPostModalLabel">Edit Post</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="editPostForm">
+              <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  name="title"
+                  placeholder="Title"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="amount" class="form-label">Amount</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="amount"
+                  name="amount"
+                  placeholder="Amount"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea
+                  class="form-control"
+                  id="description"
+                  name="description"
+                  rows="3"
+                  placeholder="Description"
+                ></textarea>
+              </div>
+              <button
+                type="button"
+                onclick="updatePost()"
+                class="btn btn-primary"
+              >
+                Update
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <!-- Bootstrap Bundle with Popper -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- create form  -->
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="addThumbnailModal"
+      tabindex="-1"
+      aria-labelledby="modalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Add Thumbnail Data</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form
+              class="card-body px-4"
+              action="/admin/addData"
+              method="post"
+              enctype="multipart/form-data"
+            >
+              <div class="form-floating mb-3">
+                <input
+                  class="form-control"
+                  id="inputHeading"
+                  name="title"
+                  type="text"
+                  required
+                  placeholder="name"
+                />
+                <label for="inputHeading">Heading Name</label>
+              </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var allFilesButton = document.getElementById('allFilesButton');
-      var titlesButton = document.getElementById('titlesButton');
-      var messagesButton = document.getElementById('messages');
+              <div class="form-floating mb-3">
+                <input
+                  class="form-control"
+                  id="inputAmount"
+                  name="amount"
+                  type="number"
+                  required
+                  placeholder="name"
+                />
+                <label for="inputAmount">Enter the amount</label>
+              </div>
 
-      var applicationContent = document.getElementById('applicationContent');
+              <div class="form-floating mb-3">
+                <input
+                  class="form-control"
+                  id="inputDescrtiption"
+                  name="description"
+                  type="text"
+                  required
+                  placeholder="name"
+                />
+                <label for="inputDescrtiption">Add a description</label>
+              </div>
 
-      // Store the default content of the "Application" section
-      var defaultContent = applicationContent.innerHTML;
+              <div class="margin: 20px">
+                <div id="dropArea">
+                  <label for="imageInput" id="dropLabel">
+                    <input
+                      type="file"
+                      id="imageInput"
+                      accept="image/*"
+                      name="image"
+                      required
+                      onchange="displayImage()"
+                    />
+                    <img
+                      src="../assets/img/upload.png"
+                      width="50"
+                      height="50"
+                      alt="Drag and Drop Icon"
+                    />
+                    <p>Select Thumbnail Image</p>
+                  </label>
+                </div>
+                <div
+                  id="imagePreview"
+                  style="display: none; align-items: center"
+                  class="mb-3"
+                >
+                  <img
+                    id="selectedImage"
+                    alt="Selected Image"
+                    style="max-width: 150px; max-height: 150px"
+                  />
+                </div>
+              </div>
 
-      messagesButton.addEventListener('click', function (e) {
+              <div class="mt-6 mb-0 pt-5">
+                <div class="d-grid">
+                  <button class="btn btn-primary btn-block" type="submit">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script></script>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const logoutBtn = document.querySelector(".logoutbtn");
+        const confirmLogoutBtn = document.getElementById("confirmLogout");
+
+        logoutBtn.addEventListener("click", function () {
+          // Show the logout confirmation modal
+          $("#logoutModal").modal("show");
+        });
+
+        confirmLogoutBtn.addEventListener("click", function () {
+          $("#logoutModal").modal("hide");
+        });
+      });
+    </script>
+    <!-- pop-up form hai -->
+    <script>
+      const editButton = document.querySelector(".editbtn1");
+      editButton.addEventListener("click", function (e) {
         e.preventDefault();
-        applicationContent.innerHTML = ' <% if (messages && messages.length > 0) { %> <% messages.forEach(messages => { %><section class="message">  <span class="nickname"><%=messages.name%></span> <span class="status"><%=messages.subject%></span> </div> <div class="message_id"><%=messages.date%></div> <div class="message_text"> <%=messages.message%>  </div> <div class="likes"> <span class="likes_count"><%=messages.number%></span> <span class="like"></span> </div> <div class="time"></div> </section><% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %>'
+        $("#editModal").modal("show");
       });
-      // Function to switch to the photo gallery when the "Titles" button is clicked
-      titlesButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        applicationContent.innerHTML = '<div class="row g-6 mb-6"> <% if (data && data.length > 0) { %> <% data.forEach(data => { %> <div class="col-xl-3 col-sm-6 col-12"> <div class="card shadow border-0" style="height: 100%;"> <div class="card-body" style="display: flex; justify-content: center; align-items: center;"> <img src="<%= data.images %>" alt="<%= data.title %>" style="max-width: 100%; max-height: 250px;"> </div> </div> </div> <% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %> </div>'
-      });
+    </script>
 
-      // Function to switch back to the default content when the "All files" button is clicked
-      allFilesButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        // Reset the content to the default stored content
-        applicationContent.innerHTML = defaultContent;
-      });
-    });
-  </script>
-
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const logoutBtn = document.querySelector('.logoutbtn');
-      const confirmLogoutBtn = document.getElementById('confirmLogout');
-
-      logoutBtn.addEventListener('click', function () {
-        // Show the logout confirmation modal
-        $('#logoutModal').modal('show');
-      });
-
-      confirmLogoutBtn.addEventListener('click', function () {
-        $('#logoutModal').modal('hide');
-      });
-    });
-  </script>
-  <!-- pop-up form hai -->
-  <script>
-    const editButton = document.querySelector('.editbtn1');
-    editButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      $('#editModal').modal('show');
-    });
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const editButtons = document.querySelectorAll('.editbtn2');
-      editButtons.forEach(button => {
-        button.addEventListener('click', function (e) {
-          e.preventDefault();
-          $('#deletePostModal').modal('show');
-        });
-      });
-    });
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const editButtons = document.querySelectorAll('.editbtn3');
-      editButtons.forEach(button => {
-        button.addEventListener('click', function (e) {
-          e.preventDefault();
-          $('#editPostModal').modal('show');
-        });
-      });
-    });
-  </script>
-
-
-  <!-- j query -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-  <script>
-    function handleUpdateFormSubmission() {
-      const form = document.getElementById('updateUserForm');
-      const name = form.querySelector('input[name="name"]').value;
-      const email = form.querySelector('input[name="email"]').value;
-      const password = form.querySelector('input[name="password"]').value;
-
-      fetch('/admin/update', {
-        method: 'POST',
-        body: JSON.stringify({ name: name, email: email, password: password }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data.success);
-          if (data.success) { // Compare to the boolean value true
-            // Display a success pop-up
-            Swal.fire({
-              icon: 'success',
-              title: 'Success',
-              text: data.message
-            }).then(() => {
-              // Redirect or perform other actions after displaying the pop-up
-              window.location.href = '/admin';
-            });
-          } else {
-            // Display an error pop-up
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: data.message
-            });
-          }
-        })
-        .catch(error => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: data.message
-          });          // Handle the error scenario properly (display an alert or log the error)
-        });
-    }
-  </script>
-
-  <!-- logoute -->
-  <script>
-    function handleLogout() {
-      fetch('/admin/logout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + getCookie('token') // Include the JWT token from the cookie
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            Swal.fire({
-              icon: 'success',
-              title: 'Success',
-              text: data.message
-            }).then(() => {
-              // Redirect to the login page or any other desired page
-              window.location.href = '/';
-            });
-          } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: data.message
-            });
-          }
-        })
-        .catch(error => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Failed to logout'
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const editButtons = document.querySelectorAll(".editbtn2");
+        editButtons.forEach((button) => {
+          button.addEventListener("click", function (e) {
+            e.preventDefault();
+            $("#deletePostModal").modal("show");
           });
         });
-    }
+      });
+    </script>
 
-    // Function to get a specific cookie value by name
-    function getCookie(name) {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-    }
-  </script>
+    <!-- j query -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+    <script>
+      function handleUpdateFormSubmission() {
+        const form = document.getElementById("updateUserForm");
+        const name = form.querySelector('input[name="name"]').value;
+        const email = form.querySelector('input[name="email"]').value;
+        const password = form.querySelector('input[name="password"]').value;
 
-  <!-- delete post  -->
-  <script>
-    function handleDeletePost(postId) {
-
-      console.log(postId);
-      fetch(`/admin/deletePost/${postId}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            Swal.fire({
-              icon: 'success',
-              title: 'Success',
-              text: data.message
-            }).then(() => {
-              window.location.href = '/admin';
-            });
-          } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: data.message
-            });
-          }
+        fetch("/admin/update", {
+          method: "POST",
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
         })
-        .catch(error => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Failed to delete user'
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data.success);
+            if (data.success) {
+              // Compare to the boolean value true
+              // Display a success pop-up
+              Swal.fire({
+                icon: "success",
+                title: "Success",
+                text: data.message,
+              }).then(() => {
+                // Redirect or perform other actions after displaying the pop-up
+                window.location.href = "/admin";
+              });
+            } else {
+              // Display an error pop-up
+              Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: data.message,
+              });
+            }
+          })
+          .catch((error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: data.message,
+            }); // Handle the error scenario properly (display an alert or log the error)
+          });
+      }
+    </script>
+
+    <!-- logoute -->
+    <script>
+      function handleLogout() {
+        fetch("/admin/logout", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + getCookie("token"), // Include the JWT token from the cookie
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              Swal.fire({
+                icon: "success",
+                title: "Success",
+                text: data.message,
+              }).then(() => {
+                // Redirect to the login page or any other desired page
+                window.location.href = "/";
+              });
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: data.message,
+              });
+            }
+          })
+          .catch((error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "Failed to logout",
+            });
+          });
+      }
+
+      // Function to get a specific cookie value by name
+      function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(";").shift();
+      }
+    </script>
+
+    <!-- delete post  -->
+    <script>
+      function handleDeletePost(postId) {
+        console.log(postId);
+        fetch(`/admin/deletePost/${postId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              Swal.fire({
+                icon: "success",
+                title: "Success",
+                text: data.message,
+              }).then(() => {
+                window.location.href = "/admin";
+              });
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: data.message,
+              });
+            }
+          })
+          .catch((error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "Failed to delete user",
+            });
+          });
+      }
+    </script>
+
+    <!-- edit post -->
+    <script>
+      let globalPostId;
+      function updatePost1(id) {
+        globalPostId = id;
+      }
+
+      function updatePost() {
+        console.log(111, globalPostId);
+        const form = document.getElementById("editPostForm");
+        const title = form.querySelector('input[name="title"]').value;
+        const amount = form.querySelector('input[name="amount"]').value;
+        const description = form.querySelector(
+          'textarea[name="description"]'
+        ).value;
+
+        fetch(`/admin/updatePost/${globalPostId}`, {
+          method: "PUT",
+          body: JSON.stringify({ title, amount, description }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              // If the update was successful, show a success message and close the modal
+              Swal.fire({
+                icon: "success",
+                title: "Post Updated",
+                text: data.message,
+              }).then(() => {
+                const editPostModal = new bootstrap.Modal(
+                  document.getElementById("editPostModal")
+                );
+                editPostModal.hide();
+                window.location.reload(); // Refresh the page or update the content dynamically
+              });
+            } else {
+              // If there was an error, display an error message
+              Swal.fire({
+                icon: "error",
+                title: "Update Failed",
+                text: data.message,
+              });
+            }
+          })
+          .catch((error) => {
+            // Handle any errors that occurred during the fetch request
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "Failed to update the post",
+            });
+          });
+      }
+    </script>
+
+    <!-- detailed data -->
+    <script>
+      function detailed(postId) {
+        console.log(postId);
+        fetch(`/admin/detailed/${postId}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            if (data.success) {
+              Swal.fire({
+                icon: "success",
+                title: "Success",
+                text: data.message,
+              }).then(() => {
+                window.location.href = "/admin";
+              });
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: data.message,
+              });
+            }
+          })
+          .catch((error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "something went wrong",
+            });
+          });
+      }
+    </script>
+    <script>
+      function moreButton(postId) {
+        fetch(`/admin/api/more/${postId}`, {
+          // Use the new API route
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            // Redirect to the more.ejs page with the received data
+            window.location.href = `/admin/more/${postId}`;
+          })
+          .catch((error) => {
+            console.error("Fetch error:", error);
+          });
+      }
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Logging to console for debugging purposes
+        console.log(1111111111111);
+
+        // Elements from the first script
+        var allFilesButton = document.getElementById("allFilesButton");
+        var titlesButton = document.getElementById("titlesButton");
+        var messagesButton = document.getElementById("messages");
+        console.log(titlesButton);
+        var applicationContent = document.getElementById("applicationContent");
+        var defaultContent = applicationContent
+          ? applicationContent.innerHTML
+          : "";
+
+        if (messagesButton) {
+          messagesButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            applicationContent.innerHTML = "";
+          });
+        }
+        // Event listener for the titlesButton
+        if (titlesButton) {
+          titlesButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            applicationContent.innerHTML =
+              '<div class="row g-6 mb-6"> <% if (data && data.length > 0) { %> <% data.forEach(data => { %> <div class="col-xl-3 col-sm-6 col-12"> <div class="card shadow border-0" style="height: 100%;"> <div class="card-body" style="display: flex; justify-content: center; align-items: center;"> <img src="<%= data.images %>" alt="<%= data.title %>" style="max-width: 100%; max-height: 250px;"> </div> </div> </div> <% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %> </div>'; // Replace with your EJS template string
+          });
+        }
+
+        // Event listener to revert to default content
+        if (allFilesButton) {
+          allFilesButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            applicationContent.innerHTML = defaultContent;
+          });
+        }
+
+        // Elements and event listeners from the second script
+        const editButtons = document.querySelectorAll(".editbtn3");
+        editButtons.forEach((button) => {
+          button.addEventListener("click", function (e) {
+            e.preventDefault();
+            $("#editPostModal").modal("show");
           });
         });
-    }
-  </script>
-
-  <!-- edit post -->
-  <script>
-    let globalPostId;
-    function updatePost1(id) {
-      globalPostId = id;
-    }
-
-    function updatePost() {
-      console.log(111, globalPostId);
-      const form = document.getElementById('editPostForm');
-      const title = form.querySelector('input[name="title"]').value;
-      const amount = form.querySelector('input[name="amount"]').value;
-      const description = form.querySelector('textarea[name="description"]').value;
-
-      fetch(`/admin/updatePost/${globalPostId}`, {
-        method: 'PUT',
-        body: JSON.stringify({ title, amount, description }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            // If the update was successful, show a success message and close the modal
-            Swal.fire({
-              icon: 'success',
-              title: 'Post Updated',
-              text: data.message
-            }).then(() => {
-              const editPostModal = new bootstrap.Modal(document.getElementById('editPostModal'));
-              editPostModal.hide();
-              window.location.reload(); // Refresh the page or update the content dynamically
-            });
-          } else {
-            // If there was an error, display an error message
-            Swal.fire({
-              icon: 'error',
-              title: 'Update Failed',
-              text: data.message
-            });
-          }
-        })
-        .catch(error => {
-          // Handle any errors that occurred during the fetch request
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Failed to update the post'
-          });
-        });
-    }
-
-  </script>
-
-  <!-- detailed data -->
-  <script>
-    function detailed(postId) {
-      console.log(postId);
-      fetch(`/admin/detailed/${postId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          if (data.success) {
-            Swal.fire({
-              icon: 'success',
-              title: 'Success',
-              text: data.message
-            }).then(() => {
-              window.location.href = '/admin';
-            });
-          } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: data.message
-            });
-          }
-        })
-        .catch(error => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'something went wrong'
-          });
-        });
-    }
-
-  </script>
-  <script>
-    function moreButton(postId) {
-
-      fetch(`/admin/api/more/${postId}`, { // Use the new API route
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log(data);
-          // Redirect to the more.ejs page with the received data
-          window.location.href = `/admin/more/${postId}`;
-        })
-        .catch(error => {
-          console.error('Fetch error:', error);
-        });
-    }
-  </script>
-
-</body>
-
+      });
+    </script>
+  </body>
 </html>
