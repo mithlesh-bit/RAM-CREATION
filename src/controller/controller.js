@@ -122,6 +122,7 @@ exports.addDataPost = async (req, res) => {
                   description: req.body.description,
                   images: result.secure_url,
                   lastUpdate: date,
+                  youtubelink: req.body.youtubelink || "",
                 });
 
                 newImage
@@ -352,6 +353,7 @@ exports.updatePost = async (req, res) => {
       post.amount = amount || post.amount;
       post.description = description || post.description;
       post.lastUpdate = indianDate || post.lastUpdate;
+      post.youtubelink = youtubelink || post.youtubelink;
       await post.save();
 
       res.json({ success: true, message: "Post updated successfully" });
