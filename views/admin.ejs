@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>admin DashBoard</title>
@@ -32,8 +38,16 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <!-- Brand -->
-          <div class="logo" style="display: flex; align-items: center">
+          <div
+            class="logo"
+            style="
+              display: flex;
+              align-items: center;
+              margin-bottom: 20px;
+              font-family: Montserrat;
+              margin-top: 20px;
+            "
+          >
             <a
               href="index.html"
               style="display: flex; align-items: center; text-decoration: none"
@@ -43,9 +57,7 @@
                 alt="Ram Creations Logo"
                 style="padding-left: 20px; max-width: 25%; height: auto"
               />
-              <h2 style="color: red; margin-left: 10px; margin-top: 5px">
-                Ram Creations
-              </h2>
+              <h3 style="color: red; margin-left: 10px">Ram Creations</h3>
             </a>
           </div>
 
@@ -156,13 +168,12 @@
               <div class="row align-items-center">
                 <div class="col-sm-6 col-12 mb-4 mb-sm-0">
                   <!-- Title -->
-                  <h1 class="h2 mb-0 ls-tight">Hi..<%= admin.name%></h1>
+                  <h1 class="h2 mb-0 ls-tight">Hi.. <%= admin.name%></h1>
                 </div>
                 <!-- Actions -->
                 <div class="col-sm-6 col-12 text-sm-end">
                   <div class="mx-n1">
                     <a
-                      href="#"
                       class="editbtn1 btn d-inline-flex btn-sm btn-neutral border-base mx-1"
                     >
                       <span class="pe-2">
@@ -170,15 +181,14 @@
                       </span>
                       <span>Edit</span>
                     </a>
-                    <a
-                      href="/admin/addData"
-                      class="btn d-inline-flex btn-sm btn-primary mx-1"
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#addThumbnailModal"
                     >
-                      <span class="pe-2">
-                        <i class="bi bi-plus"></i>
-                      </span>
-                      <span>Create</span>
-                    </a>
+                      <i class="bi bi-plus"></i> Create
+                    </button>
                   </div>
                 </div>
               </div>
@@ -357,40 +367,29 @@
                   <tbody>
                     <% if (data && data.length> 0) { %> <% data.forEach(data=> {
                     %>
-                    <tr id="detailed" data-post-id="<%= data._id %>">
+                    <tr id="detailed">
                       <td>
                         <img
                           alt="..."
-                          src="<%= data.images[0].url %>"
-                          data-post-id="<%= data._id %>"
+                          src="<%= data.images %>"
                           class="avatar avatar-sm rounded-circle me-2"
                         />
-                        <a
-                          class="text-heading font-semibold"
-                          data-post-id="<%= data._id %>"
-                          href="#"
-                        >
+                        <a class="text-heading font-semibold" href="#">
                           <%= data.title %>
                         </a>
                       </td>
-                      <td data-post-id="<%= data._id %>">
-                        <%= data.lastUpdate %>
-                      </td>
-                      <td data-post-id="<%= data._id %>">
+                      <td><%= data.lastUpdate %></td>
+                      <td>
                         <img
                           alt="..."
-                          src="<%= data.images[0].url %>"
+                          src="<%= data.images %>"
                           class="avatar avatar-xs rounded-circle me-2"
                         />
-                        <a
-                          class="text-heading font-semibold"
-                          data-post-id="<%= data._id %>"
-                          href="#"
-                        >
+                        <a class="text-heading font-semibold" href="#">
                           Dribbble
                         </a>
                       </td>
-                      <td data-post-id="<%= data._id %>"><%= data.amount %></td>
+                      <td><%= data.amount %></td>
                       <td>
                         <span class="badge badge-lg badge-dot">
                           <i class="bg-success"></i>
@@ -399,11 +398,19 @@
                       </td>
                       <td class="text-end">
                         <button
+                          class="btn-sm btn-neutral edit-btn"
+                          onclick="moreButton('<%= data._id %>')"
+                        >
+                          Add more
+                        </button>
+                        <button
                           type="button"
                           class="editbtn3 btn-sm btn-neutral edit-btn"
                           onclick="updatePost1('<%= data._id %>')"
                         >
-                          Edit
+                          <span>
+                            <i class="bi bi-pencil"></i>
+                          </span>
                         </button>
                         <button
                           type="button"
@@ -477,7 +484,7 @@
                   type="password"
                   class="form-control"
                   id="password"
-                  placeholder="******"
+                  placeholder=""
                   name="password"
                   required
                 />
@@ -648,62 +655,119 @@
       </div>
     </div>
 
+    <!-- create form  -->
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="addThumbnailModal"
+      tabindex="-1"
+      aria-labelledby="modalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Add Thumbnail Data</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form
+              class="card-body px-4"
+              action="/admin/addData"
+              method="post"
+              enctype="multipart/form-data"
+            >
+              <div class="form-floating mb-3">
+                <input
+                  class="form-control"
+                  id="inputHeading"
+                  name="title"
+                  type="text"
+                  required
+                  placeholder="name"
+                />
+                <label for="inputHeading">Heading Name</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  class="form-control"
+                  id="inputAmount"
+                  name="amount"
+                  type="number"
+                  required
+                  placeholder="name"
+                />
+                <label for="inputAmount">Enter the amount</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  class="form-control"
+                  id="inputDescrtiption"
+                  name="description"
+                  type="text"
+                  required
+                  placeholder="name"
+                />
+                <label for="inputDescrtiption">Add a description</label>
+              </div>
+
+              <div class="margin: 20px">
+                <div id="dropArea">
+                  <label for="imageInput" id="dropLabel">
+                    <input
+                      type="file"
+                      id="imageInput"
+                      accept="image/*"
+                      name="image"
+                      required
+                      onchange="displayImage()"
+                    />
+                    <img
+                      src="../assets/img/upload.png"
+                      width="50"
+                      height="50"
+                      alt="Drag and Drop Icon"
+                    />
+                    <p>Select Thumbnail Image</p>
+                  </label>
+                </div>
+                <div
+                  id="imagePreview"
+                  style="display: none; align-items: center"
+                  class="mb-3"
+                >
+                  <img
+                    id="selectedImage"
+                    alt="Selected Image"
+                    style="max-width: 150px; max-height: 150px"
+                  />
+                </div>
+              </div>
+
+              <div class="mt-6 mb-0 pt-5">
+                <div class="d-grid">
+                  <button class="btn btn-primary btn-block" type="submit">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script></script>
+
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var allFilesButton = document.getElementById("allFilesButton");
-        var titlesButton = document.getElementById("titlesButton");
-        var messagesButton = document.getElementById("messages");
-        var detaildButton = document.getElementById("detailed");
-
-        var applicationContent = document.getElementById("applicationContent");
-
-        // Store the default content of the "Application" section
-        var defaultContent = applicationContent.innerHTML;
-
-        messagesButton.addEventListener("click", function (e) {
-          e.preventDefault();
-          applicationContent.innerHTML =
-            ' <% if (messages && messages.length > 0) { %> <% messages.forEach(messages => { %><section class="message">  <span class="nickname"><%=messages.name%></span> <span class="status"><%=messages.subject%></span> </div> <div class="message_id"><%=messages.date%></div> <div class="message_text"> <%=messages.message%>  </div> <div class="likes"> <span class="likes_count"><%=messages.number%></span> <span class="like"></span> </div> <div class="time"></div> </section><% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %>';
-        });
-        // Function to switch to the photo gallery when the "Titles" button is clicked
-        titlesButton.addEventListener("click", function (e) {
-          e.preventDefault();
-          applicationContent.innerHTML =
-            '<div class="row g-6 mb-6"> <% if (data && data.length > 0) { %> <% data.forEach(data => { %> <div class="col-xl-3 col-sm-6 col-12"> <div class="card shadow border-0" style="height: 100%;"> <div class="card-body" style="display: flex; justify-content: center; align-items: center;"> <img src="<%= data.images[0].url %>" alt="<%= data.title %>" style="max-width: 100%; max-height: 250px;"> </div> </div> </div> <% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %> </div>';
-        });
-
-        function getPostIdFromElement(element) {
-          return element.getAttribute("data-post-id");
-        }
-        detaildButton.addEventListener("click", function (e) {
-          e.preventDefault();
-          var postId = getPostIdFromElement(e.target);
-          console.log(11, postId);
-          // Perform your fetch operation using postId
-          fetch(`/admin/detailed/${postId}`)
-            .then((response) => response.json())
-            .then((data) => {
-              applicationContent.innerHTML =
-                '<div class="row g-6 mb-6"> <% if (data && data.length > 0) { %> <% data.forEach(data => { %> <div class="col-xl-3 col-sm-6 col-12"> <div class="card shadow border-0" style="height: 100%;"> <div class="card-body" style="display: flex; justify-content: center; align-items: center;"> <img src="<%= data.images[0].url %>" alt="<%= data.title %>" style="max-width: 100%; max-height: 250px;"> </div> </div> </div> <% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %> </div>';
-
-              console.log(data);
-            })
-            .catch((error) => {
-              console.error("Error fetching data:", error);
-            });
-        });
-
-        // Function to switch back to the default content when the "All files" button is clicked
-        allFilesButton.addEventListener("click", function (e) {
-          e.preventDefault();
-          // Reset the content to the default stored content
-          applicationContent.innerHTML = defaultContent;
-        });
-      });
-    </script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -736,18 +800,6 @@
           button.addEventListener("click", function (e) {
             e.preventDefault();
             $("#deletePostModal").modal("show");
-          });
-        });
-      });
-    </script>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const editButtons = document.querySelectorAll(".editbtn3");
-        editButtons.forEach((button) => {
-          button.addEventListener("click", function (e) {
-            e.preventDefault();
-            $("#editPostModal").modal("show");
           });
         });
       });
@@ -990,6 +1042,80 @@
             });
           });
       }
+    </script>
+    <script>
+      function moreButton(postId) {
+        fetch(`/admin/api/more/${postId}`, {
+          // Use the new API route
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            // Redirect to the more.ejs page with the received data
+            window.location.href = `/admin/more/${postId}`;
+          })
+          .catch((error) => {
+            console.error("Fetch error:", error);
+          });
+      }
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Logging to console for debugging purposes
+        console.log(1111111111111);
+
+        // Elements from the first script
+        var allFilesButton = document.getElementById("allFilesButton");
+        var titlesButton = document.getElementById("titlesButton");
+        var messagesButton = document.getElementById("messages");
+        console.log(titlesButton);
+        var applicationContent = document.getElementById("applicationContent");
+        var defaultContent = applicationContent
+          ? applicationContent.innerHTML
+          : "";
+
+        if (messagesButton) {
+          messagesButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            applicationContent.innerHTML = "";
+          });
+        }
+        // Event listener for the titlesButton
+        if (titlesButton) {
+          titlesButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            applicationContent.innerHTML =
+              '<div class="row g-6 mb-6"> <% if (data && data.length > 0) { %> <% data.forEach(data => { %> <div class="col-xl-3 col-sm-6 col-12"> <div class="card shadow border-0" style="height: 100%;"> <div class="card-body" style="display: flex; justify-content: center; align-items: center;"> <img src="<%= data.images %>" alt="<%= data.title %>" style="max-width: 100%; max-height: 250px;"> </div> </div> </div> <% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %> </div>'; // Replace with your EJS template string
+          });
+        }
+
+        // Event listener to revert to default content
+        if (allFilesButton) {
+          allFilesButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            applicationContent.innerHTML = defaultContent;
+          });
+        }
+
+        // Elements and event listeners from the second script
+        const editButtons = document.querySelectorAll(".editbtn3");
+        editButtons.forEach((button) => {
+          button.addEventListener("click", function (e) {
+            e.preventDefault();
+            $("#editPostModal").modal("show");
+          });
+        });
+      });
     </script>
   </body>
 </html>

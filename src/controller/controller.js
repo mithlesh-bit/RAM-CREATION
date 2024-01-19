@@ -9,7 +9,6 @@ const bcrypt = require("bcrypt");
 const cloudinary = require("../cloudinary");
 const image = require("../models/imageSchema");
 const imageSchema = require("../models/imageSchema");
-// const contactSchema = require("../models/contactSchema");
 
 //images and pricing part
 
@@ -82,6 +81,7 @@ exports.addSection = async (req, res) => {
 exports.admin = async (req, res) => {
   try {
     const messages = await contactSchema.find({});
+    console.log(messages);
     const data = await imageSchema.find({});
     res.render("admin", {
       data: data,
@@ -120,7 +120,7 @@ exports.addDataPost = async (req, res) => {
                   title: req.body.title,
                   amount: req.body.amount,
                   description: req.body.description,
-                  images: [{ url: result.secure_url }],
+                  images: result.secure_url,
                   lastUpdate: date,
                 });
 
@@ -154,7 +154,7 @@ exports.addDataPost = async (req, res) => {
               title: req.body.title,
               amount: req.body.amount,
               description: req.body.description,
-              images: [{ url: result.secure_url }],
+              images: result.secure_url,
               lastUpdate: date,
             });
 
@@ -162,7 +162,7 @@ exports.addDataPost = async (req, res) => {
               .save()
               .then(() => {
                 console.log("Image saved successfully");
-                return res.redirect("/addSection");
+                return res.redirect("/admin");
               })
               .catch((saveErr) => {
                 console.error(saveErr);
@@ -173,45 +173,6 @@ exports.addDataPost = async (req, res) => {
       }
     } else {
       return res.status(500).send("Error saving image data");
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    return res.status(500).send("Something went wrong");
-  }
-};
-
-exports.addSectionPost = async (req, res) => {
-  try {
-    console.log(req.body, req.files);
-
-    const selectedOption = await imageSchema.findOne({
-      title: req.body.listItem,
-    });
-
-    if (selectedOption) {
-      if (req.file || req.files) {
-        const imageUploadPromises = req.files.map((file) => {
-          return new Promise((resolve, reject) => {
-            cloudinary.uploader.upload(file.path, (err, result) => {
-              if (err) {
-                console.error(err);
-                reject(err);
-              } else {
-                selectedOption.images.push({ url: result.secure_url });
-                resolve();
-              }
-            });
-          });
-        });
-
-        await Promise.all(imageUploadPromises);
-        await selectedOption.save(); // Save the updated document with new images
-        return res.redirect("/admin");
-      } else {
-        return res.status(500).send("No images uploaded");
-      }
-    } else {
-      return res.status(404).send("Selected option not found");
     }
   } catch (error) {
     console.error("Error:", error);
@@ -300,11 +261,10 @@ exports.loginPost = async (req, res) => {
 exports.photos = async (req, res) => {
   const id = req.params.id;
   try {
-    const data = await imageSchema.findById({ _id: id });
+    const data = await listSchema.find({ thumbnail_id: id });
     if (!data) {
       return res.status(404).send("Data not found");
     }
-
     res.render("photos", { data });
   } catch (error) {
     console.error(error);
@@ -412,14 +372,88 @@ exports.logout = async (req, res) => {
   }
 };
 
-exports.detailed = async (req, res) => {
+exports.metadata = async (req, res) => {
   try {
-    const { id } = req.body;
-    const result = await imageSchema.find({ _id: id });
-    console.log(result);
-    res.json({ success: true, result: result });
+    console.log(111);
   } catch (error) {
-    console.error("Error updating post:", error);
-    res.status(500).json({ success: false, message: "Failed to update post" });
+    console.error("Error:", error);
+    return res.status(300).send("Something went wrong");
+  }
+};
+
+exports.more = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await imageSchema.findOne({ _id: id });
+    res.json({ success: true, result });
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch data" });
+  }
+};
+
+exports.morePage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = await listSchema.find({ thumbnail_id: id });
+    console.log(111, data);
+    res.render("more", { data });
+  } catch (error) {
+    console.error("Error rendering page:", error);
+    res.status(500).json({ success: false, message: "Failed to render page" });
+  }
+};
+
+exports.morePagePost = async (req, res) => {
+  try {
+    // Extract data from request body
+    const { theme, amount, dynamicData } = req.body;
+    console.log(req.body.dynamicData);
+
+    // Upload image to Cloudinary and get the URL
+    let imageUrl;
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(req.file.path);
+      imageUrl = result.secure_url;
+    }
+
+    // Create a new creation instance
+    const newCreation = new listSchema({
+      thumbnail_id: dynamicData,
+      theme: theme,
+      amount: amount,
+      link: imageUrl,
+    });
+
+    // Save the new creation instance to the database
+    await newCreation.save();
+
+    res.status(200).json({ success: true, message: "Data saved successfully" });
+  } catch (error) {
+    console.error("Error saving data:", error);
+    res.status(500).json({ success: false, message: "Failed to save data" });
+  }
+};
+
+exports.deleteImage = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const image = await listSchema.findById({ _id: id });
+
+    if (!image) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Image not found" });
+    }
+
+    await listSchema.findByIdAndDelete({ _id: id });
+
+    return res
+      .status(200)
+      .json({ success: true, message: "Image deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting image:", error);
+    res.status(500).json({ success: false, message: "Failed to delete image" });
   }
 };
