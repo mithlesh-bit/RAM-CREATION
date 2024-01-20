@@ -16,8 +16,19 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(router);
 
-app.listen(process.env.port, function (err) {
-  mongoose.db;
-  if (err) console.log("Error in server setup");
-  console.log("Server listening on Port", port);
+
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+}).on('error', (e) => {
+    if (e.code === 'EADDRINUSE') {
+        console.log(`Port ${PORT} is in use, trying another port`);
+        app.listen(PORT + 1, () => {
+            console.log(`Server running on port ${PORT + 1}`);
+        });
+    } else {
+        console.error(e);
+    }
 });
+
+
