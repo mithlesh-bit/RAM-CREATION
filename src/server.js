@@ -18,7 +18,7 @@ app.use(router);
 
 
 
-app.listen(PORT, () => {
+app.listen(process.env.port, () => {
     console.log(`Server running on port ${PORT}`);
 }).on('error', (e) => {
     if (e.code === 'EADDRINUSE') {
