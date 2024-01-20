@@ -22,9 +22,9 @@ app.listen(process.env.port, () => {
     console.log(`Server running on port ${PORT}`);
 }).on('error', (e) => {
     if (e.code === 'EADDRINUSE') {
-        console.log(`Port ${PORT} is in use, trying another port`);
-        app.listen(PORT + 1, () => {
-            console.log(`Server running on port ${PORT + 1}`);
+        console.log(`Port ${process.env.port} is in use, trying another port`);
+        app.listen(process.env.port + 1, () => {
+            console.log(`Server running on port ${process.env.port + 1}`);
         });
     } else {
         console.error(e);
