@@ -13,14 +13,7 @@ const imageSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  images: [
-    {
-      url: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
+  images: String,
   lastUpdate: {
     type: String,
     required: true,

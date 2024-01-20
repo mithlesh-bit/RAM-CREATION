@@ -1,18 +1,112 @@
-/**
-* Template Name: Ninestars
-* Updated: Sep 18 2023 with Bootstrap v5.3.2
-* Template URL: https://bootstrapmade.com/ninestars-free-bootstrap-3-theme-for-creative/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #212529;
+
 }
+
+
+.animate_text {
+  font-size: 50px;
+  white-space: nowrap;
+  overflow: hidden;
+  color: white;
+  animation: typewriter 6s steps(25) infinite alternate,
+    blink 1200ms steps(25) infinite normal;
+  border-right: 5px solid black;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 105%;
+  }
+}
+
+@keyframes blink {
+  from {
+    border-color: brown;
+  }
+
+  to {
+    border-color: transparent;
+  }
+}
+
+/* The hero image */
+.hero-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/img/banner.jpg");
+  height: 500px;
+  /* or use 100vh for full viewport height */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: start;
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+}
+
+/* ... other styles ... */
+
+/* Media Query for Mobile Screens */
+@media screen and (max-width: 600px) {
+  .hero-text {
+    text-align: center;
+    left: 30%;
+    top: 50%;
+    /* Adjust as needed */
+    transform: translate(-50%, -30%);
+    font-size: smaller;
+    /* Adjust the font size as needed */
+  }
+
+  .animate_text {
+    font-size: 15px;
+
+  }
+
+  .btn-get-started {
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 5px 20px;
+    border-radius: 3px;
+    transition: 0.5s;
+    margin-top: 30px;
+    color: #fff;
+    background: red;
+  }
+
+}
+
+.btn-get-started {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 3px;
+  transition: 0.5s;
+  margin-top: 30px;
+  color: #fff;
+  background: red;
+}
+
+.btn-get-started:hover {
+  background: #ef7f4d;
+}
+
 
 a {
   color: #eb5d1e;
@@ -32,7 +126,7 @@ h4,
 h5,
 h6,
 .font-primary {
-  font-family: "Raleway", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -110,7 +204,7 @@ h6,
 }
 
 #main {
-  margin-top: 72px;
+  margin-top: 50px;
 }
 
 /*--------------------------------------------------------------
@@ -121,6 +215,18 @@ h6,
 */
 .navbar {
   padding: 0;
+}
+
+.elevation {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: box-shadow 0.3s ease;
+  box-shadow: #111;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.elevation:hover {
+  box-shadow: 8px 8px 40px #8888;
 }
 
 .navbar ul {
@@ -724,6 +830,8 @@ section {
   background-color: #ffffff;
   /* Set the background color to white */
   padding: 10px;
+  justify-content: center;
+  display: flex;
   /* Add some padding to create space around the text */
 }
 
@@ -731,6 +839,7 @@ section {
   margin: 0;
   /* Remove any default margin from the paragraph */
   color: #000000;
+
   /* Set the text color to black (or your desired color) */
 }
 

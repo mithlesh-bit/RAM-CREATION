@@ -1,92 +1,113 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <link rel="stylesheet" href="../css/login2.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Admin Login</title>
 
-<head>
-  <link rel="stylesheet" href="../css/login2.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <title>Login Form Using HTML And CSS Only</title>
+    <!-- for alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  </head>
 
-
-  <!-- for alert -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-</head>
-
-<body>
-  <div class="container" id="container">
-    <div class="form-container log-in-container">
-      <form id="loginForm" action="/login" method="post" onsubmit="handleLoginFormSubmission(); return false;">
-        <h1>Login</h1>
-        <br />
-        <br />
-        <input type="email" placeholder="Email" name="email" required />
-        <input type="password" placeholder="Password" name="password" required />
-        <br />
-        <button type="submit" id="loginnowtext">Log In</button>
-      </form>
-    </div>
-    <div class="overlay-container">
-      <div class="overlay">
-        <div class="overlay-panel overlay-right">
-          <h1>Hi! Ram</h1>
-          <p>
-            Login to the admin dashboard by verifying the email and password
-          </p>
+  <body>
+    <div class="container" id="container">
+      <div class="form-container log-in-container">
+        <form
+          id="loginForm"
+          action="/login"
+          method="post"
+          onsubmit="handleLoginFormSubmission(); return false;"
+        >
+          <h1>Login</h1>
+          <br />
+          <br />
+          <input
+            style="
+              font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+                sans-serif;
+              font-size: large;
+            "
+            type="email"
+            placeholder="Email"
+            name="email"
+            required
+          />
+          <input
+            style="
+              font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+                sans-serif;
+              font-size: large;
+            "
+            type="password"
+            placeholder="Password"
+            name="password"
+            required
+          />
+          <br />
+          <button type="submit" id="loginnowtext">Log In</button>
+        </form>
+      </div>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-right">
+            <h1>Hi! Ram</h1>
+            <p>
+              Login to the admin dashboard by verifying the email and password
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
+    <script>
+      function handleLoginFormSubmission() {
+        const form = document.getElementById("loginForm");
 
+        console.log(1111);
+        const loginnowtext = document.querySelector("#loginnowtext");
+        loginnowtext.innerHTML = `<span class="loader"></span>`;
+        loginnowtext.disabled = true;
+        // loginnowtext = "Processing..."
+        // Get the email and password values from the form fields
+        const email = form.querySelector('input[name="email"]').value;
+        const password = form.querySelector('input[name="password"]').value;
 
-  <script>
-    function handleLoginFormSubmission() {
-
-      const form = document.getElementById('loginForm');
-
-      console.log(1111);
-      const loginnowtext = document.querySelector("#loginnowtext")
-      loginnowtext.innerHTML = `<span class="loader"></span>`
-      loginnowtext.disabled = true;
-      // loginnowtext = "Processing..."
-      // Get the email and password values from the form fields
-      const email = form.querySelector('input[name="email"]').value;
-      const password = form.querySelector('input[name="password"]').value;
-
-
-      fetch('/login', {
-        method: 'POST',
-        body: JSON.stringify({ email: email, password: password }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data.success);
-          if (data.success) { // Compare to the boolean value true
-            // Display a success pop-up
-            Swal.fire({
-              icon: 'success',
-              title: 'Success',
-              text: data.message
-            }).then(() => {
-              // Redirect or perform other actions after displaying the pop-up
-              window.location.href = '/admin';
-            });
-          } else {
-            // Display an error pop-up
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: data.message
-            });
-          }
-          loginnowtext.innerHTML = "Login Now"
-          loginnowtext.disabled = false;
-        });
-    }
-  </script>
-
-</body>
-
+        fetch("/login", {
+          method: "POST",
+          body: JSON.stringify({ email: email, password: password }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data.success);
+            if (data.success) {
+              // Compare to the boolean value true
+              // Display a success pop-up
+              Swal.fire({
+                icon: "success",
+                title: "Success",
+                text: data.message,
+              }).then(() => {
+                // Redirect or perform other actions after displaying the pop-up
+                window.location.href = "/admin";
+              });
+            } else {
+              // Display an error pop-up
+              Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: data.message,
+              });
+            }
+            loginnowtext.innerHTML = "Login Now";
+            loginnowtext.disabled = false;
+          });
+      }
+    </script>
+  </body>
 </html>
