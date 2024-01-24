@@ -19,7 +19,7 @@ app.use(router);
 
 
 app.listen(process.env.port, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`Server running on port 5000`);
 }).on('error', (e) => {
     if (e.code === 'EADDRINUSE') {
         console.log(`Port ${process.env.port} is in use, trying another port`);
