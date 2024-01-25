@@ -81,8 +81,7 @@ exports.addSection = async (req, res) => {
 exports.admin = async (req, res) => {
   try {
     const messages = await contactSchema.find({});
-    console.log(messages);
-    console.log(messages);
+
     const data = await imageSchema.find({});
     res.render("admin", {
       data: data,
@@ -266,7 +265,6 @@ exports.photos = async (req, res) => {
   const id = req.params.id;
   try {
     const data = await listSchema.find({ thumbnail_id: id });
-    const data = await listSchema.find({ thumbnail_id: id });
     if (!data) {
       return res.status(404).send("Data not found");
     }
@@ -380,7 +378,6 @@ exports.logout = async (req, res) => {
 
 exports.metadata = async (req, res) => {
   try {
-    console.log(111);
 
 
   } catch (error) {
@@ -404,7 +401,6 @@ exports.morePage = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await listSchema.find({ thumbnail_id: id });
-    console.log(111, data);
     res.render('more', { data });
   } catch (error) {
     console.error('Error rendering page:', error);
@@ -414,34 +410,35 @@ exports.morePage = async (req, res) => {
 
 exports.morePagePost = async (req, res) => {
   try {
-    // Extract data from request body
-    const { theme, amount, dynamicData } = req.body;
-    console.log(req.body.dynamicData);
+    const { dynamicData } = req.body;
 
-    // Upload image to Cloudinary and get the URL
-    let imageUrl;
-    if (req.file) {
+    if (req.files && req.files.length > 0) {
+      for (const file of req.files) {
+        const result = await cloudinary.uploader.upload(file.path);
+        const newCreation = new listSchema({
+          thumbnail_id: dynamicData,
+          links: result.secure_url,
+        });
+
+        await newCreation.save();
+      }
+    } else if (req.file) {
+      // For a single file upload scenario
       const result = await cloudinary.uploader.upload(req.file.path);
-      imageUrl = result.secure_url;
+      const newCreation = new listSchema({
+        thumbnail_id: dynamicData,
+        links: result.secure_url, // Save single file URL
+      });
+      await newCreation.save();
     }
 
-    // Create a new creation instance
-    const newCreation = new listSchema({
-      thumbnail_id: dynamicData,
-      theme: theme,
-      amount: amount,
-      link: imageUrl,
-    });
-
-    // Save the new creation instance to the database
-    await newCreation.save();
-
-    res.status(200).json({ success: true, message: 'Data saved successfully' });
+    return res.status(200).json({ success: true, message: 'Data saved successfully' });
   } catch (error) {
     console.error('Error saving data:', error);
-    res.status(500).json({ success: false, message: 'Failed to save data' });
+    return res.status(500).json({ success: false, message: 'Failed to save data' });
   }
 };
+
 
 exports.deleteImage = async (req, res) => {
   try {

@@ -1,531 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <title>Ram Creations</title>
-    <meta content="" name="description" />
-    <meta content="" name="keywords" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
-      rel="stylesheet"
-    />
-    <link href="../assets/img/logo.png" rel="icon" />
-    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i"
-      rel="stylesheet"
-    />
+  <title>Ram Creations</title>
+  <meta content="" name="description" />
+  <meta content="" name="keywords" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet" />
+  <link href="../assets/img/logo.png" rel="icon" />
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
-    <link href="../assets/vendor/aos/aos.css" rel="stylesheet" />
-    <link
-      href="../assets/vendor/bootstrap/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="../assets/vendor/bootstrap-icons/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-    <link
-      href="../assets/vendor/boxicons/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="../assets/vendor/glightbox/css/glightbox.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="../assets/vendor/swiper/swiper-bundle.min.css"
-      rel="stylesheet"
-    />
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i"
+    rel="stylesheet" />
 
-    <link href="../css/main_style.css" rel="stylesheet" />
-    <link href="../css/card.css" rel="stylesheet" />
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet" />
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
 
-    <!-- for alert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-  </head>
+  <link href="../css/main_style.css" rel="stylesheet" />
+  <link href="../css/card.css" rel="stylesheet" />
 
-  <body>
-    <header id="header" class="fixed-top d-flex align-items-center">
-      <div class="container d-flex align-items-center justify-content-between">
-        <div class="logo" style="display: flex; align-items: center">
-          <a
-            href="index.html"
-            style="display: flex; align-items: center; text-decoration: none"
-          >
-            <img
-              src="../assets/img/logo.png"
-              alt="Ram Creations Logo"
-              style="max-width: 100%; height: auto"
-            />
-            <h3 style="color: red; margin-left: 10px; margin-top: 5px">
-              Ram Creations
-            </h3>
-          </a>
-        </div>
+  <!-- for alert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
 
-        <nav id="navbar" class="navbar">
-          <ul>
-            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-            <li><a class="nav-link scrollto" href="#about">About Us</a></li>
-            <li><a class="nav-link scrollto" href="#services">Services</a></li>
-            <li>
-              <a class="nav-link scrollto" href="#pricing">Our Offerings</a>
-            </li>
+<body>
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+      <div class="logo" style="display: flex; align-items: center">
+        <a href="index.html" style="display: flex; align-items: center; text-decoration: none">
+          <img src="../assets/img/logo.png" alt="Ram Creations Logo" style="max-width: 100%; height: auto" />
+          <h3 style="color: red; margin-left: 10px; margin-top: 5px">
+            Ram Creations
+          </h3>
+        </a>
+      </div>
 
-            <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-            <% if (userName && userName.name) { %>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About Us</a></li>
+          <li><a class="nav-link scrollto" href="#services">Services</a></li>
+          <li>
+            <a class="nav-link scrollto" href="#pricing">Our Offerings</a>
+          </li>
+
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <% if (userName && userName.name) { %>
             <div class="button_grp btn-log-sign">
               <li>
-                <a class="getstarted" href="admin"> <%= userName.name %> </a>
+                <a class="getstarted" href="admin">
+                  <%= userName.name %>
+                </a>
               </li>
             </div>
             <% } else { %>
-            <div class="button_grp btn-log-sign">
-              <li>
-                <a class="getstarted" href="login"> Login </a>
-              </li>
-            </div>
-            <% } %>
-          </ul>
-          <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav>
-      </div>
-    </header>
+              <div class="button_grp btn-log-sign">
+                <li>
+                  <a class="getstarted" href="login"> Login </a>
+                </li>
+              </div>
+              <% } %>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+    </div>
+  </header>
 
-  
-    <br>
-    <br>
-  
-    <br>
-    <div class="hero-image">
-      <div class="hero-text">
-        <div>
+
+  <br>
+  <br>
+
+  <br>
+  <div class="hero-image">
+    <div class="hero-text">
+      <div>
         <h1 style="color: red">
           Ram Creation: </h1>
         <h1 class="animate_text">Your Moments, Our Lens</h1>
-        
+
         <a href="#contact" class="btn-get-started scrollto">Contact Us</a>
-        </div>
-
       </div>
+
     </div>
+  </div>
 
 
-  
-    <div id="pricing" class="container-fluid py-5">
-      <div class="container pt-5 pb-3">
-        <div class="text-center mb-3 pb-3">
-          <h6 class="text-primary text-uppercase" style="letter-spacing: 5px">
-            SERVICES
-          </h6>
-          <h1>Explore Our Services</h1>
-          <br />
-          <br />
-        </div>
-        <div class="row">
-          <% if (data && data.length> 0) { %> <% data.forEach(data=> { %>
-          <div class="col-lg-4 col-md-6">
-            <a href="/photos/<%= data._id %>">
-            <div class="position-relative overflow-hidden mb-2 elevation">
-              <img class="img-fluid" src="<%= data.images %>" alt="" />
 
-              <div class="white-bottom">
-                <h5 style="color: black; font-family: Montserrat">
-                  <%= data.title %>
-                </h5>
-              </div>
-            </a>
+  <div id="pricing" class="container-fluid py-5">
+    <div class="container pt-5 pb-3">
+      <div class="text-center mb-3 pb-3">
+        <h6 class="text-primary text-uppercase" style="letter-spacing: 5px">
+          SERVICES
+        </h6>
+        <h1>Explore Our Services</h1>
+        <br />
+        <br />
+      </div>
+      <div class="row">
+        <% if (data && data.length> 0) { %> <% data.forEach(data=> { %>
+            <div class="col-lg-3 col-md-6">
+              <a href="/photos/<%= data._id %>">
+                <div class="position-relative overflow-hidden mb-2 elevation">
+                  <img class="img-fluid" src="<%= data.images %>" alt="" />
+
+                  <div class="white-bottom">
+                    <h5 style="color: black; font-family: Montserrat">
+                      <%= data.title %>
+                    </h5>
+                  </div>
+              </a>
             </div>
-          </div>
-          <% }) %> <% } else { %>
+      </div>
+      <% }) %>
+        <% } else { %>
           <h2 class="text-center">No data available</h2>
           <% } %>
+    </div>
+  </div>
+  </div>
+
+  <main id="main">
+    <section id="about" class="about">
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-lg-5 d-flex align-items-center justify-content-center about-img">
+            <img width="90%" height="100%" src="../assets/img/camera.png" alt="" data-aos="zoom-in" />
+          </div>
+          <div class="col-lg-6 pt-lg-0">
+            <h3 data-aos="fade-up">
+              Capture the Moment with
+              <br />
+              <span style="color: red"> Ram Creations </span>
+            </h3>
+            <p data-aos="fade-up" data-aos-delay="100">
+              Ram Creations brings life's precious moments into focus,
+              connecting creativity with every snapshot.
+            </p>
+            <div class="row">
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <i class="bx"></i>
+
+                <img style="margin-top: 15px" height="17%" width="15%" margin-bottom="30px"
+                  src="../assets/img/photography.png" />
+                <br />
+                <h4>For Photography Enthusiasts</h4>
+                <p>
+                  At Ram Creations, photographers are equipped with the latest
+                  gear and educational resources within a dynamic community,
+                  allowing them to capture stunning imagery, gain knowledge
+                  from peers, and display their work.
+                </p>
+              </div>
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <i class="bx"></i>
+                <img style="margin-top: 15px" height="17%" width="15%" margin-bottom="30px"
+                  src="../assets/img/client.png" />
+                <br />
+                <h4>For Our Clients</h4>
+                <p>
+                  Ram Creations offers expert photography services with
+                  advanced technology and customized care, ensuring every
+                  photo captures a story. They provide easy booking, a variety
+                  of packages, and a commitment to perfectly preserved
+                  memories.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section id="services" class="services section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h1>Services</h1>
+        <p>Check out the great services we provide</p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <div class="icon">
+              <i class="bx"></i><img height="18%" width="18%" src="../assets/img/wedding.png"
+                style="margin-bottom: 20px" />
+            </div>
+            <h4 class="title"><a href="">Wedding Photography</a></h4>
+            <p class="description">
+              Specializing in capturing moments and scenes during weddings and
+              related events
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
+          <div class="icon-box">
+            <div class="icon">
+              <i class="bx"></i><img height="18%" width="18%" src="../assets/img/fashion.png"
+                style="margin-bottom: 20px" />
+            </div>
+            <h4 class="title"><a href="">Fashion Photography</a></h4>
+            <p class="description">
+              Focuses on showcasing clothing, accessories, and fashion trends
+              through visually appealing and stylized images
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+          <div class="icon-box">
+            <div class="icon">
+              <i class="bx"></i><img height="18%" width="18%" src="../assets/img/baby.png"
+                style="margin-bottom: 20px" />
+            </div>
+            <h4 class="title"><a href="">Baby PhotoGraphy</a></h4>
+            <p class="description">
+              Capturing the innocence and joy of little ones through
+              heartwarming baby photography
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
+          <div class="icon-box">
+            <div class="icon">
+              <i class="bx"></i><img height="18%" width="18%" src="../assets/img/event.png"
+                style="margin-bottom: 20px" />
+            </div>
+            <h4 class="title"><a href="">Event Photography</a></h4>
+            <p class="description">
+              We captures your special occasions with precision and emotion.
+            </p>
+          </div>
         </div>
       </div>
     </div>
+  </section>
+  <!-- End Services Section -->
 
-    <main id="main">
-      <section id="about" class="about">
-        <div class="container">
-          <div class="row justify-content-between">
-            <div
-              class="col-lg-5 d-flex align-items-center justify-content-center about-img"
-            >
-              <img
-                width="90%"
-                height="100%"
-                src="../assets/img/camera.png"
-                alt=""
-                data-aos="zoom-in"
-              />
-            </div>
-            <div class="col-lg-6 pt-lg-0">
-              <h3 data-aos="fade-up">
-                Capture the Moment with
-                <br />
-                <span style="color: red"> Ram Creations </span>
-              </h3>
-              <p data-aos="fade-up" data-aos-delay="100">
-                Ram Creations brings life's precious moments into focus,
-                connecting creativity with every snapshot.
-              </p>
-              <div class="row">
-                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                  <i class="bx"></i>
+  <section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h1>Contact Us</h1>
+      </div>
 
-                  <img
-                    style="margin-top: 15px"
-                    height="17%"
-                    width="15%"
-                    margin-bottom="30px"
-                    src="../assets/img/photography.png"
-                  />
-                  <br />
-                  <h4>For Photography Enthusiasts</h4>
-                  <p>
-                    At Ram Creations, photographers are equipped with the latest
-                    gear and educational resources within a dynamic community,
-                    allowing them to capture stunning imagery, gain knowledge
-                    from peers, and display their work.
-                  </p>
-                </div>
-                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                  <i class="bx"></i>
-                  <img
-                    style="margin-top: 15px"
-                    height="17%"
-                    width="15%"
-                    margin-bottom="30px"
-                    src="../assets/img/client.png"
-                  />
-                  <br />
-                  <h4>For Our Clients</h4>
-                  <p>
-                    Ram Creations offers expert photography services with
-                    advanced technology and customized care, ensuring every
-                    photo captures a story. They provide easy booking, a variety
-                    of packages, and a commitment to perfectly preserved
-                    memories.
-                  </p>
-                </div>
-              </div>
+      <div class="row">
+        <div class="col-lg-5 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+          <div class="info">
+            <div class="address">
+              <i class="bi bi-geo-alt"></i>
+              <h4>Location:</h4>
+              <p>Tifra, Bilaspur Chhattisgarh</p>
             </div>
+
+            <div class="email">
+              <i class="bi bi-envelope"></i>
+              <h4>Email:</h4>
+              <p>ramcreations@gmail.com</p>
+            </div>
+
+            <div class="phone">
+              <i class="bi bi-phone"></i>
+              <h4>Call:</h4>
+              <p>7441180339</p>
+            </div>
+
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3697.841684333142!2d82.12495667474245!3d22.05565075171971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a280dcae57663f9%3A0xa4f771bc40669af2!2sram%20creation%20photo%20studio!5e0!3m2!1sen!2sin!4v1705393184644!5m2!1sen!2sin"
+              frameborder="0" style="border: 0; width: 100%; height: 250px" allowfullscreen>
+            </iframe>
           </div>
         </div>
-      </section>
-    </main>
 
-    <section id="services" class="services section-bg">
-      <div class="container" data-aos="fade-up">
-        <div class="section-title">
-          <h1>Services</h1>
-          <p>Check out the great services we provide</p>
-        </div>
-
-        <div class="row">
-          <div
-            class="col-md-6 col-lg-3 d-flex align-items-stretch"
-            data-aos="zoom-in"
-            data-aos-delay="100"
-          >
-            <div class="icon-box">
-              <div class="icon">
-                <i class="bx"></i
-                ><img
-                  height="18%"
-                  width="18%"
-                  src="../assets/img/wedding.png"
-                  style="margin-bottom: 20px"
-                />
+        <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+          <form id="contactForm" class="php-email-form">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="name">Your Name</label>
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required />
               </div>
-              <h4 class="title"><a href="">Wedding Photography</a></h4>
-              <p class="description">
-                Specializing in capturing moments and scenes during weddings and
-                related events
-              </p>
-            </div>
-          </div>
-
-          <div
-            class="col-md-6 col-lg-3 d-flex align-items-stretch"
-            data-aos="zoom-in"
-            data-aos-delay="200"
-          >
-            <div class="icon-box">
-              <div class="icon">
-                <i class="bx"></i
-                ><img
-                  height="18%"
-                  width="18%"
-                  src="../assets/img/fashion.png"
-                  style="margin-bottom: 20px"
-                />
+              <div class="form-group col-md-6 mt-3 mt-md-0">
+                <label for="number">Your Number</label>
+                <input type="number" class="form-control" name="number" id="number" placeholder="Your Number"
+                  required />
               </div>
-              <h4 class="title"><a href="">Fashion Photography</a></h4>
-              <p class="description">
-                Focuses on showcasing clothing, accessories, and fashion trends
-                through visually appealing and stylized images
-              </p>
             </div>
-          </div>
-
-          <div
-            class="col-md-6 col-lg-3 d-flex align-items-stretch"
-            data-aos="zoom-in"
-            data-aos-delay="300"
-          >
-            <div class="icon-box">
-              <div class="icon">
-                <i class="bx"></i
-                ><img
-                  height="18%"
-                  width="18%"
-                  src="../assets/img/baby.png"
-                  style="margin-bottom: 20px"
-                />
+            <div class="form-group mt-3">
+              <label for="subject">Subject</label>
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required />
+            </div>
+            <div class="form-group mt-3">
+              <label for="message">Message</label>
+              <textarea class="form-control" name="message" rows="10" id="message" required></textarea>
+            </div>
+            <div class="my-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">
+                Your message has been sent. Thank you!
               </div>
-              <h4 class="title"><a href="">Baby PhotoGraphy</a></h4>
-              <p class="description">
-                Capturing the innocence and joy of little ones through
-                heartwarming baby photography
-              </p>
             </div>
-          </div>
-
-          <div
-            class="col-md-6 col-lg-3 d-flex align-items-stretch"
-            data-aos="zoom-in"
-            data-aos-delay="400"
-          >
-            <div class="icon-box">
-              <div class="icon">
-                <i class="bx"></i
-                ><img
-                  height="18%"
-                  width="18%"
-                  src="../assets/img/event.png"
-                  style="margin-bottom: 20px"
-                />
-              </div>
-              <h4 class="title"><a href="">Event Photography</a></h4>
-              <p class="description">
-                We captures your special occasions with precision and emotion.
-              </p>
+            <div class="text-center">
+              <button type="submit">Send Message</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
-    </section>
-    <!-- End Services Section -->
+    </div>
+  </section>
 
-    <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
-        <div class="section-title">
-          <h1>Contact Us</h1>
-        </div>
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top" style="background-color: #fef8f5;">
 
-        <div class="row">
-          <div
-            class="col-lg-5 d-flex align-items-stretch"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <div class="info">
-              <div class="address">
-                <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
-                <p>Tifra, Bilaspur Chhattisgarh</p>
-              </div>
-
-              <div class="email">
-                <i class="bi bi-envelope"></i>
-                <h4>Email:</h4>
-                <p>ramcreations@gmail.com</p>
-              </div>
-
-              <div class="phone">
-                <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
-                <p>7441180339</p>
-              </div>
-
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3697.841684333142!2d82.12495667474245!3d22.05565075171971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a280dcae57663f9%3A0xa4f771bc40669af2!2sram%20creation%20photo%20studio!5e0!3m2!1sen!2sin!4v1705393184644!5m2!1sen!2sin"
-                frameborder="0"
-                style="border: 0; width: 100%; height: 250px"
-                allowfullscreen
-              >
-              </iframe>
-            </div>
-          </div>
-
-          <div
-            class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <form id="contactForm" class="php-email-form">
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="name">Your Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    class="form-control"
-                    id="name"
-                    placeholder="Your Name"
-                    required
-                  />
-                </div>
-                <div class="form-group col-md-6 mt-3 mt-md-0">
-                  <label for="number">Your Number</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    name="number"
-                    id="number"
-                    placeholder="Your Number"
-                    required
-                  />
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <label for="subject">Subject</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="subject"
-                  id="subject"
-                  placeholder="Subject"
-                  required
-                />
-              </div>
-              <div class="form-group mt-3">
-                <label for="message">Message</label>
-                <textarea
-                  class="form-control"
-                  name="message"
-                  rows="10"
-                  id="message"
-                  required
-                ></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">
-                  Your message has been sent. Thank you!
-                </div>
-              </div>
-              <div class="text-center">
-                <button type="submit">Send Message</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-     <!-- ======= Footer ======= -->
-     <footer id="footer" >
-      <div class="footer-top" style="background-color: #fef8f5;">
-      
-          <div
-            class="footer-links"
-            style="
+      <div class="footer-links" style="
               display: flex;
               align-items: center;
               justify-content: center;
               flex-direction: column;
-            "
-          >
-            <h2>Our Social Networks</h2>
+            ">
+        <h2>Our Social Networks</h2>
 
-            <h4>Connect with us from our Social Media Links</h4>
+        <h4>Connect with us from our Social Media Links</h4>
 
-            <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="https://www.instagram.com/ramcreationphotography12?igsh=MzNlNGNkZWQ4Mg==" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="https://youtube.com/@ramcreationbilaspur9392?si=i9vptm2pXtcXBPtg" target="_blank" class="google-plus"><i class="bx bxl-youtube"></i></a>
-              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-            </div>
-          </div>
-       
+        <div class="social-links mt-3">
+          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="https://www.instagram.com/ramcreationphotography12?igsh=MzNlNGNkZWQ4Mg==" target="_blank"
+            class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="https://youtube.com/@ramcreationbilaspur9392?si=i9vptm2pXtcXBPtg" target="_blank"
+            class="google-plus"><i class="bx bxl-youtube"></i></a>
+          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
       </div>
-    </footer>
-    <!-- End Footer -->
 
-    <a
-      href="#"
-      class="back-to-top d-flex align-items-center justify-content-center"
-      ><i class="bi bi-arrow-up-short"></i
-    ></a>
+    </div>
+  </footer>
+  <!-- End Footer -->
 
-    <script src="../assets/vendor/aos/aos.js"></script>
-    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="../assets/vendor/php-email-form/validate.js"></script>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
-    <script src="path/to/lottie.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
 
-    <script src="../assets/js/main.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const contactForm = document.getElementById("contactForm");
+  <script src="path/to/lottie.js"></script>
 
-        contactForm.addEventListener("submit", function (e) {
-          e.preventDefault(); // Prevent the default form submission
+  <script src="../assets/js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const contactForm = document.getElementById("contactForm");
 
-          const name = document.getElementById("name").value;
-          const number = document.getElementById("number").value;
-          const subject = document.getElementById("subject").value;
-          const message = document.getElementById("message").value;
+      contactForm.addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent the default form submission
 
-          fetch("/contact", {
-            method: "POST",
-            body: JSON.stringify({ name, number, subject, message }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              if (data.success) {
-                // If the submission was successful, show a success message
-                Swal.fire({
-                  icon: "success",
-                  title: "Message Sent",
-                  text: "Your message has been sent. Thank you!",
-                });
-                // Clear the form after successful submission if needed
-                contactForm.reset();
-              } else {
-                // If there was an error, display an error message
-                Swal.fire({
-                  icon: "error",
-                  title: "Message Not Sent",
-                  text: "There was an error sending your message. Please try again.",
-                });
-              }
-            })
-            .catch((error) => {
+        const name = document.getElementById("name").value;
+        const number = document.getElementById("number").value;
+        const subject = document.getElementById("subject").value;
+        const message = document.getElementById("message").value;
+
+        fetch("/contact", {
+          method: "POST",
+          body: JSON.stringify({ name, number, subject, message }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              // If the submission was successful, show a success message
+              Swal.fire({
+                icon: "success",
+                title: "Message Sent",
+                text: "Your message has been sent. Thank you!",
+              });
+              // Clear the form after successful submission if needed
+              contactForm.reset();
+            } else {
+              // If there was an error, display an error message
               Swal.fire({
                 icon: "error",
-                title: "Error",
-                text: "Failed to send the message",
+                title: "Message Not Sent",
+                text: "There was an error sending your message. Please try again.",
               });
+            }
+          })
+          .catch((error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "Failed to send the message",
             });
-        });
+          });
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
+
 </html>

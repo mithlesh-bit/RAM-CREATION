@@ -15,10 +15,10 @@ router.get("/admin/more/:id", auth, controller.morePage);
 // router.get("/admin/edit/:id", auth, controller.editImage);
 
 router.post(
-    "/admin/addData",
-    auth,
-    upload.single("image"),
-    controller.addDataPost
+  "/admin/addData",
+  auth,
+  upload.single("image"),
+  controller.addDataPost
 );
 
 router.post("/login", controller.loginPost);
@@ -30,7 +30,7 @@ router.post("/admin/logout", auth, controller.logout);
 router.post(
   "/admin/addData/moredata",
   auth,
-  upload.single("image"),
+  upload.array("fileInput", 5), // For multiple files, up to 5 for example
   controller.morePagePost
 );
 router.delete("/admin/deleteImage/:id", auth, controller.deleteImage);

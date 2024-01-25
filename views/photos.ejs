@@ -32,6 +32,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet" />
+
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -71,18 +74,28 @@
       <div class="row gy-4">
         <div class="col-lg-8">
           <div class="portfolio-details-slider swiper">
+
             <div class="swiper-wrapper align-items-center">
-              <div class="swiper-slide">
-                <img src="/assets/img/portfolio/portfolio-1.jpg" alt="" />
-              </div>
+              <% if (data && data.length> 0) { %>
+                <% data.forEach(data=> { %>
 
-              <div class="swiper-slide">
-                <img src="/assets/img/portfolio/portfolio-2.jpg" alt="" />
-              </div>
+                  <div class="swiper-slide">
+                    <img src="<%= data.links %>" alt="" />
+                  </div>
 
-              <div class="swiper-slide">
-                <img src="/assets/img/portfolio/portfolio-3.jpg" alt="" />
-              </div>
+                  <% }) %>
+                    <% } else { %>
+                      <div class="swiper-slide">
+                        <img src="/assets/img/portfolio/portfolio-1.jpg" alt="" />
+                      </div>
+                      <div class="swiper-slide">
+                        <img src="/assets/img/portfolio/portfolio-2.jpg" alt="" />
+                      </div>
+
+                      <div class="swiper-slide">
+                        <img src="/assets/img/portfolio/portfolio-3.jpg" alt="" />
+                      </div>
+                      <% } %>
             </div>
             <div class="swiper-pagination"></div>
           </div>
@@ -128,34 +141,26 @@
         <h1>Affordable Packages</h1>
       </div>
       <div class="row">
-        <% if (data && data.length> 0) { %> <% data.forEach(data=> { %>
-            <div class="col-lg-4 col-md-6 mb-4 shadow">
-              <div class="package-item bg-white position-relative">
-                <img class="img-fluid w-100" src="<%= data.link %>" alt="" style="height: 200px; object-fit: cover" />
-                <div class="p-4 text-light">
-                  <div class="mt-0 pt-0">
-                    <div class="d-flex justify-content-between">
-                      <h6 class="m-0">
-                        <i class="fa fa-star" style="color: rgb(240, 78, 14)"></i>
-                        <span style="color: black">
-                          <%= data.theme %>
-                        </span>
-                      </h6>
-                      <h5 class="m-0">
-                        <span style="color: black">₹<%= data.amount %></span>
-                      </h5>
-                    </div>
-                  </div>
-                  <!-- Delete button -->
-                </div>
+
+        <div class="flex flex-wrap -m-1">
+          <% if (data && data.length> 0) { %>
+            <% data.forEach(data=> { %>
+              <div class="p-1 w-1/4 sm:w-1/2 md:w-1/4">
+                <!-- Apply object-cover to ensure the image covers the div and the fixed height -->
+                <img src="<%= data.links %>" alt="" style="height: 200px"
+                  class="w-full object-cover transition duration-300 transform hover:scale-110 hover:grayscale hover:opacity-70 cursor-pointer">
               </div>
-            </div>
-            <% }) %>
-              <% } else { %>
-                <h2 class="text-center">No data available</h2>
-                <% } %>
+              <% }) %>
+                <% } else { %>
+                  <h2 class="text-center">No data available</h2>
+                  <% } %>
+        </div>
       </div>
     </div>
+
+
+  </div>
+  </div>
   </div>
   <!-- Packages End -->
 

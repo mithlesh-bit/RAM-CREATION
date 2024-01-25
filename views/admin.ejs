@@ -16,6 +16,14 @@
 </head>
 
 <body>
+
+
+
+
+
+
+
+
   <!-- Dashboard -->
   <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
     <!-- Vertical Navbar -->
@@ -68,11 +76,20 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="messages" href="#">
+              <a class="nav-link" id="messages">
                 <i class="bi bi-chat"></i> Messages
                 <!-- <span
                   class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span> -->
               </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link active" id="allFilesButton">
+                <i class="bi bi-files"></i>All files
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link font-regular" id="titlesButton">
+                <i class="bi bi-list"></i>Titles</a>
             </li>
           </ul>
           <!-- Divider -->
@@ -161,17 +178,7 @@
               </div>
             </div>
             <!-- Nav -->
-            <ul class="nav nav-tabs mt-4 overflow-x border-0">
-              <li class="nav-item">
-                <a href="#" class="nav-link active" id="allFilesButton">All files</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link font-regular" id="titlesButton">Titles</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link font-regular" id="detailedButton">Detailed Data</a>
-              </li>
-            </ul>
+
           </div>
         </div>
       </header>
@@ -825,7 +832,6 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // Logging to console for debugging purposes
-      console.log(1111111111111);
 
       // Elements from the first script
       var allFilesButton = document.getElementById("allFilesButton");
@@ -840,7 +846,8 @@
       if (messagesButton) {
         messagesButton.addEventListener("click", function (e) {
           e.preventDefault();
-          applicationContent.innerHTML = "";
+          applicationContent.innerHTML =
+            '<% if (messages && messages.length> 0) { %> <% messages.forEach(message=> { %> <div class="relative bg-blue-200 border-2"> <div class="flex items-center mb-2"> <div class="text-blue-800 text-lg font-semibold"> <%= message.name %> </div> <div class="ml-auto text-blue-800 text-sm"> <%= message.date %> </div> </div> <p class="text-blue-800"> <%= message.message %> </p> <div class="absolute bg-blue-200 h-3 w-3 rotate-45 -bottom-1 left-4"></div> <div class="text-blue-800 text-lg font-semibold"> <%= message.number %> </div> <!-- </div> </div> --> <% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %> </div>';
         });
       }
       // Event listener for the titlesButton

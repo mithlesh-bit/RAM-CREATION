@@ -43,64 +43,152 @@
 
     <!-- for alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Additional styles to replicate the look from the provided image */
+        .drag-area {
+            transition: border-color 0.3s;
+        }
+
+        .drag-area.dragging {
+            border-color: #94a3b8;
+        }
+
+        .bg-clicked {
+            background-color: #f56565;
+            /* This is the Tailwind CSS red-500 color */
+        }
+
+        .custom-dark-shadow {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+            /* Example of a darker shadow */
+        }
+    </style>
 </head>
 
-<body>
+<body class="bg-gray-100 ">
     <!-- ======= Header ======= -->
+
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="logo" style="display: flex; align-items: center">
+                <a href="../../" style="display: flex; align-items: center; text-decoration: none">
+                    <h3 style="color: red; margin-left: 10px; margin-top: 5px; font-weight: bold;">
+                        Ram Creations
+                    </h3>
+                </a>
+            </div>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto active" href="../">Admin</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+        </div>
+    </header>
+
+
+    <form id="imageUploadForm" enctype="multipart/form-data" class="mt-6" style="margin-top: 100px;">
+        <div
+            class="bg-slate-300 mt-3 flex flex-col items-center justify-center p-4 border-2 border-dashed border-red-400 rounded-lg w-3/4 mx-auto">
+            <label
+                class="border border-red-500 p-4 mb-3 bg-white hover:shadow-lg text-black font-bold py-2 px-4 rounded cursor-pointer transition duration-300 ease-in-out">
+                Select images
+                <input type="file" name="fileInput" id="fileInput" class="hidden" accept="image/*" multiple
+                    onchange="previewFiles()">
+            </label>
+            <div id="preview" class="flex space-x-2 py-2"></div>
+            <button id="uploadBtn" type="submit"
+                class="hidden bg-blue-500  text-white font-bold py-2 px-4 rounded cursor-pointer transition duration-300 ease-in-out">
+                Upload Images
+            </button>
+            <p class="text-red-400 text-xs mt-3">Your files will be securely handled by servers</p>
+        </div>
+    </form>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const uploadBtn = document.getElementById('uploadBtn');
+
+            uploadBtn.addEventListener('click', function () {
+                if (this.classList.contains('bg-clicked')) {
+                    this.classList.remove('bg-clicked');
+                    this.innerText = 'Upload Images'; // Reset text to default
+                } else {
+                    this.classList.add('bg-clicked');
+                    this.innerText = 'Uploading...'; // Change text on click
+                }
+            });
+
+        });
+
+        const previewContainer = document.getElementById('preview');
+        const uploadBtn = document.getElementById('uploadBtn');
+
+        function previewFiles() {
+            const files = document.getElementById('fileInput').files;
+            const fileArr = Array.from(files);
+
+            // Clear current previews
+            previewContainer.innerHTML = '';
+
+            fileArr.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.classList.add('w-16', 'h-16', 'object-cover');
+                    previewContainer.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            });
+
+            // Toggle the upload button based on if files are selected
+            if (fileArr.length > 0) {
+                uploadBtn.classList.remove('hidden');
+            } else {
+                uploadBtn.classList.add('hidden');
+            }
+        }
+
+    </script>
 
     <!-- End Header -->
 
     <main id="main">
-        <!-- Packages Start -->
-        <div class="container-fluid py-5">
-            <div class="container pb-3">
-                <div class="text-center mb-3 pb-3">
-                    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px">
-                        Section Images
-                    </h6>
-                    <h1>Manage Image selection</h1>
-                    <button class="openbtn btn btn-primary">Add Image</button>
-                </div>
-                <div class="row">
-                    <% if (data && data.length> 0) { %> <% data.forEach(data=> { %>
-                            <div class="col-lg-4 col-md-6 mb-4 shadow">
-                                <div class="package-item bg-white position-relative">
-                                    <img class="img-fluid w-100" src="<%= data.link %>" alt=""
-                                        style="height: 200px; object-fit: cover" />
-                                    <div class="p-4 text-light">
-                                        <div class="mt-0 pt-0">
-                                            <div class="d-flex justify-content-between">
-                                                <h6 class="m-0">
-                                                    <i class="fa fa-star" style="color: rgb(240, 78, 14)"></i>
-                                                    <span style="color: black">
-                                                        <%= data.theme %>
-                                                    </span>
-                                                </h6>
-                                                <h5 class="m-0">
-                                                    <span style="color: black">₹<%= data.amount %></span>
-                                                </h5>
-                                                <button class="btn btn-danger btn-sm mt-0"
-                                                    onclick="deleteImage('<%= data._id %>')" style="
+
+        <div class="row margin-left margin-right">
+            <% if (data && data.length> 0) { %> <% data.forEach(data=> { %>
+                    <div class="col-lg-3 col-md-6 mb-4 pe-1 shadow-lg custom-dark-shadow">
+                        <div class="package-item bg-white position-relative">
+                            <img class="img-fluid w-100" src="<%= data.links %>" alt=""
+                                style="height: 200px; object-fit: cover" />
+                            <div class=" text-light">
+                                <div class="mt-0 pt-0">
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-danger btn-sm mt-0"
+                                            onclick="deleteImage('<%= data._id %>')" style="
                           background-color: rgba(255, 255, 255, 0.8);
                           border: none;
                         ">
-                                                    <i class="fas fa-trash-alt" style="color: black"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <!-- Delete button -->
+                                            <i class="fas fa-trash-alt" style="color: rgb(247, 8, 8)"></i>
+                                        </button>
                                     </div>
                                 </div>
+                                <!-- Delete button -->
                             </div>
-                            <% }) %>
-                                <% } else { %>
-                                    <h2 class="text-center">No data available</h2>
-                                    <% } %>
-                </div>
-            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+                        <% } else { %>
+                            <h2 class="text-center">No data available</h2>
+                            <% } %>
         </div>
-        <!-- Packages End -->
+
     </main>
+
 
     <!-- Add this modal HTML at the end of your body -->
     <div class="modal fade" id="imageUploadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -143,68 +231,74 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const openBtn = document.querySelector(".openbtn");
-            openBtn.addEventListener("click", function () {
-                const modal = new bootstrap.Modal(
-                    document.getElementById("imageUploadModal")
-                );
-                modal.show();
-            });
-        });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
             const form = document.getElementById("imageUploadForm");
-            const url = window.location.href;
-            const dynamicData = extractDynamicData(url);
 
             form.addEventListener("submit", function (event) {
                 event.preventDefault(); // Prevent the default form submission behavior
 
                 const formData = new FormData(form);
+
+                // Check if files are present
+                const files = formData.getAll("fileInput");
+                console.log(files); // Check the files in the console
+                if (files.length === 0) {
+                    console.log("No files selected.");
+                    return; // Stop the form submission if no files are selected
+                }
+
+                // Assuming dynamicData is needed, extract it from URL
+                const dynamicData = extractDynamicData(window.location.href);
                 formData.append("dynamicData", dynamicData); // Append dynamic data to the form data
 
                 fetch("/admin/addData/moredata", {
                     method: "POST",
                     body: formData,
                 })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        if (data.success) {
-                            // If the update was successful, show a success message and close the modal
-                            Swal.fire({
-                                icon: "success",
-                                title: "Post Updated",
-                                text: data.message,
-                            }).then(() => {
-                                `window.location.href = /admin/more/${dynamicData}`;
-                            });
-                        } else {
-                            // If there was an error, display an error message
-                            Swal.fire({
-                                icon: "error",
-                                title: "Update Failed",
-                                text: data.message,
-                            });
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
                         }
+                        return response.json();
                     })
-                    .catch((error) => {
-                        // Handle any errors that occurred during the fetch request
-                        Swal.fire({
-                            icon: "error",
-                            title: "Error",
-                            text: "Failed to update the post",
-                        });
-                    });
+                    .then(data => handleResponse(data))
+                    .catch(error => handleError(error));
+
             });
 
             function extractDynamicData(url) {
-                // Implement the logic to extract dynamic data from the URL
-                // For example, if the dynamic data is in the path, you can use regex or split
                 const parts = url.split("/");
                 return parts[parts.length - 1];
             }
+
+            function handleResponse(data) {
+                if (data.success) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Post Updated",
+                        text: data.message,
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Update Failed",
+                        text: data.message,
+                    });
+                }
+            }
+
+            function handleError(error) {
+                console.error("Fetch error:", error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: error.message || "Failed to update the post",
+                });
+            }
+
         });
+
     </script>
 
     <script>
@@ -256,6 +350,9 @@
             });
         }
     </script>
+
+
+
 </body>
 
 </html>

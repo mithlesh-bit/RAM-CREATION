@@ -1,3 +1,17 @@
+
+        <% if (data && data.length> 0) { %> <% data.forEach(data=> { %>
+
+
+
+            <% }) %>
+              <% } else { %>
+                <h2 class="text-center">No data available</h2>
+                <% } %>
+
+
+
+
+
 <% if (messages && messages.length > 0) { %>
   <% messages.forEach(message => { %>
     <section class="message">
