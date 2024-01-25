@@ -1,9 +1,9 @@
 {
     "version": 2,
-    "name": "ram creation",
+   
     "builds": [
         {
-            "src": "src/server.js",
+            "src": "./src/server.js",
             "use": "@vercel/node"
         }
     ],
