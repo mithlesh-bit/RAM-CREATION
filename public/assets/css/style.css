@@ -14,6 +14,25 @@ body {
   color: #212529;
 }
 
+.masonry {
+  /* This will create a gap between the columns and rows */
+  column-count: 3;
+  column-gap: 1em;
+}
+
+.item {
+  /* This will prevent items from stretching full-width and breaking the masonry layout */
+  break-inside: avoid;
+  margin-bottom: 1em;
+}
+
+.item img {
+  /* This will make images scale within their div containers */
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 a {
   color: #eb5d1e;
   text-decoration: none;

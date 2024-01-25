@@ -33,19 +33,14 @@
 </head>
 
 <body>
-
-
-
-
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
       <div class="logo" style="display: flex; align-items: center">
         <a href="index.html" style="display: flex; align-items: center; text-decoration: none">
           <img src="../assets/img/logo.png" alt="Ram Creations Logo" style="max-width: 100%; height: auto" />
-          <div style="display: flex; flex-direction: column;">
-          <h4 style="color: red; margin-left: 10px;margin-top: 20px;">Ram Creations</h4>
-          <p style = "margin-left: 10px; margin-top: -10px;color: black;">7441180339</p>
-        </div>
+          <h3 style="color: red; margin-left: 10px; margin-top: 5px">
+            Ram Creations
+          </h3>
         </a>
       </div>
 
@@ -99,36 +94,39 @@
   </div>
 
 
-   <!-- About Start -->
-   <div class="container-fluid py-5">
+  <div class="container-fluid py-5">
     <div class="container pt-5">
-        <div class="row">
-           
-          <div class="col-lg-6 pt-5 pb-lg-5">
-            <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
-                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">About Us</h6>
-                <h1 class="mb-3">We Provide Best Tour Packages In Your Budget</h1>
-                <p>Dolores lorem lorem ipsum sit et ipsum. Sadip sea amet diam dolore sed et. Sit rebum labore sit sit ut vero no sit. Et elitr stet dolor sed sit et sed ipsum et kasd ut. Erat duo eos et erat sed diam duo</p>
-                <div class="row mb-4">
-                    <div class="col-6">
-                        <img class="img-fluid" src="https://res.cloudinary.com/dsgwa6pot/image/upload/v1705500784/xjkh8f1y9csccmeophyj.jpg" alt="">
-                    </div>
-                    <div class="col-6">
-                        <img class="img-fluid" src="https://res.cloudinary.com/dsgwa6pot/image/upload/v1705690787/w41mekjbhmn9ozgljncn.jpg" alt="">
-                    </div>
-                </div>
-                <a href="" class="btn btn-primary mt-1">Book Now</a>
-            </div>
-        </div>
-            <div class="col-lg-6 " style="min-height: 300px; max-height:800px; margin-top: 20px;">
-              <div class="position-relative h-100">
-                  <img class="position-absolute w-100 h-100" src="https://res.cloudinary.com/dxz4dbdis/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1705700927/Couple-Pose-1536x923_lxzqsy.jpg" style="object-fit: cover;">
+      <div class="row">
+
+        <div class="col-lg-6 pt-5 pb-lg-5">
+          <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
+            <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">About Us</h6>
+            <h1 class="mb-3">We Provide Best Photography Packages In Your Budget</h1>
+            <p>Dolores lorem lorem ipsum sit et ipsum. Sadip sea amet diam dolore sed et. Sit rebum labore sit sit ut
+              vero no sit. Et elitr stet dolor sed sit et sed ipsum et kasd ut. Erat duo eos et erat sed diam duo</p>
+            <div class="row mb-4">
+              <div class="col-6">
+                <img class="img-fluid"
+                  src="https://res.cloudinary.com/dsgwa6pot/image/upload/v1705500784/xjkh8f1y9csccmeophyj.jpg" alt="">
               </div>
+              <div class="col-6">
+                <img class="img-fluid"
+                  src="https://res.cloudinary.com/dsgwa6pot/image/upload/v1705690787/w41mekjbhmn9ozgljncn.jpg" alt="">
+              </div>
+            </div>
+            <a href="" class="btn btn-primary mt-1">Book Now</a>
           </div>
         </div>
+        <div class="col-lg-6 " style="min-height: 300px; max-height:800px; margin-top: 20px;">
+          <div class="position-relative h-100">
+            <img class="position-absolute w-100 h-100"
+              src="https://res.cloudinary.com/dxz4dbdis/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1705700927/Couple-Pose-1536x923_lxzqsy.jpg"
+              style="object-fit: cover;">
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-<!-- About End -->
+  </div>
 
 
   <div id="pricing" class="container-fluid py-5">
@@ -143,7 +141,7 @@
       </div>
       <div class="row">
         <% if (data && data.length> 0) { %> <% data.forEach(data=> { %>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-3 col-md-6">
               <a href="/photos/<%= data._id %>">
                 <div class="position-relative overflow-hidden mb-2 elevation">
                   <img class="img-fluid" src="<%= data.images %>" alt="" />
@@ -341,7 +339,7 @@
             </div>
             <div class="my-3">
               <div class="loading">Loading</div>
-
+              <div class="error-message"></div>
               <div class="sent-message">
                 Your message has been sent. Thank you!
               </div>

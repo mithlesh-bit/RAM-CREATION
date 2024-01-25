@@ -18,6 +18,7 @@ const imageSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  youtubelink: String,
 });
 
 module.exports = mongoose.model("images", imageSchema);

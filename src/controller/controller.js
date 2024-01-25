@@ -80,13 +80,12 @@ exports.addSection = async (req, res) => {
 
 exports.admin = async (req, res) => {
   try {
-    const messages = await contactSchema.find({});
-    console.log(messages);
+
     const data = await imageSchema.find({});
     res.render("admin", {
       data: data,
       admin: req.user,
-      messages: messages,
+
     });
   } catch (err) {
     console.error(err);
@@ -94,6 +93,20 @@ exports.admin = async (req, res) => {
   }
 };
 
+
+exports.message = async (req, res) => {
+  try {
+    const messages = await contactSchema.find({});
+
+    res.render("message", {
+      messages: messages,
+
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  }
+};
 // addData post
 exports.addDataPost = async (req, res) => {
   try {
@@ -122,6 +135,7 @@ exports.addDataPost = async (req, res) => {
                   description: req.body.description,
                   images: result.secure_url,
                   lastUpdate: date,
+                  youtubelink: req.body.youtubelink || "",
                 });
 
                 newImage
@@ -180,6 +194,8 @@ exports.addDataPost = async (req, res) => {
   }
 };
 
+
+
 // login get
 
 exports.login = async (req, res) => {
@@ -187,20 +203,6 @@ exports.login = async (req, res) => {
 };
 
 exports.loginPost = async (req, res) => {
-  // console.log(req.body);
-  // for admin creation
-  // const admindata = new adminSchema({
-  //   email: req.body.email,
-  //   password: req.body.password,
-  // });
-  // const token = await admindata.generateAuthToken();
-  // res.cookie("jwt", token, {
-  //   expires: new Date(Date.now() + 5259600000),
-  //   httpOnly: true,
-  //   sameSite: "Strict",
-  // });
-  // const user = await admindata.save();
-  // res.status(200).json({ success: true, message: "register successful", user });
 
   const email = req.body.email;
   const password = req.body.password;
@@ -235,28 +237,6 @@ exports.loginPost = async (req, res) => {
   }
 };
 
-//list of cards in home
-// exports.addData = async (req, resp) => {
-//   console.log(11111111);
-//   const heading = req.body.heading;
-//   const amount = req.body.amount;
-//   const link = req.body.link;
-
-//   try {
-//     const ListData = new listSchema({
-//       heading: heading,
-//       amount: amount,
-//       link: link,
-//     });
-//     const lists = await ListData.save();
-//     resp
-//       .status(200)
-//       .json({ success: true, message: "Thumbnail Data Added", lists });
-//   } catch (error) {
-//     console.error(error);
-//     resp.status(401).send("Some Error occured");
-//   }
-// };
 
 exports.photos = async (req, res) => {
   const id = req.params.id;
@@ -350,6 +330,7 @@ exports.updatePost = async (req, res) => {
       post.amount = amount || post.amount;
       post.description = description || post.description;
       post.lastUpdate = indianDate || post.lastUpdate;
+      post.youtubelink = youtubelink || post.youtubelink;
       await post.save();
 
       res.json({ success: true, message: "Post updated successfully" });
@@ -374,7 +355,8 @@ exports.logout = async (req, res) => {
 
 exports.metadata = async (req, res) => {
   try {
-    console.log(111);
+
+
   } catch (error) {
     console.error("Error:", error);
     return res.status(300).send("Something went wrong");
@@ -396,44 +378,44 @@ exports.morePage = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await listSchema.find({ thumbnail_id: id });
-    console.log(111, data);
-    res.render("more", { data });
+    res.render('more', { data });
   } catch (error) {
-    console.error("Error rendering page:", error);
-    res.status(500).json({ success: false, message: "Failed to render page" });
+    console.error('Error rendering page:', error);
+    res.status(500).json({ success: false, message: 'Failed to render page' });
   }
 };
 
 exports.morePagePost = async (req, res) => {
   try {
-    // Extract data from request body
-    const { theme, amount, dynamicData } = req.body;
-    console.log(req.body.dynamicData);
+    const { dynamicData } = req.body;
 
-    // Upload image to Cloudinary and get the URL
-    let imageUrl;
-    if (req.file) {
+    if (req.files && req.files.length > 0) {
+      for (const file of req.files) {
+        const result = await cloudinary.uploader.upload(file.path);
+        const newCreation = new listSchema({
+          thumbnail_id: dynamicData,
+          links: result.secure_url,
+        });
+
+        await newCreation.save();
+      }
+    } else if (req.file) {
+      // For a single file upload scenario
       const result = await cloudinary.uploader.upload(req.file.path);
-      imageUrl = result.secure_url;
+      const newCreation = new listSchema({
+        thumbnail_id: dynamicData,
+        links: result.secure_url, // Save single file URL
+      });
+      await newCreation.save();
     }
 
-    // Create a new creation instance
-    const newCreation = new listSchema({
-      thumbnail_id: dynamicData,
-      theme: theme,
-      amount: amount,
-      link: imageUrl,
-    });
-
-    // Save the new creation instance to the database
-    await newCreation.save();
-
-    res.status(200).json({ success: true, message: "Data saved successfully" });
+    return res.status(200).json({ success: true, message: 'Data saved successfully' });
   } catch (error) {
-    console.error("Error saving data:", error);
-    res.status(500).json({ success: false, message: "Failed to save data" });
+    console.error('Error saving data:', error);
+    return res.status(500).json({ success: false, message: 'Failed to save data' });
   }
 };
+
 
 exports.deleteImage = async (req, res) => {
   try {
@@ -442,18 +424,17 @@ exports.deleteImage = async (req, res) => {
     const image = await listSchema.findById({ _id: id });
 
     if (!image) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Image not found" });
+      return res.status(404).json({ success: false, message: 'Image not found' });
     }
 
     await listSchema.findByIdAndDelete({ _id: id });
 
-    return res
-      .status(200)
-      .json({ success: true, message: "Image deleted successfully" });
+    return res.status(200).json({ success: true, message: 'Image deleted successfully' });
   } catch (error) {
-    console.error("Error deleting image:", error);
-    res.status(500).json({ success: false, message: "Failed to delete image" });
+    console.error('Error deleting image:', error);
+    res.status(500).json({ success: false, message: 'Failed to delete image' });
   }
 };
+
+
+
