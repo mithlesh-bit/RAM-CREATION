@@ -10,33 +10,55 @@
 </head>
 
 <body>
-    <div class="space-y-4 max-w-lg mx-auto pt-10">
-        <!-- Message 1 -->
-        <div class="bg-white shadow-lg rounded-lg p-4">
-            <div class="flex justify-between items-center mb-2">
-                <span class="font-semibold text-lg text-gray-800">John Doe</span>
-                <span class="text-sm text-gray-600">2024-01-25</span>
-            </div>
-            <div class="text-gray-700">
-                <p>This is an example message. It can be as long as needed and can include more details.</p>
-            </div>
-        </div>
 
-        <!-- Message 2 -->
-        <div class="bg-white shadow-lg rounded-lg p-4">
-            <div class="flex justify-between items-center mb-2">
-                <span class="font-semibold text-lg text-gray-800">Jane Smith</span>
-                <span class="text-sm text-gray-600">2024-01-24</span>
+    <!-- Back Button -->
+    <div class="pt-4 px-4">
+        <a href="./" class="flex items-center text-gray-600 hover:text-gray-800">
+            <div class="bg-orange-500 rounded-full p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
             </div>
-            <div class="text-gray-700">
-                <p>Another example message. More text here.</p>
-            </div>
-        </div>
 
-        <!-- Add more messages here following the same structure -->
+        </a>
+    </div>
 
+
+    <div class="space-y-4 max-w-4xl w-full mx-auto pt-10 px-4 md:px-0">
+        <% if (messages && messages.length> 0) { %>
+            <% messages.forEach(function(message) { %>
+                <div class="bg-white shadow-lg rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <div>
+                            <span class="font-semibold text-lg text-gray-800">
+                                <%= message.name %>
+                            </span>
+                            <div class="text-sm text-gray-600">
+                                <%= message.number %>
+                            </div>
+                        </div>
+                        <span class="text-sm text-gray-600">
+                            <%= message.date %>
+                        </span>
+                    </div>
+                    <div class="text-gray-700">
+                        <p>
+                            <%= message.message %>
+                        </p>
+                    </div>
+                </div>
+                <% }); %>
+                    <% } else { %>
+                        <h2 class="text-center">No messages available</h2>
+                        <% } %>
     </div>
 </body>
+
+
+
+
+
 
 
 </html>

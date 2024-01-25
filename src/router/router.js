@@ -14,7 +14,6 @@ router.get("/admin/api/more/:id", auth, controller.more);
 router.get("/admin/more/:id", auth, controller.morePage);
 router.get("/admin/message", auth, controller.message);
 
-
 router.post(
   "/admin/addData",
   auth,

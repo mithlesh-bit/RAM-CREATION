@@ -80,12 +80,10 @@ exports.addSection = async (req, res) => {
 
 exports.admin = async (req, res) => {
   try {
-
     const data = await imageSchema.find({});
     res.render("admin", {
       data: data,
       admin: req.user,
-
     });
   } catch (err) {
     console.error(err);
@@ -93,14 +91,12 @@ exports.admin = async (req, res) => {
   }
 };
 
-
 exports.message = async (req, res) => {
   try {
-    const messages = await contactSchema.find({});
+    const messages = await contactSchema.find({}).sort({ createdAt: -1 });
 
     res.render("message", {
       messages: messages,
-
     });
   } catch (err) {
     console.error(err);
@@ -170,6 +166,7 @@ exports.addDataPost = async (req, res) => {
               description: req.body.description,
               images: result.secure_url,
               lastUpdate: date,
+              youtubelink: req.body.youtubelink || "",
             });
 
             newImage
@@ -194,8 +191,6 @@ exports.addDataPost = async (req, res) => {
   }
 };
 
-
-
 // login get
 
 exports.login = async (req, res) => {
@@ -203,7 +198,6 @@ exports.login = async (req, res) => {
 };
 
 exports.loginPost = async (req, res) => {
-
   const email = req.body.email;
   const password = req.body.password;
   try {
@@ -236,7 +230,6 @@ exports.loginPost = async (req, res) => {
       .json({ success: false, message: "Your Email or Password is incorrect" });
   }
 };
-
 
 exports.photos = async (req, res) => {
   const id = req.params.id;
@@ -355,8 +348,6 @@ exports.logout = async (req, res) => {
 
 exports.metadata = async (req, res) => {
   try {
-
-
   } catch (error) {
     console.error("Error:", error);
     return res.status(300).send("Something went wrong");
@@ -378,10 +369,10 @@ exports.morePage = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await listSchema.find({ thumbnail_id: id });
-    res.render('more', { data });
+    res.render("more", { data });
   } catch (error) {
-    console.error('Error rendering page:', error);
-    res.status(500).json({ success: false, message: 'Failed to render page' });
+    console.error("Error rendering page:", error);
+    res.status(500).json({ success: false, message: "Failed to render page" });
   }
 };
 
@@ -409,13 +400,16 @@ exports.morePagePost = async (req, res) => {
       await newCreation.save();
     }
 
-    return res.status(200).json({ success: true, message: 'Data saved successfully' });
+    return res
+      .status(200)
+      .json({ success: true, message: "Data saved successfully" });
   } catch (error) {
-    console.error('Error saving data:', error);
-    return res.status(500).json({ success: false, message: 'Failed to save data' });
+    console.error("Error saving data:", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Failed to save data" });
   }
 };
-
 
 exports.deleteImage = async (req, res) => {
   try {
@@ -424,17 +418,18 @@ exports.deleteImage = async (req, res) => {
     const image = await listSchema.findById({ _id: id });
 
     if (!image) {
-      return res.status(404).json({ success: false, message: 'Image not found' });
+      return res
+        .status(404)
+        .json({ success: false, message: "Image not found" });
     }
 
     await listSchema.findByIdAndDelete({ _id: id });
 
-    return res.status(200).json({ success: true, message: 'Image deleted successfully' });
+    return res
+      .status(200)
+      .json({ success: true, message: "Image deleted successfully" });
   } catch (error) {
-    console.error('Error deleting image:', error);
-    res.status(500).json({ success: false, message: 'Failed to delete image' });
+    console.error("Error deleting image:", error);
+    res.status(500).json({ success: false, message: "Failed to delete image" });
   }
 };
-
-
-
