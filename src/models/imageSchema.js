@@ -13,6 +13,11 @@ const imageSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  youtubelink: {
+    type: String,
+    required: false,
+  },
   images: String,
   lastUpdate: {
     type: String,

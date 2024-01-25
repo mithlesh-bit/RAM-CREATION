@@ -92,7 +92,7 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show>.btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(142, 194, 79, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(215, 8, 25, 0.5);
 }
 
 .btn-secondary {
