@@ -12,26 +12,49 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #212529;
+  align-items: center;
 }
 
 .masonry {
-  /* This will create a gap between the columns and rows */
-  column-count: 3;
-  column-gap: 1em;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: 250px; /* This sets a fixed height for each row */
+  padding-left: 100px;
+  padding-right: 100px;
 }
+
+
 
 .item {
-  /* This will prevent items from stretching full-width and breaking the masonry layout */
-  break-inside: avoid;
-  margin-bottom: 1em;
+  /* The flex-basis of 0 combined with flex-grow allows the item to grow based on its content, with equal heights */
+  flex: 1 0 0px;
+  display: flex;
+  column-count: 5;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start; /* Align items at the top */
+  overflow: hidden; /* Ensures the content does not overflow */
+}
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* This will ensure the image fits within the given dimensions, maintaining its aspect ratio */
 }
 
-.item img {
-  /* This will make images scale within their div containers */
-  width: 100%;
-  height: auto;
-  display: block;
+
+/* Responsive adjustments */
+@media only screen and (max-width: 768px) {
+  .item img {
+    height: 250px; /* Adjust height for smaller screens */
+  }
 }
+
+@media only screen and (max-width: 480px) {
+  .item img {
+    height: 200px; /* Adjust height for very small screens */
+  }
+}
+
 
 a {
   color: #eb5d1e;

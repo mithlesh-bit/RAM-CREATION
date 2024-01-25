@@ -134,14 +134,34 @@
   </section>
   <!-- End Portfolio Details Section -->
 
+
+  <div class="text-center mb-3 pb-3">
+    <h1 class="text-primary text-uppercase" style="letter-spacing: 5px; font-size: 20px;">
+      Photos Gallery
+    </h1>
+
+  </div>
+
+  <div class="masonry">
+    <% if (data && data.length> 0) { %>
+      <% data.forEach(data=> { %>
+      <div class="item">
+        <img src="<%= data.links %>" alt="" style="width: 320px;">
+      </div>
+      <% }) %>
+      <% } else { %>
+        <h2 class="text-center">No data available</h2>
+        <% } %>
+  </div>
+
   <!-- Packages Start -->
   <div class="container-fluid py-5">
     <div class="container pt-5 pb-3">
       <div class="text-center mb-3 pb-3">
-        <h6 class="text-primary text-uppercase" style="letter-spacing: 5px">
-          Packages
-        </h6>
-        <h1>Affordable Packages</h1>
+        <h1 class="text-primary text-uppercase" style="letter-spacing: 5px; font-size: 20px;">
+          Photos Gallery
+        </h1>
+    
       </div>
       <div class="row">
 
