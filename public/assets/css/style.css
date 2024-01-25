@@ -1188,32 +1188,23 @@ section {
 
 /* The Modal (background) */
 .modal {
-  display: none;
-  /* Hidden by default */
-  position: fixed;
-  /* Stay in place */
-  z-index: 1;
-  /* Sit on top */
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
-  width: 100%;
-  /* Full width */
-  height: 100%;
-  /* Full height */
-  overflow: auto;
-  /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 .modal-content {
   background-color: #fefefe;
-  margin: 10% auto;
-  /* 15% from the top and centered */
+  margin: 10% auto; /* 15% from the top and centered */
   padding: 20px;
   border-radius: 5px;
-  width: 40%;
-  /* Could be more or less, depending on screen size */
+  width: 40%; /* Could be more or less, depending on screen size */
 }
 
 .close {
@@ -1267,32 +1258,24 @@ textarea:focus {
 /* Responsive styling for mobile devices */
 @media (max-width: 768px) {
   .modal-content {
-    width: 90%;
-    /* Makes the modal take up most of the screen width on smaller screens */
-    margin: 10% auto;
-    /* Adjust top margin to ensure modal is vertically centered */
-    padding: 10px;
-    /* Reduces padding on smaller screens */
+    width: 90%; /* Makes the modal take up most of the screen width on smaller screens */
+    margin: 10% auto; /* Adjust top margin to ensure modal is vertically centered */
+    padding: 10px; /* Reduces padding on smaller screens */
   }
 
   input[type="text"],
   textarea {
-    width: calc(100% - 20px);
-    /* Full width minus padding */
-    font-size: 16px;
-    /* Larger font size for better readability on mobile */
+    width: calc(100% - 20px); /* Full width minus padding */
+    font-size: 16px; /* Larger font size for better readability on mobile */
   }
 
   .btn.submit-enquiry {
-    padding: 12px;
-    /* Slightly larger padding for a more touch-friendly button */
-    font-size: 18px;
-    /* Larger font size for better readability on mobile */
+    padding: 12px; /* Slightly larger padding for a more touch-friendly button */
+    font-size: 18px; /* Larger font size for better readability on mobile */
   }
 
   .close {
-    font-size: 32px;
-    /* Makes the close button easier to tap on a small screen */
+    font-size: 32px; /* Makes the close button easier to tap on a small screen */
   }
 }
 
@@ -1362,12 +1345,11 @@ textarea:focus {
 /* Responsive styling */
 @media (max-width: 600px) {
   .card-actions {
-    flex-direction: column;
+      flex-direction: column;
   }
-
   .btn {
-    width: 100%;
-    margin-bottom: 10px;
+      width: 100%;
+      margin-bottom: 10px;
   }
 }
 
@@ -1379,7 +1361,7 @@ textarea:focus {
   padding: 0 0 30px 0;
   color: #212529;
   font-size: 14px;
-
+ 
 }
 
 #footer .footer-newsletter {
