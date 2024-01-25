@@ -10,10 +10,10 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/"
+            "dest": "/server.js"
         }
     ],
-    "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
+  
     "env": {
         "API_KEY": "174133229194841"
     }
