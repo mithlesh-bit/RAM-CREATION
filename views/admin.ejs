@@ -76,7 +76,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="messages">
+              <a class="nav-link" id="messages" href="/admin/message">
                 <i class="bi bi-chat"></i> Messages
                 <!-- <span
                   class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span> -->
@@ -843,13 +843,7 @@
         ? applicationContent.innerHTML
         : "";
 
-      if (messagesButton) {
-        messagesButton.addEventListener("click", function (e) {
-          e.preventDefault();
-          applicationContent.innerHTML =
-            '<% if (messages && messages.length> 0) { %> <% messages.forEach(message=> { %> <div class="relative bg-blue-200 border-2"> <div class="flex items-center mb-2"> <div class="text-blue-800 text-lg font-semibold"> <%= message.name %> </div> <div class="ml-auto text-blue-800 text-sm"> <%= message.date %> </div> </div> <p class="text-blue-800"> <%= message.message %> </p> <div class="absolute bg-blue-200 h-3 w-3 rotate-45 -bottom-1 left-4"></div> <div class="text-blue-800 text-lg font-semibold"> <%= message.number %> </div> <!-- </div> </div> --> <% }) %> <% } else { %> <h2 class="text-center">No data available</h2> <% } %> </div>';
-        });
-      }
+
       // Event listener for the titlesButton
       if (titlesButton) {
         titlesButton.addEventListener("click", function (e) {

@@ -80,13 +80,12 @@ exports.addSection = async (req, res) => {
 
 exports.admin = async (req, res) => {
   try {
-    const messages = await contactSchema.find({});
 
     const data = await imageSchema.find({});
     res.render("admin", {
       data: data,
       admin: req.user,
-      messages: messages,
+
     });
   } catch (err) {
     console.error(err);
@@ -94,6 +93,20 @@ exports.admin = async (req, res) => {
   }
 };
 
+
+exports.message = async (req, res) => {
+  try {
+    const messages = await contactSchema.find({});
+
+    res.render("message", {
+      messages: messages,
+
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  }
+};
 // addData post
 exports.addDataPost = async (req, res) => {
   try {
@@ -190,20 +203,6 @@ exports.login = async (req, res) => {
 };
 
 exports.loginPost = async (req, res) => {
-  // console.log(req.body);
-  // for admin creation
-  // const admindata = new adminSchema({
-  //   email: req.body.email,
-  //   password: req.body.password,
-  // });
-  // const token = await admindata.generateAuthToken();
-  // res.cookie("jwt", token, {
-  //   expires: new Date(Date.now() + 5259600000),
-  //   httpOnly: true,
-  //   sameSite: "Strict",
-  // });
-  // const user = await admindata.save();
-  // res.status(200).json({ success: true, message: "register successful", user });
 
   const email = req.body.email;
   const password = req.body.password;
@@ -238,28 +237,6 @@ exports.loginPost = async (req, res) => {
   }
 };
 
-//list of cards in home
-// exports.addData = async (req, resp) => {
-//   console.log(11111111);
-//   const heading = req.body.heading;
-//   const amount = req.body.amount;
-//   const link = req.body.link;
-
-//   try {
-//     const ListData = new listSchema({
-//       heading: heading,
-//       amount: amount,
-//       link: link,
-//     });
-//     const lists = await ListData.save();
-//     resp
-//       .status(200)
-//       .json({ success: true, message: "Thumbnail Data Added", lists });
-//   } catch (error) {
-//     console.error(error);
-//     resp.status(401).send("Some Error occured");
-//   }
-// };
 
 exports.photos = async (req, res) => {
   const id = req.params.id;
