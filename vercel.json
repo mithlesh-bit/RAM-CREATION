@@ -3,7 +3,7 @@
     "name": "ram creation",
     "builds": [
         {
-            "src": "./server.js",
+            "src": "src/server.js",
             "use": "@vercel/node"
         }
     ],
