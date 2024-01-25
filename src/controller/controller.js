@@ -96,7 +96,7 @@ exports.admin = async (req, res) => {
 
 exports.message = async (req, res) => {
   try {
-    const messages = await contactSchema.find({});
+    const messages = await contactSchema.find({}).sort({ createdAt: -1 });
 
     res.render("message", {
       messages: messages,
@@ -170,6 +170,7 @@ exports.addDataPost = async (req, res) => {
               description: req.body.description,
               images: result.secure_url,
               lastUpdate: date,
+              youtubelink: req.body.youtubelink || ""
             });
 
             newImage
