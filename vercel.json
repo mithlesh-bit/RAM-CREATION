@@ -3,18 +3,17 @@
     "name": "ram creation",
     "builds": [
         {
-            "src": "index.js",
+            "src": "./src/server.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/index.js"
+            "dest": "/server.js"
         }
     ],
     "env": {
         "API_KEY": "174133229194841"
     }
-    
 }
