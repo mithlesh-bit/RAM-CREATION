@@ -13,12 +13,15 @@
     "server": "^1.0.38",
     "stack": "^0.1.0"
   },
+   "engines": {
+    "node": ">=14.20.1"
+  },
   "name": "ram-creation",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node ./src/server.js"
+    "serve": "nodemon ./src/server.js"
   },
   "keywords": [],
   "author": "",
