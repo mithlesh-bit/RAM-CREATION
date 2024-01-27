@@ -185,9 +185,6 @@ exports.loginPost = async (req, res) => {
 exports.photos = async (req, res) => {
   try {
     const data = await listSchema.find({ thumbnail_id: req.params.id });
-    if (data.length === 0) {
-      return res.status(404).json({ success: false, message: "Data not found" });
-    }
     res.render("photos", { data });
   } catch (error) {
     console.error(error);
