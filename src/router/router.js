@@ -6,8 +6,8 @@ const upload = require("../multer");
 
 router.get("/", controller.index);
 router.get("/photos/:id", controller.photos);
-router.get("/admin/addData", auth, controller.addData);
-router.get("/addsection", auth, controller.addSection);
+// router.get("/admin/addData", auth, controller.addData);
+// router.get("/addsection", auth, controller.addSection);
 router.get("/login", controller.login);
 router.get("/admin", auth, controller.admin);
 router.get("/admin/api/more/:id", auth, controller.more);

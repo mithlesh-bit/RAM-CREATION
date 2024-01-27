@@ -14,19 +14,16 @@ const imageSchema = require("../models/imageSchema");
 
 exports.index = async (req, res) => {
   try {
+    let user = null;
     const token = req.cookies.jwt;
-    if (token) {
-      const verify = jwt.verify(token, process.env.secretKey);
-      const user = await adminSchema.findOne({ _id: verify._id });
 
-      const data = await imageSchema.find({});
-      return res.render("index", {
-        data: data,
-        userName: user,
-      });
+    if (token) {
+      const verify = jwt.verify(token, process.env.secretkey);
+      user = await adminSchema.findOne({ _id: verify._id });
     }
+
     const data = await imageSchema.find({});
-    let user;
+
     return res.render("index", {
       data: data,
       userName: user,
@@ -37,46 +34,44 @@ exports.index = async (req, res) => {
   }
 };
 
+
 //contact form home
 
 exports.contactPost = async (req, resp) => {
-  const name = req.body.name;
-  const number = req.body.number;
-  const subject = req.body.subject;
-  const message = req.body.message;
-  const currentDate = new Date().toLocaleString("en-IN", {
-    timeZone: "Asia/Kolkata",
-  });
-  const parts = currentDate.split(" ");
-  const indianDate = parts.slice(0, 4).join(" ");
+  const currentDate = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+  const indianDate = currentDate.split(" ").slice(0, 4).join(" ");
+
   try {
     const contactData = new contactSchema({
-      name: name,
-      number: number,
-      subject: subject,
-      message: message,
+      ...req.body,
       date: indianDate,
     });
+
     const contact = await contactData.save();
-    resp
-      .status(200)
-      .json({ success: true, message: "We will contact you soon", contact });
+    resp.status(200).json({ success: true, message: "We will contact you soon", contact });
   } catch (error) {
     console.error(error);
-    resp.status(401).send("Some Error occured");
+    resp.status(500).send("Some Error occurred");
   }
 };
 
+
 //add home data
 
-exports.addData = async (req, res) => {
-  res.render("addData");
-};
+// exports.addData = async (req, res) => {
+//   try {
+//     res.render("addData");
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Internal Server Error");
+//   }
+// };
 
-exports.addSection = async (req, res) => {
-  const options = await imageSchema.find({});
-  res.render("addsection", { options });
-};
+
+// exports.addSection = async (req, res) => {
+//   const options = await imageSchema.find({});
+//   res.render("addsection", { options });
+// };
 
 exports.admin = async (req, res) => {
   try {
@@ -110,88 +105,41 @@ exports.message = async (req, res) => {
 // addData post
 exports.addDataPost = async (req, res) => {
   try {
-    let currentDate = new Date().toLocaleString("en-IN", {
-      timeZone: "Asia/Kolkata",
-    });
-    let parts = currentDate.split(" ");
-    const indianDate = parts.slice(0, 4).join(" ");
+    // Function to handle image upload and database entry
+    const handleImageUpload = async (file) => {
+      const uploadResult = await cloudinary.uploader.upload(file.path);
+
+      const newImage = new imageSchema({
+        title: req.body.title,
+        amount: req.body.amount,
+        description: req.body.description,
+        images: uploadResult.secure_url,
+        lastUpdate: indianDate,
+        youtubelink: req.body.youtubelink || "",
+      });
+
+      await newImage.save();
+    };
+
+    // Generate current Indian date once
+    let currentDate = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+    let indianDate = currentDate.split(" ").slice(0, 4).join(" ");
+
     if (req.file) {
       if (Array.isArray(req.file)) {
-        const imageUploadPromises = req.file.map((file) => {
-          return new Promise((resolve, reject) => {
-            cloudinary.uploader.upload(file.path, (err, result) => {
-              if (err) {
-                console.error(err);
-                reject(err);
-              } else {
-                let currentDate = new Date().toLocaleString("en-IN", {
-                  timeZone: "Asia/Kolkata",
-                });
-                let parts = currentDate.split(" ");
-                let date = parts.slice(0, 4).join(" ");
-                const newImage = new Image({
-                  title: req.body.title,
-                  amount: req.body.amount,
-                  description: req.body.description,
-                  images: result.secure_url,
-                  lastUpdate: date,
-                  youtubelink: req.body.youtubelink || "",
-                });
-
-                newImage
-                  .save()
-                  .then(() => {
-                    resolve();
-                  })
-                  .catch((saveErr) => {
-                    reject(saveErr);
-                  });
-              }
-            });
-          });
-        });
-
-        await Promise.all(imageUploadPromises);
-        return res.redirect("/addSection");
+        // Handle multiple files
+        await Promise.all(req.file.map(file => handleImageUpload(file)));
       } else {
-        cloudinary.uploader.upload(req.file.path, (err, result) => {
-          if (err) {
-            console.error(err);
-            return res.status(500).send("Error uploading image");
-          } else {
-            let currentDate = new Date().toLocaleString("en-IN", {
-              timeZone: "Asia/Kolkata",
-            });
-            let parts = currentDate.split(" ");
-            let date = parts.slice(0, 4).join(" ");
-            const newImage = new imageSchema({
-              title: req.body.title,
-              amount: req.body.amount,
-              description: req.body.description,
-              images: result.secure_url,
-              lastUpdate: date,
-              youtubelink: req.body.youtubelink || ""
-            });
-
-            newImage
-              .save()
-              .then(() => {
-                console.log("Image saved successfully");
-                return res.redirect("/admin");
-              })
-              .catch((saveErr) => {
-                console.error(saveErr);
-                return res.status(500).send("Error saving image data");
-              });
-          }
-        });
+        // Handle single file
+        await handleImageUpload(req.file);
       }
+      return res.redirect(req.file.length > 1 ? "/addSection" : "/admin");
     } else {
-      return res.status(500).send("Error saving image data");
+      return res.status(400).send("No image file provided");
     }
   } catch (error) {
     console.error("Error:", error);
-    return res.status(500).send("Something went wrong");
+    return res.status(500).send("Something went wrong during image upload");
   }
 };
 
@@ -204,94 +152,81 @@ exports.login = async (req, res) => {
 };
 
 exports.loginPost = async (req, res) => {
-
-  const email = req.body.email;
-  const password = req.body.password;
   try {
-    const useremail = await adminSchema.findOne({ email: email });
-    // console.log(password, useremail.password);
-    const ismatch = await bcrypt.compare(password, useremail.password);
-    const token = await useremail.generateAuthToken();
-    // console.log(token);
-    if (ismatch) {
-      res.cookie("jwt", token, {
-        expires: new Date(Date.now() + 5259600000),
-        httpOnly: true,
-        sameSite: "Strict",
-      });
-      res.status(200).json({
-        success: true,
-        message: "Successfuly",
-      });
-      // res.redirect("admin");
-    } else {
-      res.status(402).json({
-        success: false,
-        message: "Your Email or Password is incorrect",
-      });
+    const { email, password } = req.body;
+    const user = await adminSchema.findOne({ email: email });
+
+    if (!user) {
+      return res.status(401).json({ success: false, message: "Invalid Email or Password" });
     }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(401).json({ success: false, message: "Invalid Email or Password" });
+    }
+
+    const token = await user.generateAuthToken();
+    res.cookie("jwt", token, {
+      expires: new Date(Date.now() + 5259600000), // 2 months
+      httpOnly: true,
+      sameSite: "Strict",
+    });
+
+    res.status(200).json({ success: true, message: "Successfully Logged In" });
   } catch (error) {
-    console.log(error);
-    res
-      .status(401)
-      .json({ success: false, message: "Your Email or Password is incorrect" });
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
 
 
+
 exports.photos = async (req, res) => {
-  const id = req.params.id;
   try {
-    const data = await listSchema.find({ thumbnail_id: id });
-    if (!data) {
-      return res.status(404).send("Data not found");
+    const data = await listSchema.find({ thumbnail_id: req.params.id });
+    if (data.length === 0) {
+      return res.status(404).json({ success: false, message: "Data not found" });
     }
     res.render("photos", { data });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ success: false, message: "Server Error" });
   }
 };
 
-exports.update = async (req, res) => {
-  const id = req.params.id;
 
+exports.update = async (req, res) => {
   try {
-    const data = await imageSchema.findById({ _id: id });
+    const data = await imageSchema.findById(req.params.id);
     if (!data) {
-      return res.status(404).send("Data not found");
+      return res.status(404).json({ success: false, message: "Data not found" });
     }
     const updatedData = await imageSchema.updateOne({ _id: id }, { $set: {} });
     res.render("photos", { data });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ success: false, message: "Server Error" });
   }
 };
 
 exports.updateUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-
-    // Retrieve the user by ID (assuming you have the ID in req.user.id)
     const user = await adminSchema.findById(req.user.id);
 
-    // Update the user's properties if the fields are provided in the request
     if (name) user.name = name;
     if (email) user.email = email;
-    if (password) user.password = password;
+    if (password) user.password = await bcrypt.hash(password, 10); // Assuming bcrypt is used for hashing
 
-    // Save the updated user
     await user.save();
-
     res.json({ success: true, message: "User details updated successfully" });
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to update user details" });
+    res.status(500).json({ success: false, message: "Failed to update user details" });
   }
 };
+
 
 exports.deletePost = async (req, res) => {
   try {
@@ -315,22 +250,16 @@ exports.deletePost = async (req, res) => {
 
 exports.updatePost = async (req, res) => {
   try {
-    const postId = req.params.id;
-    console.log(postId);
-    const { title, amount, description } = req.body;
-    console.log(title, amount, description);
-    const post = await imageSchema.findById(postId);
+    const { title, amount, description, youtubelink } = req.body;
+    const post = await imageSchema.findById(req.params.id);
+    const currentDate = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+    const indianDate = currentDate.split(" ").slice(0, 4).join(" ");
 
-    const currentDate = new Date().toLocaleString("en-IN", {
-      timeZone: "Asia/Kolkata",
-    });
-    const parts = currentDate.split(" ");
-    const indianDate = parts.slice(0, 4).join(" ");
     if (post) {
       post.title = title || post.title;
       post.amount = amount || post.amount;
       post.description = description || post.description;
-      post.lastUpdate = indianDate || post.lastUpdate;
+      post.lastUpdate = indianDate;
       post.youtubelink = youtubelink || post.youtubelink;
       await post.save();
 
@@ -344,15 +273,17 @@ exports.updatePost = async (req, res) => {
   }
 };
 
+
 exports.logout = async (req, res) => {
   try {
     res.clearCookie("jwt");
-    res.json({ success: true, message: "User details updated successfully" });
+    res.json({ success: true, message: "Successfully logged out" });
   } catch (error) {
-    console.error("Error updating post:", error);
-    res.status(500).json({ success: false, message: "Failed to update post" });
+    console.error("Error logging out:", error);
+    res.status(500).json({ success: false, message: "Failed to log out" });
   }
 };
+
 
 exports.metadata = async (req, res) => {
   try {
@@ -368,6 +299,9 @@ exports.more = async (req, res) => {
   try {
     const { id } = req.params;
     const result = await imageSchema.findOne({ _id: id });
+    if (!result) {
+      return res.status(404).json({ success: false, message: "Image not found" });
+    }
     res.json({ success: true, result });
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -375,10 +309,14 @@ exports.more = async (req, res) => {
   }
 };
 
+
 exports.morePage = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await listSchema.find({ thumbnail_id: id });
+    if (data.length === 0) {
+      return res.status(404).json({ success: false, message: 'No data found' });
+    }
     res.render('more', { data });
   } catch (error) {
     console.error('Error rendering page:', error);
@@ -386,26 +324,22 @@ exports.morePage = async (req, res) => {
   }
 };
 
+
 exports.morePagePost = async (req, res) => {
   try {
     const { dynamicData } = req.body;
+    // Handle both single and multiple file uploads
+    const files = req.files || (req.file ? [req.file] : []);
 
-    if (req.files && req.files.length > 0) {
-      for (const file of req.files) {
-        const result = await cloudinary.uploader.upload(file.path);
-        const newCreation = new listSchema({
-          thumbnail_id: dynamicData,
-          links: result.secure_url,
-        });
+    if (files.length === 0) {
+      return res.status(400).json({ success: false, message: 'No files uploaded' });
+    }
 
-        await newCreation.save();
-      }
-    } else if (req.file) {
-      // For a single file upload scenario
-      const result = await cloudinary.uploader.upload(req.file.path);
+    for (const file of files) {
+      const result = await cloudinary.uploader.upload(file.path);
       const newCreation = new listSchema({
         thumbnail_id: dynamicData,
-        links: result.secure_url, // Save single file URL
+        links: result.secure_url,
       });
       await newCreation.save();
     }
@@ -418,24 +352,24 @@ exports.morePagePost = async (req, res) => {
 };
 
 
+
 exports.deleteImage = async (req, res) => {
   try {
     const { id } = req.params;
-
-    const image = await listSchema.findById({ _id: id });
+    const image = await listSchema.findById(id);
 
     if (!image) {
       return res.status(404).json({ success: false, message: 'Image not found' });
     }
 
-    await listSchema.findByIdAndDelete({ _id: id });
-
+    await listSchema.findByIdAndDelete(id);
     return res.status(200).json({ success: true, message: 'Image deleted successfully' });
   } catch (error) {
     console.error('Error deleting image:', error);
     res.status(500).json({ success: false, message: 'Failed to delete image' });
   }
 };
+
 
 
 
