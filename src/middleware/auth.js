@@ -5,7 +5,7 @@ const auth = async (req, res, next) => {
     try {
         const token = req.cookies.jwt;
         if (token) {
-            const verify = jwt.verify(token, process.env.secretkey);
+            const verify = jwt.verify(token, "myselfnikhilvermafromgecbbilaspur");
             const user = await admin.findOne({ _id: verify._id });
 
             if (!user) {
