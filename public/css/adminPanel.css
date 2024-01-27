@@ -18,6 +18,46 @@
 }
 
 
+#dropArea {
+    border: 2px dashed #009578; /* Use a more noticeable color for the border */
+    padding: 40px; /* Increase padding for a larger drop area */
+    text-align: center;
+    background-color: #f9f9f9; /* Light background color for the drop area */
+    border-radius: 10px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition for color change */
+  }
+  
+  #dropArea:hover,
+  #dropArea.dragover { /* Style for when dragging over the area */
+    background-color: #dfeffd; /* Slightly different color on hover/dragover */
+  }
+  
+  #dropArea label {
+    cursor: pointer; /* Ensure the cursor indicates a clickable area */
+  }
+  
+  #dropArea p {
+    margin-top: 10px; /* Space out the icon and text */
+    color: #666; /* Less harsh text color */
+    font-weight: bold;
+  }
+  
+  #imagePreview {
+    display: flex; /* Use flexbox for centering */
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    border-radius: 10px; /* Match the border-radius of the drop area */
+    overflow: hidden; /* Hide overflow */
+    border: 1px solid #ccc; /* Add a border to the preview for better visual separation */
+  }
+  
+  #imagePreview img {
+    max-width: 100%; /* Ensure the image is responsive and doesn't overflow */
+    max-height: 300px; /* Larger max height for better preview */
+  }
+  
+
 
 .nickname,
 .status {

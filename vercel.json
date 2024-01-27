@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "ram creation",
+   
     "builds": [
         {
             "src": "./src/server.js",
@@ -10,9 +10,12 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/server.js"
+
+            "dest": "./src/server.js"
+
         }
     ],
+  
     "env": {
         "API_KEY": "174133229194841"
     }

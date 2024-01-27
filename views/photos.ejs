@@ -117,7 +117,7 @@
             </div>
           </div>
           <div class="portfolio-description">
-            <h2>This is an example of portfolio detail</h2>
+            <h2>bhai isko laga de merese nahi horazx</h2>
             <p>
               Autem ipsum nam porro corporis rerum. Quis eos dolorem eos
               itaque inventore commodi labore quia quia. Exercitationem
@@ -134,14 +134,39 @@
   </section>
   <!-- End Portfolio Details Section -->
 
+
+  <div class="text-center mb-3 pb-3">
+    <h1 class="text-primary text-uppercase" style="letter-spacing: 5px; font-size: 20px;">
+      Photos Gallery
+    </h1>
+
+  </div>
+
+  <div class="masonry">
+    <% if (data && data.length> 0) { %>
+      <% data.forEach(data=> { %>
+        <div class="item">
+          <img src="<%= data.links %>" alt="" class="clickable-image" style="width: 320px;">
+        </div>
+        <% }) %>
+          <% } else { %>
+            <h2 class="text-center">No data available</h2>
+            <% } %>
+  </div>
+  <div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div>
+
   <!-- Packages Start -->
   <div class="container-fluid py-5">
     <div class="container pt-5 pb-3">
       <div class="text-center mb-3 pb-3">
-        <h6 class="text-primary text-uppercase" style="letter-spacing: 5px">
-          Packages
-        </h6>
-        <h1>Affordable Packages</h1>
+        <h1 class="text-primary text-uppercase" style="letter-spacing: 5px; font-size: 20px;">
+          Photos Gallery
+        </h1>
+
       </div>
       <div class="row">
 
@@ -166,10 +191,16 @@
   </div>
   </div>
   <!-- Packages End -->
-
-  <div>
-    <iframe src="https://www.youtube.com/embed/aFnXjlkPwfc" height="300px" width="450" allowfullscreen></iframe>
+  <h1 class="text-primary text-center text-uppercase mt-5"
+    style="letter-spacing: 5px; font-size: 20px; padding-bottom: 10px;">
+    Video Gallery
+  </h1>
+  <div class="video-container">
+    <iframe class="responsive-iframe" src="https://www.youtube.com/embed/aFnXjlkPwfc?autoplay=1&mute=1"
+      allowfullscreen></iframe>
   </div>
+
+
 
   </main>
   <!-- End #main -->
@@ -205,6 +236,36 @@
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var modal = document.getElementById("imageModal");
+      var modalImg = document.getElementById("img01");
+      var captionText = document.getElementById("caption");
+      var span = document.getElementsByClassName("close")[0];
+
+      document.querySelectorAll('.clickable-image').forEach(img => {
+        img.onclick = function () {
+          modal.style.display = "block";
+          modalImg.src = this.src;
+          captionText.innerHTML = this.alt;
+        }
+      });
+
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
+
+      window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+    });
+  </script>
+
+
 
   <!-- Vendor JS Files -->
   <script src="/assets/vendor/aos/aos.js"></script>

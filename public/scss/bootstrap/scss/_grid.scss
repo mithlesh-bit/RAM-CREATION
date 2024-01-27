@@ -46,7 +46,7 @@
 // Rows contain your columns.
 
 @if $enable-grid-classes {
-  .row {
+  .row_over {
     @include make-row();
   }
 
