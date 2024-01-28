@@ -184,8 +184,10 @@ exports.loginPost = async (req, res) => {
 
 exports.photos = async (req, res) => {
   try {
+    const link = await imageSchema.find({ _id: req.params.id });
     const data = await listSchema.find({ thumbnail_id: req.params.id });
-    res.render("photos", { data });
+
+    res.render("photos", { data, link });
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Server Error" });
