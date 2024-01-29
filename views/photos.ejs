@@ -131,12 +131,12 @@
             <div class="card">
               <div class="card-header">
                 <h2>
-                  <%= JSON.stringify(link[0].title) %>
+                  <%= link[0].title %>
                 </h2>
 
 
                 <div class="price">
-                  ₹ <%= JSON.stringify(link[0].amount) %>
+                  ₹ <%= link[0].amount %>
                 </div>
 
                 <div class="duration">
@@ -149,13 +149,33 @@
               </div>
               <div class="card-actions">
                 <button id="sendEnquiry" class="btn enquiry">Send Enquiry</button>
-                <button class="btn call">Call/Chat</button>
+                <div id="enquiryModal" class="modal">
+                  <div class="modal-content">
+                      <span class="close">&times;</span>
+                      <form id="enquiryForm" action="/contact" method="POST">
+                        <h2> <%= link[0].title %> Enquiry Form</h2>
+                        
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+            
+                        <label for="number">Phone Number:</label>
+                        <input type="number" id="number" name="number" required>
+            
+                        <label for="subject">PhotoGraphy Preference:</label>
+                        <input type="text" id="subject" name="subject" value="<%= link[0].title %>" >
+                        <br/>
+                        <br/>
+                        <button class="send" type="submit">Submit</button>
+                    </form>
+               
               </div>
+            
             </div>
+            <button class="btn call">Call/Chat</button>
           </div>
           <div class="portfolio-description">
             <p>
-              <%= JSON.stringify(link[0].description) %>
+              <%= link[0].description %>
             </p>
           </div>
         </div>
@@ -227,10 +247,12 @@
     style="letter-spacing: 5px; font-size: 20px; padding-bottom: 10px;">
     Video Gallery
   </h1>
-  <div class="video-container">
-    <iframe class="responsive-iframe" src="<%=link[0].youtubelink%>?autoplay=1&mute=1" allowfullscreen="true" allow="autoplay;"></iframe>
-  </div>
+
   
+  <div class="video-container">
+    <iframe class="responsive-iframe" src="https://www.youtube.com/embed/<%=link[0].youtubelink%>?autoplay=1" allowfullscreen="true" allow="autoplay;"></iframe>
+</div>
+
 
 
   </main>

@@ -902,6 +902,7 @@ section {
 
 .portfolio-details .portfolio-description {
   padding-top: 30px;
+  padding-left: 5px;
 }
 
 .portfolio-details .portfolio-description h2 {
@@ -912,6 +913,101 @@ section {
 
 .portfolio-details .portfolio-description p {
   padding: 0;
+}
+
+/*
+for that dialog enquiry dialog
+*/
+
+/* Existing styles... */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black with opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: 10% auto; /* 10% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 500px; /* Maximum width */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form h2 {
+  text-align: center;
+  color: #333;
+}
+
+label {
+  margin-top: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.send {
+  background-color: #4681f4;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.send:hover {
+  background-color: #5783db;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+  .modal-content {
+      width: 90%; /* More width on smaller screens */
+      margin: 20% auto;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -1418,11 +1514,11 @@ textarea:focus {
 }
 
 .enquiry {
-  background-color: #ff4081;
+  background-color: #ED0800;
 }
 
 .call {
-  background-color: #4caf50;
+  background-color: #5783db;
 }
 
 /* Responsive styling */
