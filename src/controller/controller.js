@@ -234,11 +234,10 @@ exports.loginPost = async (req, res) => {
 exports.photos = async (req, res) => {
   const id = req.params.id;
   try {
-    const data = await listSchema.find({ thumbnail_id: id });
-    if (!data) {
-      return res.status(404).send("Data not found");
-    }
-    res.render("photos", { data });
+    const link = await imageSchema.find({ _id: id });
+    const data = await listSchema.find({ thumbnail_id: req.params.id });
+    console.log(link);
+    res.render("photos", { data, link });
   } catch (error) {
     console.error(error);
     res.status(500).send("Server Error");
@@ -309,8 +308,8 @@ exports.updatePost = async (req, res) => {
   try {
     const postId = req.params.id;
     console.log(postId);
-    const { title, amount, description } = req.body;
-    console.log(title, amount, description);
+    const { title, amount, description, youtubelink } = req.body;
+    console.log(youtubelink);
     const post = await imageSchema.findById(postId);
 
     const currentDate = new Date().toLocaleString("en-IN", {
