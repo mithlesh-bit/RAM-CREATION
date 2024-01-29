@@ -235,10 +235,11 @@ exports.photos = async (req, res) => {
   const id = req.params.id;
   try {
     const data = await listSchema.find({ thumbnail_id: id });
+    const link = await imageSchema.find({ _id: id });
     if (!data) {
       return res.status(404).send("Data not found");
     }
-    res.render("photos", { data });
+    res.render("photos", { data, link });
   } catch (error) {
     console.error(error);
     res.status(500).send("Server Error");
