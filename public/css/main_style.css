@@ -828,19 +828,20 @@ section {
 
 .white-bottom {
   background-color: #ffffff;
-  /* Set the background color to white */
+
   padding: 10px;
   justify-content: center;
   display: flex;
-  /* Add some padding to create space around the text */
+  
 }
 
-.white-bottom p {
+.white-bottom h5 {
   margin: 0;
-  /* Remove any default margin from the paragraph */
+  padding-top: 2px;
+  font-size: larger;
+  padding-bottom: 2px;
   color: #000000;
 
-  /* Set the text color to black (or your desired color) */
 }
 
 

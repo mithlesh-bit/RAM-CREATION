@@ -47,7 +47,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto active" href="/">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About Us</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li>
@@ -143,7 +143,7 @@
       </div>
       <div class="row">
         <% if (data && data.length> 0) { %> <% data.forEach(data=> { %>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-3 col-md-6 mt-5">
               <a href="/photos/<%= data._id %>">
                 <div class="position-relative overflow-hidden mb-2 elevation">
                   <img class="img-fluid" src="<%= data.images %>" alt="" />
@@ -185,29 +185,25 @@
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
                 <i class="bx"></i>
 
-                <img style="margin-top: 15px" height="17%" width="15%" margin-bottom="30px"
+                <img style="margin-top: 15px" height="20%" width="15%" margin-bottom="30px"
                   src="../assets/img/photography.png" />
                 <br />
                 <h4>For Photography Enthusiasts</h4>
                 <p>
-                  At Ram Creations, photographers are equipped with the latest
-                  gear and educational resources within a dynamic community,
-                  allowing them to capture stunning imagery, gain knowledge
-                  from peers, and display their work.
+                  Here, photographers are equipped with the latest
+                  poses allowing them to capture stunning imagery and display their work.
                 </p>
               </div>
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
                 <i class="bx"></i>
-                <img style="margin-top: 15px" height="17%" width="15%" margin-bottom="30px"
+                <img style="margin-top: 15px" height="20%" width="15%" margin-bottom="30px"
                   src="../assets/img/client.png" />
                 <br />
                 <h4>For Our Clients</h4>
                 <p>
-                  Ram Creations offers expert photography services with
+                  We offers expert photography services with
                   advanced technology and customized care, ensuring every
-                  photo captures a story. They provide easy booking, a variety
-                  of packages, and a commitment to perfectly preserved
-                  memories.
+                  photo captures a story.
                 </p>
               </div>
             </div>
