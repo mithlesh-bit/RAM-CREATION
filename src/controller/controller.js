@@ -73,6 +73,10 @@ exports.addData = async (req, res) => {
   res.render("addData");
 };
 
+exports.error = async (req, res) => {
+  res.render("error");
+};
+
 exports.addSection = async (req, res) => {
   const options = await imageSchema.find({});
   res.render("addsection", { options });
@@ -103,6 +107,7 @@ exports.message = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
+
 // addData post
 exports.addDataPost = async (req, res) => {
   try {
@@ -240,7 +245,7 @@ exports.photos = async (req, res) => {
     res.render("photos", { data, link });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Server Error");
+    res.render("error");
   }
 };
 
