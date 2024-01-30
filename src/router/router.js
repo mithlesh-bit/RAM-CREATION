@@ -35,5 +35,7 @@ router.post(
   controller.morePagePost
 );
 router.delete("/admin/deleteImage/:id", auth, controller.deleteImage);
+// router.post("/photo/enquery", controller.enquery);
+
 
 module.exports = router;
