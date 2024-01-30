@@ -13,7 +13,7 @@ router.get("/admin", auth, controller.admin);
 router.get("/admin/api/more/:id", auth, controller.more);
 router.get("/admin/more/:id", auth, controller.morePage);
 router.get("/admin/message", auth, controller.message);
-router.get("/error", controller.error);
+router.get("*", controller.error);
 
 router.post(
   "/admin/addData",
@@ -36,6 +36,5 @@ router.post(
 );
 router.delete("/admin/deleteImage/:id", auth, controller.deleteImage);
 // router.post("/photo/enquery", controller.enquery);
-
 
 module.exports = router;
