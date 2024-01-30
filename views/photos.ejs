@@ -132,12 +132,12 @@
             <div class="card">
               <div class="card-header">
                 <h2>
-                  <%= link[0].title %>
+                  <%= link.title %>
                 </h2>
 
 
                 <div class="price">
-                  ₹ <%= link[0].amount %>
+                  ₹ <%= link.amount %>
                 </div>
 
                 <div class="duration">
@@ -155,7 +155,7 @@
                     <span class="close">&times;</span>
                     <form id="enquiryForm" action="/contact" method="POST">
                       <h2>
-                        <%= link[0].title %> Enquiry Form
+                        <%= link.title %> Enquiry Form
                       </h2>
 
                       <label for="name">Name:</label>
@@ -165,7 +165,7 @@
                       <input type="number" id="number" name="number" required>
 
                       <label for="subject">PhotoGraphy Preference:</label>
-                      <input type="text" id="subject" name="subject" value="<%= link[0].title %>">
+                      <input type="text" id="subject" name="subject" value="<%= link.title %>">
                       <br />
                       <br />
                       <button class="send" type="submit">Submit</button>
@@ -174,11 +174,12 @@
                   </div>
 
                 </div>
-                <button class="btn call">Call/Chat</button>
+                <button class="btn call" onclick="makePhoneCall()">Call/Chat</button>
+
               </div>
               <div class="portfolio-description">
                 <p>
-                  <%= link[0].description %>
+                  <%= link.description %>
                 </p>
               </div>
             </div>
@@ -253,7 +254,7 @@
 
 
   <div class="video-container">
-    <iframe class="responsive-iframe" src="https://www.youtube.com/embed/<%=link[0].youtubelink%>?autoplay=1"
+    <iframe class="responsive-iframe" src="https://www.youtube.com/embed/<%=link.youtubelink%>?autoplay=1"
       allowfullscreen="true" allow="autoplay;"></iframe>
   </div>
 
@@ -294,34 +295,40 @@
       class="bi bi-arrow-up-short"></i></a>
 
 
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          var imageModal = document.getElementById("imageModal");
-          var modalImg = document.getElementById("img01");
-          var captionText = document.getElementById("caption");
-          var span1 = document.getElementsByClassName("close")[0];
-      
-          document.querySelectorAll('.clickable-image').forEach(img => {
-            img.onclick = function(){
-              imageModal.style.display = "block";
-              modalImg.src = this.src;
-              captionText.innerHTML = this.alt;
-            }
-          });
-      
-          span1.onclick = function() { 
-            imageModal.style.display = "none";
-          }
-      
-          // Close the modal if the user clicks anywhere outside the image
-          window.onclick = function(event) {
-            if (event.target === imageModal) {
-              imageModal.style.display = "none";
-            }
-          }
-        });
-      </script>
-      
+  <script>
+  function makePhoneCall() {
+        window.location.href = "tel:7441180339";
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var imageModal = document.getElementById("imageModal");
+      var modalImg = document.getElementById("img01");
+      var captionText = document.getElementById("caption");
+      var span1 = document.getElementsByClassName("close")[0];
+
+      document.querySelectorAll('.clickable-image').forEach(img => {
+        img.onclick = function () {
+          imageModal.style.display = "block";
+          modalImg.src = this.src;
+          captionText.innerHTML = this.alt;
+        }
+      });
+
+      span1.onclick = function () {
+        imageModal.style.display = "none";
+      }
+
+      // Close the modal if the user clicks anywhere outside the image
+      window.onclick = function (event) {
+        if (event.target === imageModal) {
+          imageModal.style.display = "none";
+        }
+      }
+
+    
+    });
+  </script>
+
 
 
   <!-- Vendor JS Files -->

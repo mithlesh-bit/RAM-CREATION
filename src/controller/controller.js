@@ -238,7 +238,7 @@ exports.loginPost = async (req, res) => {
 exports.photos = async (req, res) => {
   const id = req.params.id;
   try {
-    const link = await imageSchema.find({ _id: id });
+    const link = await imageSchema.findOne({ _id: id });
     const data = await listSchema.find({ thumbnail_id: req.params.id });
     res.render("photos", { data, link });
   } catch (error) {
