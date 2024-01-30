@@ -1,18 +1,18 @@
 :root {
     font-size: 24px;
-  }
+}
 
- 
-  .card-group {
+
+.card-group {
     left: 50%;
     right: 50%;
     align-items: center;
     display: flex;
     justify-content: center;
-  }
-  
- 
-  .card {
+}
+
+
+.card {
     height: 270px;
     width: 450px;
     border-radius: 25px;
@@ -22,75 +22,78 @@
     box-shadow: 0 0 80px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-wrap: wrap;
-    text-decoration: none; /* Remove default underline for links */
-    color: inherit; /* Inherit text color from the parent */
-  }
+    text-decoration: none;
+    /* Remove default underline for links */
+    color: inherit;
+    /* Inherit text color from the parent */
+}
 
 
-  
-  .logo img,
-  .chip img,
-  .number,
-  .name,
-  .from,
-  .to,
-  .ring {
-    position: absolute; /* All items inside card should have absolute position */
-  }
-  
-  .logo img {
+
+.logo img,
+.chip img,
+.number,
+.name,
+.from,
+.to,
+.ring {
+    position: absolute;
+    /* All items inside card should have absolute position */
+}
+
+.logo img {
     top: 35px;
     right: 40px;
     width: 80px;
     height: 80;
     opacity: 0.8;
-  }
-  
-  .chip img {
+}
+
+.chip img {
     top: 120px;
     left: 40px;
     width: 50px;
     height: auto;
     opacity: 0.8;
-  }
-  
-  .number,
-  .name,
-  .from,
-  .to {
+}
+
+.number,
+.name,
+.from,
+.to {
     font-size: 5svb;
     color: rgba(255, 255, 255, 0.8);
     font-weight: 400;
     letter-spacing: 1px;
     font-family: Helvetica;
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-  }
-  
-  .number {
+}
+
+.number {
     left: 40px;
     bottom: 65px;
-  }
-  
-  .name {
+}
+
+.name {
     font-size: 0.5rem;
     left: 40px;
     bottom: 35px;
-  }
-  
-  .from {
+}
+
+.from {
     font-size: 0.5rem;
     bottom: 35px;
     right: 110px;
-  }
-  
-  .to {
+}
+
+.to {
     font-size: 0.5rem;
     bottom: 35px;
     right: 40px;
-  }
-  
-  /* The two rings on the card background */
-  .ring {
+}
+
+/* The two rings on the card background */
+.ring {
     height: 500px;
     width: 500px;
     border-radius: 50%;
@@ -99,9 +102,9 @@
     bottom: -250px;
     right: -250px;
     box-sizing: border-box;
-  }
-  
-  .ring::after {
+}
+
+.ring::after {
     content: "";
     position: absolute;
     height: 600px;
@@ -112,11 +115,10 @@
     bottom: -80px;
     right: -110px;
     box-sizing: border-box;
-  }
-  
+}
 
-  * Buttons Section */
-.paypal-btn,
+
+* Buttons Section */ .paypal-btn,
 .proceed-btn {
     cursor: pointer;
     font-size: 16px;
@@ -124,25 +126,25 @@
     border-color: transparent;
     border-radius: 6px;
 }
- 
+
 .proceed-btn {
     margin-bottom: 10px;
     background: #7dc855;
 }
- 
+
 .paypal-btn a,
 .proceed-btn a {
     text-decoration: none;
 }
- 
+
 .proceed-btn a {
     color: #fff;
 }
- 
+
 .paypal-btn a {
     color: rgba(242, 242, 242, .7);
 }
- 
+
 .paypal-btn {
     padding-right: 95px;
     background: url('paypal-logo.svg') no-repeat 65% 56% #009cde;
@@ -157,7 +159,7 @@
     border-radius: 6px;
     background: #fff;
 }
- 
+
 .cvv-details {
     font-size: 12px;
     font-weight: 300;
@@ -165,7 +167,7 @@
     float: right;
     margin-bottom: 20px;
 }
- 
+
 .cvv-details p {
     margin-top: 6px;
 }
@@ -183,11 +185,11 @@
     -moz-appearance: none;
     -webkit-appearance: none;
 }
- 
+
 .month select {
     float: left;
 }
- 
+
 .year select {
     float: right;
 }
@@ -211,7 +213,7 @@
     font-weight: 100;
     line-height: 14px;
 }
- 
+
 .card-number,
 .month select,
 .year select {
@@ -219,7 +221,7 @@
     font-weight: 100;
     line-height: 14px;
 }
- 
+
 .card-number,
 .cvv-details,
 .cvv-input input,
@@ -244,7 +246,7 @@
     padding: 20px 30px 0;
     border-bottom: 1px solid #e1e8ee;
 }
- 
+
 .form-body {
     height: 340px;
     padding: 30px 30px 20px;
@@ -252,59 +254,64 @@
 
 /* Credit Card */
 .credit-card {
-    width: 100%; /* Change width to be relative to the parent element */
-    max-width: 320px; /* Set a maximum width for larger screens */
-    height: auto; /* Let the height adjust proportionally */
+    width: 100%;
+    /* Change width to be relative to the parent element */
+    max-width: 320px;
+    /* Set a maximum width for larger screens */
+    height: auto;
+    /* Let the height adjust proportionally */
     margin-left: 30px;
     border: 1px solid #ddd;
     margin-top: 30px;
     border-radius: 10px;
     background-color: #fff;
-    box-shadow: 1px 2px 3px 0 rgba(0,0,0,.10);
+    box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, .10);
 }
 
 /* Apply specific styles for smaller screens (e.g., mobile phones) */
 @media (min-width: 768px) {
     .credit-card {
-        max-width: 400px; /* Increase the maximum width for larger screens */
+        max-width: 400px;
+        /* Increase the maximum width for larger screens */
     }
 
 
 
-/* Global */
-* {
-    box-sizing: border-box;
-}
- 
-body,
-html {
-    height: 100%;
-    min-height: 100%;
-}
- 
-body {
-    background-image: url("./assets/JavaScript.png");
-    font-family: 'Roboto',
-    sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* Global */
+    * {
+        box-sizing: border-box;
+    }
 
-    align-items: center;
-    background-color: #e7e7e7;
-}
+    body,
+    html {
+        height: 100%;
+        min-height: 100%;
+    }
 
-.main-body {
-    background-color: white;
-    width: 100%;
-    margin-top: 50px;
-    padding: 50px;
-    height: auto;
-    display: flex;
-    border-radius: 10px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    flex-direction: row;
-    min-width: 350px;
+    body {
+        background-image: url("./assets/JavaScript.png");
+        font-family: 'Roboto',
+            sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        align-items: center;
+        background-color: #e7e7e7;
+    }
+
+    .main-body {
+        background-color: white;
+        width: 100%;
+        margin-top: 50px;
+        padding: 50px;
+        height: auto;
+        display: flex;
+        border-radius: 10px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+        min-width: 350px;
+    }
 }
