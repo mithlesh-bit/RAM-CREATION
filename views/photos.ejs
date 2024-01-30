@@ -4,8 +4,9 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Detailed</title>
+  <link href="../assets/img/logo.png" rel="icon" />
 
-  <title>Description</title>
   <meta content="" name="description" />
   <meta content="" name="keywords" />
 
@@ -140,7 +141,7 @@
                 </div>
 
                 <div class="duration">
-                  <a href="index.ejs#contact">
+                  <a href="../#contact">
                     For 1 Day of Shoot
                     <br />
                     <span style="color: red;">(Contact Us for Full Pricelist)</span>
@@ -149,6 +150,9 @@
               </div>
               <div class="card-actions">
                 <button id="sendEnquiry" class="btn enquiry">Send Enquiry</button>
+
+                <button class="btn call" onclick="makeCall()">Call/Chat</button>
+
                 <div id="enquiryModal" class="modal">
                   <div class="modal-content">
                       <span class="close">&times;</span>
@@ -167,7 +171,7 @@
                         <br/>
                         <button class="send" type="submit">Submit</button>
                     </form>
-               
+
               </div>
             
             </div>
@@ -292,6 +296,15 @@
 
 
   <script>
+
+    function makeCall() {
+      // Replace the phone number with the desired one
+      var phoneNumber = '9770366745';
+
+      // Use the tel: URI scheme to initiate a call
+      window.location.href = 'https://wa.me/' + phoneNumber;
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
       var modal = document.getElementById("imageModal");
       var modalImg = document.getElementById("img01");

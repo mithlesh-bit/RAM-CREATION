@@ -172,7 +172,6 @@ exports.addDataPost = async (req, res) => {
             newImage
               .save()
               .then(() => {
-                console.log("Image saved successfully");
                 return res.redirect("/admin");
               })
               .catch((saveErr) => {
@@ -236,7 +235,6 @@ exports.photos = async (req, res) => {
   try {
     const link = await imageSchema.find({ _id: id });
     const data = await listSchema.find({ thumbnail_id: req.params.id });
-    console.log(link);
     res.render("photos", { data, link });
   } catch (error) {
     console.error(error);
@@ -307,9 +305,7 @@ exports.deletePost = async (req, res) => {
 exports.updatePost = async (req, res) => {
   try {
     const postId = req.params.id;
-    console.log(postId);
     const { title, amount, description, youtubelink } = req.body;
-    console.log(youtubelink);
     const post = await imageSchema.findById(postId);
 
     const currentDate = new Date().toLocaleString("en-IN", {
@@ -409,6 +405,29 @@ exports.morePagePost = async (req, res) => {
       .json({ success: false, message: "Failed to save data" });
   }
 };
+
+// exports.enquery = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+
+//     const image = await listSchema.findById({ _id: id });
+
+//     if (!image) {
+//       return res
+//         .status(404)
+//         .json({ success: false, message: "Image not found" });
+//     }
+
+//     await listSchema.findByIdAndDelete({ _id: id });
+
+//     return res
+//       .status(200)
+//       .json({ success: true, message: "Image deleted successfully" });
+//   } catch (error) {
+//     console.error("Error deleting image:", error);
+//     res.status(500).json({ success: false, message: "Failed to delete image" });
+//   }
+// };
 
 exports.deleteImage = async (req, res) => {
   try {
