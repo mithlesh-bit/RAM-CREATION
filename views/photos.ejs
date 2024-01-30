@@ -4,15 +4,14 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Detailed</title>
-  <link href="../assets/img/logo.png" rel="icon" />
 
+  <title>Description</title>
   <meta content="" name="description" />
   <meta content="" name="keywords" />
 
   <!-- Favicons -->
-  <link href="/assets/img/favicon.png" rel="icon" />
-  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+  <link href="/assets/img/logo.png" rel="icon" />
+  <link href="/assets/img/logo.png" rel="apple-touch-icon" />
 
   <!-- Google Fonts -->
   <link
@@ -61,9 +60,10 @@
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
       <div class="logo" style="display: flex; align-items: center">
-        <a href="../" style="display: flex; align-items: center; text-decoration: none">
+        <a href="/" style="display: flex; align-items: center; text-decoration: none">
           <img src="../assets/img/logo.png" alt="Ram Creations Logo" style="max-width: 100%; height: auto" />
-          <h3 style="color: red; margin-left: 10px; margin-top: 5px">
+          <h3
+            style="color: red; margin-left: 10px; margin-top: 5px; font-weight:700 ; font-size: 28px; letter-spacing: 1px;">
             Ram Creations
           </h3>
         </a>
@@ -141,7 +141,7 @@
                 </div>
 
                 <div class="duration">
-                  <a href="../#contact">
+                  <a href="index.ejs#contact">
                     For 1 Day of Shoot
                     <br />
                     <span style="color: red;">(Contact Us for Full Pricelist)</span>
@@ -150,42 +150,41 @@
               </div>
               <div class="card-actions">
                 <button id="sendEnquiry" class="btn enquiry">Send Enquiry</button>
-
-                <button class="btn call" onclick="makeCall()">Call/Chat</button>
-
                 <div id="enquiryModal" class="modal">
                   <div class="modal-content">
-                      <span class="close">&times;</span>
-                      <form id="enquiryForm" action="/contact" method="POST">
-                        <h2> <%= link[0].title %> Enquiry Form</h2>
-                        
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" required>
-            
-                        <label for="number">Phone Number:</label>
-                        <input type="number" id="number" name="number" required>
-            
-                        <label for="subject">PhotoGraphy Preference:</label>
-                        <input type="text" id="subject" name="subject" value="<%= link[0].title %>" >
-                        <br/>
-                        <br/>
-                        <button class="send" type="submit">Submit</button>
+                    <span class="close">&times;</span>
+                    <form id="enquiryForm" action="/contact" method="POST">
+                      <h2>
+                        <%= link[0].title %> Enquiry Form
+                      </h2>
+
+                      <label for="name">Name:</label>
+                      <input type="text" id="name" name="name" required>
+
+                      <label for="number">Phone Number:</label>
+                      <input type="number" id="number" name="number" required>
+
+                      <label for="subject">PhotoGraphy Preference:</label>
+                      <input type="text" id="subject" name="subject" value="<%= link[0].title %>">
+                      <br />
+                      <br />
+                      <button class="send" type="submit">Submit</button>
                     </form>
 
+                  </div>
+
+                </div>
+                <button class="btn call">Call/Chat</button>
               </div>
-            
+              <div class="portfolio-description">
+                <p>
+                  <%= link[0].description %>
+                </p>
+              </div>
             </div>
-            <button class="btn call">Call/Chat</button>
-          </div>
-          <div class="portfolio-description">
-            <p>
-              <%= link[0].description %>
-            </p>
+
           </div>
         </div>
-
-      </div>
-    </div>
 
   </section>
   <!-- End Portfolio Details Section -->
@@ -252,10 +251,11 @@
     Video Gallery
   </h1>
 
-  
+
   <div class="video-container">
-    <iframe class="responsive-iframe" src="https://www.youtube.com/embed/<%=link[0].youtubelink%>?autoplay=1" allowfullscreen="true" allow="autoplay;"></iframe>
-</div>
+    <iframe class="responsive-iframe" src="https://www.youtube.com/embed/<%=link[0].youtubelink%>?autoplay=1"
+      allowfullscreen="true" allow="autoplay;"></iframe>
+  </div>
 
 
 
@@ -266,15 +266,14 @@
   <footer id="footer">
     <div class="footer-top">
       <div class="container">
-        <div class="footer-links" style="
+        <div class="footer-links" style=" 
               display: flex;
               align-items: center;
               justify-content: center;
               flex-direction: column;
             ">
-          <h2>Our Social Networks</h2>
-
-          <h4>Connect with us from our Social Media Links</h4>
+          <h4>Our Social Networks</h4>
+          <h2>Connect with us</h2>
 
           <div class="social-links mt-3">
             <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -295,42 +294,34 @@
       class="bi bi-arrow-up-short"></i></a>
 
 
-  <script>
-
-    function makeCall() {
-      // Replace the phone number with the desired one
-      var phoneNumber = '9770366745';
-
-      // Use the tel: URI scheme to initiate a call
-      window.location.href = 'https://wa.me/' + phoneNumber;
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      var modal = document.getElementById("imageModal");
-      var modalImg = document.getElementById("img01");
-      var captionText = document.getElementById("caption");
-      var span = document.getElementsByClassName("close")[0];
-
-      document.querySelectorAll('.clickable-image').forEach(img => {
-        img.onclick = function () {
-          modal.style.display = "block";
-          modalImg.src = this.src;
-          captionText.innerHTML = this.alt;
-        }
-      });
-
-      span.onclick = function () {
-        modal.style.display = "none";
-      }
-
-      window.onclick = function (event) {
-        if (event.target === modal) {
-          modal.style.display = "none";
-        }
-      }
-    });
-  </script>
-
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var imageModal = document.getElementById("imageModal");
+          var modalImg = document.getElementById("img01");
+          var captionText = document.getElementById("caption");
+          var span1 = document.getElementsByClassName("close")[0];
+      
+          document.querySelectorAll('.clickable-image').forEach(img => {
+            img.onclick = function(){
+              imageModal.style.display = "block";
+              modalImg.src = this.src;
+              captionText.innerHTML = this.alt;
+            }
+          });
+      
+          span1.onclick = function() { 
+            imageModal.style.display = "none";
+          }
+      
+          // Close the modal if the user clicks anywhere outside the image
+          window.onclick = function(event) {
+            if (event.target === imageModal) {
+              imageModal.style.display = "none";
+            }
+          }
+        });
+      </script>
+      
 
 
   <!-- Vendor JS Files -->
