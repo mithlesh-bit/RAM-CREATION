@@ -22,7 +22,7 @@ registerSchema.methods.generateAuthToken = async function () {
         this.tokens = this.tokens.concat({ token: token })
         await this.save()
         return token;
-
+        // iufsh
     } catch (error) {
         console.log(error);
     }
