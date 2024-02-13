@@ -16,7 +16,7 @@ exports.index = async (req, res) => {
   try {
     const token = req.cookies.jwt;
     if (token) {
-      const verify = jwt.verify(token, process.env.secretKey);
+      const verify = jwt.verify(token, process.env.secretkey);
       const user = await adminSchema.findOne({ _id: verify._id });
 
       const data = await imageSchema.find({});
