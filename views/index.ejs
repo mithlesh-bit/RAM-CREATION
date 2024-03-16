@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -73,6 +74,7 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
+
     </div>
   </header>
 
@@ -146,7 +148,7 @@
             <div class="col-lg-3 col-md-6 mt-4">
               <a href="/photos/<%= data._id %>">
                 <div class="position-relative overflow-hidden mb-2 elevation">
-                  <img class="img-fluid" src="<%= data.images %>" alt="" />
+                  <img class="img-fluid" src="<%= data.images %>" alt="<%= data.title %>" />
 
                   <div class="white-bottom">
                     <h5 style="color: black; font-family: Montserrat">
@@ -441,6 +443,16 @@
           });
       });
     });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+      var navbar = document.getElementById('navbar');
+      mobileNavToggle.addEventListener('click', function () {
+        navbar.classList.toggle('navbar');
+      });
+    });
+
   </script>
 </body>
 

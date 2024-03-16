@@ -213,8 +213,9 @@ exports.loginPost = async (req, res) => {
     if (ismatch) {
       res.cookie("jwt", token, {
         expires: new Date(Date.now() + 5259600000),
-        httpOnly: true,
-        sameSite: "Strict",
+
+        httpOnly: false,
+        // sameSite: "Strict",
       });
       res.status(200).json({
         success: true,
