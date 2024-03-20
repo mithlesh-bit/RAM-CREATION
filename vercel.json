@@ -1,22 +1,18 @@
 {
-    "version": 2,
-   
-    "builds": [
-        {
-            "src": "./src/server.js",
-            "use": "@vercel/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-
-            "dest": "./src/server.js"
-
-        }
-    ],
-  
-    "env": {
-        "API_KEY": "174133229194841"
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/server.js",
+      "use": "@vercel/node"
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/server.js"
+    }
+  ],
+  "env": {
+    "API_KEY": "@api_key"
+  }
 }
