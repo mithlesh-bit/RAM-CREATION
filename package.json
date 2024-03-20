@@ -14,7 +14,7 @@
     "stack": "^0.1.0"
   },
   "engines": {
-    "node": "14.x"
+    "node": "18.x"
   },
   "name": "ram-creation",
   "version": "1.0.0",
